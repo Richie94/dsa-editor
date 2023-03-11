@@ -2,8 +2,9 @@
   <span>DSA Editor - Notizen</span>
 </mat-toolbar>
 
-<button class="dsa-button" mat-raised-button type="button" (click)="saveNotes()">Speichern</button>
+<button class="dsa-button" mat-raised-button type="button" (click)="goBack()">Zurück</button>
 <button class="dsa-button" mat-raised-button type="button" (click)="addNewNote()">Neuer Eintrag</button>
+<button class="dsa-button" mat-raised-button type="button" (click)="saveNotes()">Speichern</button>
 <mat-divider></mat-divider>
 <mat-card *ngFor="let note of notes" class="notes">
     <mat-card-header>
@@ -15,4 +16,3 @@
         </mat-form-field>
     </mat-card-content>
 </mat-card>
-<button class="dsa-button" mat-raised-button type="button" (click)="goBack()">Zurück</button>

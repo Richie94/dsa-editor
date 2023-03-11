@@ -1,11 +1,18 @@
-<button type="button" (click)="saveNotes()">Speichern</button>
-<button type="button" (click)="addNewNote()">Neuer Eintrag</button>
+<mat-toolbar>
+  <span>DSA Editor - Notizen</span>
+</mat-toolbar>
+
+<button class="dsa-button" mat-raised-button type="button" (click)="saveNotes()">Speichern</button>
+<button class="dsa-button" mat-raised-button type="button" (click)="addNewNote()">Neuer Eintrag</button>
+<mat-divider></mat-divider>
 <mat-card *ngFor="let note of notes" class="notes">
-    <mat-card-header><h4>{{note.date.toLocaleDateString()}}</h4></mat-card-header>
-    <mat-card-content>
-        <mat-form-field style="width:100%">
+    <mat-card-header>
+      <mat-card-title class="note-header">{{note.date.toLocaleDateString()}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content color="secondary">
+        <mat-form-field class="note-text">
             <textarea matInput [(ngModel)]='note.text'></textarea>
         </mat-form-field>
     </mat-card-content>
 </mat-card>
-<button type="button" (click)="goBack()">Zurück</button>
+<button class="dsa-button" mat-raised-button type="button" (click)="goBack()">Zurück</button>

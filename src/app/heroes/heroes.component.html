@@ -1,4 +1,6 @@
-<h2>Helden Übersicht</h2>
+<mat-toolbar>
+  <span>DSA Editor - Helden Übersicht</span>
+</mat-toolbar>
 
 <div>
     <mat-form-field>
@@ -6,14 +8,15 @@
         <input matInput id="new-hero" #heroName />
     </mat-form-field>
 
-    <button type="button" (click)="createHero(heroName.value); heroName.value=''">
+    <button class="dsa-button" mat-raised-button (click)="createHero(heroName.value); heroName.value=''">
         Neuer Held
     </button>
 </div>
-<ul class="heroes">
-  <li *ngFor="let hero of heroes">
+
+<mat-list class="heroes">
+  <mat-list-item *ngFor="let hero of heroes">
     <a routerLink="/detail/{{hero.id}}">
       <span class="badge">{{hero.id}}</span> {{hero.name}}
     </a>
-  </li>
-</ul>
+  </mat-list-item>
+</mat-list>

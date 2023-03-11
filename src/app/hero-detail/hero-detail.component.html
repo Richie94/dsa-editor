@@ -1,4 +1,14 @@
+<mat-toolbar>
+  <span>DSA Editor - Helden Details</span>
+</mat-toolbar>
+
 <div *ngIf="hero">
+  <a routerLink="/notes/{{hero.id}}">
+    <button class="dsa-button" mat-raised-button type="button" (click)="goBack()">Zu den Notizen</button>
+  </a>
+  <button class="dsa-button" mat-raised-button type="button" (click)="goBack()">Zurück</button>
+  <button class="dsa-button" mat-raised-button type="button" (click)="saveHero()">Speichern</button>
+  <mat-divider></mat-divider>
     <div>
         <mat-form-field>
             <mat-label for="hero-name">Name: </mat-label>
@@ -45,9 +55,5 @@
             <input matInput id="hero-kk" [(ngModel)]="hero.hero_stats.kk" placeholder="kk" type="number">
         </mat-form-field>
     </div>
-    <a routerLink="/notes/{{hero.id}}">
-        <button type="button" (click)="goBack()">Zu den Notizen</button>
-    </a>
-    <button type="button" (click)="goBack()">Zurück</button>
-    <button type="button" (click)="saveHero()">Speichern</button>
+
 </div>

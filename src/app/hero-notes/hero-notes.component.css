@@ -1,4 +1,11 @@
 .notes {
-    margin-bottom: 10px;
-    background-color: teal
+    margin: 10px;
+}
+
+.note-text {
+  width:100%
+}
+
+.note-header {
+  color:white
 }

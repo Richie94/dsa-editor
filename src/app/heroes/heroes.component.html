@@ -1,0 +1,19 @@
+<h2>Helden Übersicht</h2>
+
+<div>
+    <mat-form-field>
+        <mat-label for="new-hero">Name: </mat-label>
+        <input matInput id="new-hero" #heroName />
+    </mat-form-field>
+
+    <button type="button" (click)="createHero(heroName.value); heroName.value=''">
+        Neuer Held
+    </button>
+</div>
+<ul class="heroes">
+  <li *ngFor="let hero of heroes">
+    <a routerLink="/detail/{{hero.id}}">
+      <span class="badge">{{hero.id}}</span> {{hero.name}}
+    </a>
+  </li>
+</ul>

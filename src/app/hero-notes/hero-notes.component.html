@@ -1,0 +1,11 @@
+<button type="button" (click)="saveNotes()">Speichern</button>
+<button type="button" (click)="addNewNote()">Neuer Eintrag</button>
+<mat-card *ngFor="let note of notes" class="notes">
+    <mat-card-header><h4>{{note.date.toLocaleDateString()}}</h4></mat-card-header>
+    <mat-card-content>
+        <mat-form-field style="width:100%">
+            <textarea matInput [(ngModel)]='note.text'></textarea>
+        </mat-form-field>
+    </mat-card-content>
+</mat-card>
+<button type="button" (click)="goBack()">Zurück</button>

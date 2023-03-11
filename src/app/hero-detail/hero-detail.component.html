@@ -1,0 +1,53 @@
+<div *ngIf="hero">
+    <div>
+        <mat-form-field>
+            <mat-label for="hero-name">Name: </mat-label>
+            <input matInput id="hero-name" [(ngModel)]="hero.name" placeholder="name" type="text">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label for="hero-mu">Mut: </mat-label>
+            <input matInput id="hero-mu" [(ngModel)]="hero.hero_stats.mu" placeholder="mu" type="number">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label for="hero-kl">Klugheit: </mat-label>
+            <input matInput id="hero-kl" [(ngModel)]="hero.hero_stats.kl" placeholder="kl" type="number">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label for="hero-in">Intuition: </mat-label>
+            <input matInput id="hero-in" [(ngModel)]="hero.hero_stats.in" placeholder="in" type="number">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label for="hero-ch">Charisma: </mat-label>
+            <input matInput id="hero-ch" [(ngModel)]="hero.hero_stats.ch" placeholder="ch" type="number">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label for="hero-ff">Fingerfertigkeit: </mat-label>
+            <input matInput id="hero-ff" [(ngModel)]="hero.hero_stats.ff" placeholder="ff" type="number">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label for="hero-ge">Geschicklichkeit: </mat-label>
+            <input matInput id="hero-ge" [(ngModel)]="hero.hero_stats.ge" placeholder="ge" type="number">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label for="hero-ko">Konstitution: </mat-label>
+            <input matInput id="hero-ko" [(ngModel)]="hero.hero_stats.ko" placeholder="ko" type="number">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label for="hero-kk">Körperkraft: </mat-label>
+            <input matInput id="hero-kk" [(ngModel)]="hero.hero_stats.kk" placeholder="kk" type="number">
+        </mat-form-field>
+    </div>
+    <a routerLink="/notes/{{hero.id}}">
+        <button type="button" (click)="goBack()">Zu den Notizen</button>
+    </a>
+    <button type="button" (click)="goBack()">Zurück</button>
+    <button type="button" (click)="saveHero()">Speichern</button>
+</div>

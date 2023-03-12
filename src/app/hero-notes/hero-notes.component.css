@@ -7,5 +7,12 @@
 }
 
 .note-header {
-  color:white
+  color:white;
+  margin-right: 10px;
+  text-align: center
+}
+
+.prim-stats {
+  margin: 5px;
+  width: 5em
 }

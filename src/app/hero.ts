@@ -21,4 +21,8 @@ export interface Evening {
     hero_id: number;
     date: Date;
     text: string;
+    lep: number;
+    kap: number;
+    asp: number;
+    sch: number;
 }

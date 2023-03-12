@@ -1,5 +1,6 @@
 .prim-stats {
-  margin: 5px
+  margin: 5px;
+  with: 5em
 }
 
 .dsa-spacer {

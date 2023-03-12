@@ -32,16 +32,22 @@ export class HeroService {
   }
 
   getNotesFromHero(hero_id: number): Observable<Evening[]> {
-    const hero = this.NOTES.filter(h => h.hero_id === hero_id)!;
-    return of(hero);
+    const notes = this.NOTES.filter(h => h.hero_id === hero_id)!;
+    return of(notes);
   }
 
   addNewNoteForHero(hero_id: number) : Observable<Evening> {
+      const notes = this.NOTES.filter(h => h.hero_id === hero_id)!;
+      // TODO: get newest not to copy lep/asp/...
       const note : Evening = {
         id: this.NOTES.length + 1,
         hero_id: hero_id,
         date: new Date(),
-        text: "..."
+        text: "...",
+        lep: 35,
+                  asp: 0,
+                  kap:0,
+                  sch: 3
       }
       this.NOTES.unshift(note)
       return of(note)
@@ -61,13 +67,21 @@ export class HeroService {
           id: 1,
           hero_id: 1,
           text: "Wir lagen vor Madagaskar.",
-          date: new Date("2023-03-01")
+          date: new Date("2023-03-01"),
+          lep: 35,
+          asp: 0,
+          kap:0,
+          sch: 3
       },
       {
           id: 2,
           hero_id: 1,
           text: "Und gestorben.",
-          date: new Date("2023-02-16")
+          date: new Date("2023-02-16"),
+          lep: 27,
+          asp: 0,
+          kap:0,
+          sch: 3
       }
   ]
 

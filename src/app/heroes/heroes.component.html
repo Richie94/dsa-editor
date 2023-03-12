@@ -15,10 +15,13 @@
 </div>
 <mat-divider></mat-divider>
 
-<mat-list class="heroes">
-  <mat-list-item *ngFor="let hero of heroes">
-    <button mat-raised-button routerLink="/detail/{{hero.id}}">
-      {{hero.name}}
-    </button>
-  </mat-list-item>
-</mat-list>
+<div>
+  <mat-list class="heroes">
+    <mat-list-item *ngFor="let hero of heroes">
+      <button mat-raised-button routerLink="/detail/{{hero.id}}" style="width:15em;text-align:left">
+        > {{hero.name}} <
+      </button>
+    </mat-list-item>
+  </mat-list>
+</div>
+

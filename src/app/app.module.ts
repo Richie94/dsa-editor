@@ -15,6 +15,7 @@ import {MatListModule} from '@angular/material/list'
 import {MatButtonModule} from '@angular/material/button'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDividerModule} from '@angular/material/divider'
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {MatDividerModule} from '@angular/material/divider'
     MatButtonModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
-    MatDividerModule
+    MatDividerModule,
+    MatTableModule
   ],
   providers: [
 

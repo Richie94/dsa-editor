@@ -13,6 +13,13 @@ export class HeroDetailComponent implements OnInit {
 
   hero: Hero | undefined;
 
+  attributeColumns: string[] = ['talent', 'probe', 'fw'];
+  dataSource = [
+  {talent: "Fliegen", probe: "MU/IN/GE", fw: 12}
+  ];
+
+
+
   constructor(
     private route: ActivatedRoute,
     private heroService: HeroService,

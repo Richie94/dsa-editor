@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Hero } from '../hero';
-import { Location } from '@angular/common';
-import { HeroService } from '../hero.service';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {Hero} from '../hero';
+import {HeroService} from '../hero.service';
 
 @Component({
   selector: 'app-hero-detail',
@@ -15,20 +14,19 @@ export class HeroDetailComponent implements OnInit {
 
   attributeColumns: string[] = ['talent', 'probe', 'fw'];
   dataSource = [
-  {talent: "Fliegen", probe: "MU/IN/GE", fw: 12},
-  {talent: "Sinnesschärfe", probe: "MU/IN/GE", fw: 13},
-  {talent: "Körperbeherrschung", probe: "MU/IN/GE", fw: 1},
-  {talent: "Metallbearbeitung", probe: "MU/IN/GE", fw: 1},
-  {talent: "Wildnisleben", probe: "MU/IN/GE", fw: 1},
+    {talent: "Fliegen", probe: "MU/IN/GE", fw: 12},
+    {talent: "Sinnesschärfe", probe: "MU/IN/GE", fw: 13},
+    {talent: "Körperbeherrschung", probe: "MU/IN/GE", fw: 1},
+    {talent: "Metallbearbeitung", probe: "MU/IN/GE", fw: 1},
+    {talent: "Wildnisleben", probe: "MU/IN/GE", fw: 1},
   ];
-
 
 
   constructor(
     private route: ActivatedRoute,
-    private heroService: HeroService,
-    private location: Location
-  ) {}
+    private heroService: HeroService
+  ) {
+  }
 
   ngOnInit(): void {
     this.getHero();
@@ -40,14 +38,10 @@ export class HeroDetailComponent implements OnInit {
       .subscribe(hero => this.hero = hero);
   }
 
-  goBack(): void {
-    this.location.back();
-  }
-
-  saveHero() : void {
-  if (this.hero) {
-  console.log("Save hero")
-        this.heroService.updateHero(this.hero)
+  saveHero(): void {
+    if (this.hero) {
+      console.log("Save hero")
+      this.heroService.updateHero(this.hero)
     }
   }
 

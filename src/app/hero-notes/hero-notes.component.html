@@ -2,36 +2,46 @@
   <span>DSA Editor - Notizen</span>
 </mat-toolbar>
 
-<button class="dsa-button" mat-raised-button type="button" (click)="goBack()">Zurück</button>
-<button class="dsa-button" mat-raised-button type="button" (click)="addNewNote()">Neuer Eintrag</button>
-<button class="dsa-button" mat-raised-button type="button" (click)="saveNotes()">Speichern</button>
-<mat-divider></mat-divider>
-<mat-card *ngFor="let note of notes" class="notes">
-    <mat-card-header>
-      <mat-card-title class="note-header">{{note.date.toLocaleDateString()}}</mat-card-title>
-      <mat-card-subtitle>
-        <mat-form-field class="prim-stats">
-          <mat-label for="hero-lep">LeP: </mat-label>
-          <input matInput id="hero-lep" placeholder="LeP" type="number" [(ngModel)]='note.lep'>
-        </mat-form-field>
-        <mat-form-field class="prim-stats">
-          <mat-label for="hero-kap">KaP: </mat-label>
-          <input matInput id="hero-kap" placeholder="KaP" type="number" [(ngModel)]='note.kap'>
-        </mat-form-field>
-        <mat-form-field class="prim-stats">
-          <mat-label for="hero-asp">AsP: </mat-label>
-          <input matInput id="hero-asp" placeholder="AsP" type="number" [(ngModel)]='note.asp'>
-        </mat-form-field>
-        <mat-form-field class="prim-stats">
-          <mat-label for="hero-sch">Sch: </mat-label>
-          <input matInput id="hero-sch" placeholder="Sch" type="number" [(ngModel)]='note.sch'>
-        </mat-form-field>
-      </mat-card-subtitle>
 
-    </mat-card-header>
-    <mat-card-content color="secondary">
+<!-- create material sidenav-->
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/heroes" routerLinkActive="active">Helden</a>
+      <a *ngIf="heroId" mat-list-item routerLink="/detail/{{heroId}}" routerLinkActive="active">Details</a>
+      <a *ngIf="heroId" mat-list-item (click)="saveNotes()">Speichern</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <button class="dsa-button" mat-raised-button type="button" (click)="addNewNote()">Neuer Eintrag</button>
+    <mat-card *ngFor="let note of notes" class="notes">
+      <mat-card-header>
+        <mat-card-title class="note-header">{{note.date.toLocaleDateString()}}</mat-card-title>
+        <mat-card-subtitle>
+          <mat-form-field class="prim-stats">
+            <mat-label for="hero-lep">LeP:</mat-label>
+            <input matInput id="hero-lep" placeholder="LeP" type="number" [(ngModel)]='note.lep'>
+          </mat-form-field>
+          <mat-form-field class="prim-stats">
+            <mat-label for="hero-kap">KaP:</mat-label>
+            <input matInput id="hero-kap" placeholder="KaP" type="number" [(ngModel)]='note.kap'>
+          </mat-form-field>
+          <mat-form-field class="prim-stats">
+            <mat-label for="hero-asp">AsP:</mat-label>
+            <input matInput id="hero-asp" placeholder="AsP" type="number" [(ngModel)]='note.asp'>
+          </mat-form-field>
+          <mat-form-field class="prim-stats">
+            <mat-label for="hero-sch">Sch:</mat-label>
+            <input matInput id="hero-sch" placeholder="Sch" type="number" [(ngModel)]='note.sch'>
+          </mat-form-field>
+        </mat-card-subtitle>
+
+      </mat-card-header>
+      <mat-card-content color="secondary">
         <mat-form-field class="note-text">
-            <textarea matInput [(ngModel)]='note.text'></textarea>
+          <textarea matInput [(ngModel)]='note.text'></textarea>
         </mat-form-field>
-    </mat-card-content>
-</mat-card>
+      </mat-card-content>
+    </mat-card>
+  </mat-sidenav-content>
+</mat-sidenav-container>

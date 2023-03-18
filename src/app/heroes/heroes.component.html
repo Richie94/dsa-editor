@@ -4,12 +4,7 @@
 <mat-divider></mat-divider>
 
 <div>
-    <mat-form-field>
-        <mat-label for="new-hero">Name: </mat-label>
-        <input matInput id="new-hero" #heroName />
-    </mat-form-field>
-
-    <button class="dsa-button" mat-raised-button (click)="createHero(heroName.value); heroName.value=''">
+    <button class="dsa-button" mat-raised-button (click)="openDialog()" color="accent">
         Neuer Held
     </button>
 </div>

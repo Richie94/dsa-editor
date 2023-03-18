@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-heroes',
@@ -9,14 +10,21 @@ import { HeroService } from '../hero.service';
 })
 export class HeroesComponent {
 
-  constructor(private heroService: HeroService) {}
+  constructor(private heroService: HeroService, public dialog: MatDialog) {}
 
   heroes: Hero[] = []
 
   selectedHero?: Hero;
 
-  onSelect(hero: Hero): void {
-    this.selectedHero = hero;
+  openDialog(): void {
+    const dialogRef = this.dialog.open(AddNewHeroDialog, {
+      data: {name: ""},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.createHero(result);
+    });
   }
 
   getHeroes(): void {
@@ -32,4 +40,23 @@ export class HeroesComponent {
     this.getHeroes();
   }
 
+}
+
+export interface DialogData {
+  name: string;
+}
+
+@Component({
+  selector: 'add-new-hero-dialog',
+  templateUrl: 'add-new-hero-dialog.html',
+})
+export class AddNewHeroDialog {
+  constructor(
+    public dialogRef: MatDialogRef<AddNewHeroDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+  ) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 }

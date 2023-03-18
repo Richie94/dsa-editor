@@ -1,8 +1,12 @@
 .prim-stats {
   margin: 5px;
-  with: 5em
+  width: 5em
 }
 
 .dsa-spacer {
  flex: 1 1 auto;
+}
+
+.table-row {
+  height: 30px !important;
 }

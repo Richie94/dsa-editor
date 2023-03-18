@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-import { HeroesComponent } from './heroes/heroes.component';
+import {AddNewHeroDialog, HeroesComponent} from './heroes/heroes.component';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { HeroNotesComponent } from './hero-notes/hero-notes.component';
 import {MatCardModule} from '@angular/material/card';
@@ -16,13 +16,16 @@ import {MatButtonModule} from '@angular/material/button'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDividerModule} from '@angular/material/divider'
 import {MatTableModule} from '@angular/material/table';
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
     AppComponent,
     HeroesComponent,
     HeroDetailComponent,
-    HeroNotesComponent
+    HeroNotesComponent,
+    AddNewHeroDialog
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,9 @@ import {MatTableModule} from '@angular/material/table';
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatDividerModule,
-    MatTableModule
+    MatTableModule,
+    MatSidenavModule,
+    MatDialogModule
   ],
   providers: [
 

@@ -15,7 +15,9 @@ export class HeroDetailComponent implements OnInit {
 
   attributeColumns: string[] = ['talent', 'probe', 'fw'];
   dataSource = [
-  {talent: "Fliegen", probe: "MU/IN/GE", fw: 12}
+  {talent: "Fliegen", probe: "MU/IN/GE", fw: 12},
+  {talent: "Sinnesschärfe", probe: "MU/IN/GE", fw: 13},
+  {talent: "Körperbeherrschung", probe: "MU/IN/GE", fw: 1},
   ];
 
 

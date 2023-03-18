@@ -13,6 +13,8 @@ export class HeroNotesComponent implements OnInit {
 
   notes: Evening[] | undefined;
 
+  heroId: number | undefined;
+
   constructor(
     private route: ActivatedRoute,
     private heroService: HeroService,
@@ -25,6 +27,7 @@ export class HeroNotesComponent implements OnInit {
 
   getNotes(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.heroId = id
     this.heroService.getNotesFromHero(id)
       .subscribe(notes => this.notes = notes);
   }

@@ -18,6 +18,8 @@ export class HeroDetailComponent implements OnInit {
   {talent: "Fliegen", probe: "MU/IN/GE", fw: 12},
   {talent: "Sinnesschärfe", probe: "MU/IN/GE", fw: 13},
   {talent: "Körperbeherrschung", probe: "MU/IN/GE", fw: 1},
+  {talent: "Metallbearbeitung", probe: "MU/IN/GE", fw: 1},
+  {talent: "Wildnisleben", probe: "MU/IN/GE", fw: 1},
   ];
 
 

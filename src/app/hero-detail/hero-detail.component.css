@@ -4,9 +4,23 @@
 }
 
 .dsa-spacer {
- flex: 1 1 auto;
+  flex: 1 1 auto;
+}
+
+.property-form-field {
+  margin: 5px;
+  width: 7em
+}
+
+.table-form-field {
+  margin: 5px;
+  width: 5em;
+}
+
+.my-card {
+  margin: 5px
 }
 
 .table-row {
-  height: 30px !important;
+  height: 20px;
 }

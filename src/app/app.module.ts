@@ -20,6 +20,7 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatIconModule} from "@angular/material/icon";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import { HeroGeneralComponent } from './hero-general/hero-general.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     HeroesComponent,
     HeroDetailComponent,
     HeroNotesComponent,
-    AddNewHeroDialog
+    AddNewHeroDialog,
+    HeroGeneralComponent
   ],
   imports: [
     BrowserModule,

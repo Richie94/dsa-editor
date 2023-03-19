@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ContentChild, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {HeroService} from "../shared/hero.service";
 import {BreakpointObserver} from "@angular/cdk/layout";

@@ -1,6 +1,6 @@
-import {Component, Inject} from '@angular/core';
-import { Hero } from '../hero';
-import { HeroService } from '../hero.service';
+import {Component, Inject, OnInit} from '@angular/core';
+import {Hero} from '../hero';
+import {HeroService} from '../hero.service';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 
 @Component({
@@ -8,13 +8,12 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog
   templateUrl: './heroes.component.html',
   styleUrls: ['./heroes.component.css']
 })
-export class HeroesComponent {
+export class HeroesComponent implements OnInit {
 
-  constructor(private heroService: HeroService, public dialog: MatDialog) {}
+  constructor(private heroService: HeroService, public dialog: MatDialog) {
+  }
 
   heroes: Hero[] = []
-
-  selectedHero?: Hero;
 
   openDialog(): void {
     const dialogRef = this.dialog.open(AddNewHeroDialog, {
@@ -22,18 +21,17 @@ export class HeroesComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
       this.createHero(result);
     });
   }
 
   getHeroes(): void {
     this.heroService.getHeroes()
-        .subscribe(heroes => this.heroes = heroes);
+      .subscribe(heroes => this.heroes = heroes);
   }
 
-  createHero(name: string) : void{
-  this.heroService.createHero(name)
+  createHero(name: string): void {
+    this.heroService.createHero(name)
   }
 
   ngOnInit(): void {
@@ -54,7 +52,8 @@ export class AddNewHeroDialog {
   constructor(
     public dialogRef: MatDialogRef<AddNewHeroDialog>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
-  ) {}
+  ) {
+  }
 
   onNoClick(): void {
     this.dialogRef.close();

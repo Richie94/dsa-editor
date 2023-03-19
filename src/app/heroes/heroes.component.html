@@ -2,21 +2,34 @@
   <span>DSA Editor - Helden Übersicht</span>
 </mat-toolbar>
 <mat-divider></mat-divider>
-
-<div>
-    <button class="dsa-button" mat-raised-button (click)="openDialog()" color="primary">
+<mat-sidenav-container>
+  <mat-sidenav-content>
+    <div>
+      <button class="dsa-button" mat-raised-button (click)="openDialog()" color="primary">
         Neuer Held
-    </button>
-</div>
-<mat-divider></mat-divider>
-
-<div>
-  <mat-list class="heroes">
-    <mat-list-item *ngFor="let hero of heroes">
-      <button mat-raised-button routerLink="/detail/{{hero.id}}" style="width:15em;text-align:left">
-        > {{hero.name}} <
       </button>
-    </mat-list-item>
-  </mat-list>
-</div>
+    </div>
+    <div>
+      <mat-list class="heroes">
+        <mat-card *ngFor="let hero of heroes" class="my-card">
+          <mat-card-header>
+            <mat-card-title style="color: white">
+              {{hero.name}}
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+
+            <button mat-raised-button routerLink="/general/{{hero.id}}" class="overview-buttons" color="primary">Allgemein
+            </button>
+              <button mat-raised-button routerLink="/detail/{{hero.id}}" class="overview-buttons" color="primary">Details
+            </button>
+            <button mat-raised-button routerLink="/notes/{{hero.id}}" class="overview-buttons" color="primary">Notizen
+            </button>
+          </mat-card-content>
+        </mat-card>
+      </mat-list>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<mat-divider></mat-divider>
 

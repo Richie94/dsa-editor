@@ -1,15 +1,6 @@
-.prim-stats {
-  margin: 5px;
-  width: 5em
-}
-
-.dsa-spacer {
-  flex: 1 1 auto;
-}
-
 .property-form-field {
   margin: 5px;
-  width: 7em
+  width: 4em;
 }
 
 .table-form-field {

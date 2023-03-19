@@ -18,6 +18,7 @@ import {MatDividerModule} from '@angular/material/divider'
 import {MatTableModule} from '@angular/material/table';
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatDialogModule} from "@angular/material/dialog";
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import {MatDialogModule} from "@angular/material/dialog";
     MatDividerModule,
     MatTableModule,
     MatSidenavModule,
-    MatDialogModule
+    MatDialogModule,
+    MatIconModule
   ],
   providers: [
 

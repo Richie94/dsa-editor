@@ -1,7 +1,10 @@
 <mat-toolbar>
+  <!-- add button toggeling the side nav -->
+  <button mat-icon-button (click)="sidenav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
   <span>DSA Editor - Notizen</span>
 </mat-toolbar>
-
 
 <!-- create material sidenav-->
 <mat-sidenav-container class="example-container">

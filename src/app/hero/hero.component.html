@@ -1,0 +1,33 @@
+<mat-toolbar>
+  <!-- add button toggeling the side nav -->
+  <button mat-icon-button (click)="sidenav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>DSA Editor</span>
+</mat-toolbar>
+
+<!-- create material sidenav-->
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="side" opened="true">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/heroes" routerLinkActive="active">
+        <mat-icon>dashboard</mat-icon>
+        Helden</a>
+      <a *ngIf="compHeroId" mat-list-item routerLink="/hero/general/{{compHeroId}}" routerLinkActive="active">
+        <mat-icon>text_fields</mat-icon>
+        Allgemein</a>
+      <a *ngIf="compHeroId" mat-list-item routerLink="/hero/detail/{{compHeroId}}" routerLinkActive="active">
+        <mat-icon>details</mat-icon>
+        Details</a>
+      <a *ngIf="compHeroId" mat-list-item routerLink="/hero/notes/{{compHeroId}}" routerLinkActive="active">
+        <mat-icon>notes</mat-icon>
+        Notizen</a>
+      <a *ngIf="compHeroId" mat-list-item (click)="save()">
+        <mat-icon>save</mat-icon>
+        Speichern</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

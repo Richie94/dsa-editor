@@ -1,20 +1,18 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {Hero} from '../hero';
-import {HeroService} from '../hero.service';
-import {BreakpointObserver} from "@angular/cdk/layout";
-import {MatSidenav} from "@angular/material/sidenav";
+import {Hero} from '../../shared/hero';
+import {HeroService} from '../../shared/hero.service';
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-hero-detail',
   templateUrl: './hero-detail.component.html',
   styleUrls: ['./hero-detail.component.css']
 })
-export class HeroDetailComponent implements OnInit, AfterViewInit {
+export class HeroDetailComponent implements OnInit, OnDestroy {
 
-  @ViewChild(MatSidenav)
-  sidenav!: MatSidenav;
   hero: Hero | undefined;
+  saveSubscription: Subscription
 
   attributeColumns: string[] = ['talent', 'probe', 'fw'];
   dataSource = [
@@ -29,13 +27,19 @@ export class HeroDetailComponent implements OnInit, AfterViewInit {
   constructor(
     private route: ActivatedRoute,
     private heroService: HeroService,
-
-    private observer: BreakpointObserver
   ) {
+    this.saveSubscription = heroService.shouldSave.subscribe(() => {
+      this.saveHero()
+    })
   }
 
   ngOnInit(): void {
     this.getHero();
+  }
+
+  ngOnDestroy() {
+    // prevent memory leak when component destroyed
+    this.saveSubscription.unsubscribe();
   }
 
   getHero(): void {
@@ -46,22 +50,9 @@ export class HeroDetailComponent implements OnInit, AfterViewInit {
 
   saveHero(): void {
     if (this.hero) {
-      console.log("Save hero")
+      console.log("Save detail")
       this.heroService.updateHero(this.hero)
     }
   }
-
-  ngAfterViewInit() {
-    this.observer.observe(['(max-width: 767px)']).subscribe((res) => {
-      if (res.matches) {
-        this.sidenav.mode = 'over';
-        this.sidenav.close();
-      } else {
-        this.sidenav.mode = 'side';
-        this.sidenav.open();
-      }
-    });
-  }
-
 
 }

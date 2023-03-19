@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {Hero} from '../hero';
-import {HeroService} from '../hero.service';
+import {Hero} from '../shared/hero';
+import {HeroService} from '../shared/hero.service';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 
 @Component({

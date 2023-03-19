@@ -4,9 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-import {AddNewHeroDialog, HeroesComponent} from './heroes/heroes.component';
-import { HeroDetailComponent } from './hero-detail/hero-detail.component';
-import { HeroNotesComponent } from './hero-notes/hero-notes.component';
+import {AddNewHeroDialog, HeroesComponent} from './herolist/heroes.component';
+import { HeroDetailComponent } from './hero/hero-detail/hero-detail.component';
+import { HeroNotesComponent } from './hero/hero-notes/hero-notes.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
@@ -20,16 +20,18 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatIconModule} from "@angular/material/icon";
 import {MatTooltipModule} from "@angular/material/tooltip";
-import { HeroGeneralComponent } from './hero-general/hero-general.component';
+import { HeroGeneralComponent } from './hero/hero-general/hero-general.component';
+import { HeroComponent } from './hero/hero.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeroesComponent,
-    HeroDetailComponent,
-    HeroNotesComponent,
     AddNewHeroDialog,
-    HeroGeneralComponent
+    HeroComponent,
+    HeroGeneralComponent,
+    HeroDetailComponent,
+    HeroNotesComponent
   ],
   imports: [
     BrowserModule,

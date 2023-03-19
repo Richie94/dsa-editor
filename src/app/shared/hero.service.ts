@@ -1,13 +1,22 @@
 import {Injectable} from '@angular/core';
 import {Evening, Hero} from './hero';
-import {Observable, of} from 'rxjs';
+import {Observable, of, Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HeroService {
 
+  hero : Hero | undefined;
+
+  private saveSubscription = new Subject<string>();
+  shouldSave = this.saveSubscription.asObservable()
+
   constructor() {
+  }
+
+  triggerSave() {
+    this.saveSubscription.next("");
   }
 
   getHeroes(): Observable<Hero[]> {
@@ -22,9 +31,12 @@ export class HeroService {
     const localHero = localStorage.getItem("hero")
     if (localHero) {
       let heroes: Hero[] = JSON.parse(localHero)
-      return of(heroes.find(h => h.id === id)!);
+      let matchingHero = heroes.find(h => h.id === id)!;
+      this.hero = matchingHero;
+      return of(matchingHero);
     }
     const hero = this.HEROES.find(h => h.id === id)!;
+    this.hero = hero;
     return of(hero);
   }
 
@@ -57,7 +69,6 @@ export class HeroService {
     if (index > -1) {
       this.HEROES[index] = hero
       localStorage.setItem("hero", JSON.stringify(this.HEROES))
-      console.log(this.HEROES)
     }
   }
 
@@ -77,7 +88,11 @@ export class HeroService {
   addNewNoteForHero(hero_id: number): Observable<Evening> {
     const notes = this.NOTES.filter(h => h.hero_id === hero_id)!;
     // get the newest note by date
-    const newestNote = notes.reduce(this.maxByDate)
+    let newestNote : Evening | undefined = undefined
+    if (notes.length > 0) {
+      newestNote = notes.reduce(this.maxByDate)
+    }
+
     let note: Evening
     if (newestNote) {
       note = {
@@ -109,10 +124,6 @@ export class HeroService {
   saveNotesForHero(hero_id: number, notes: Evening[]) {
     this.NOTES = this.NOTES.filter(h => h.hero_id != hero_id)!;
     this.NOTES.push(...notes)
-  }
-
-  deleteNoteById(id: number) {
-
   }
 
   NOTES: Evening[] = [

@@ -1,0 +1,91 @@
+<div *ngIf="hero">
+  <div>
+    <mat-card class="my-card">
+      <mat-card-header>
+        <mat-card-title style="color:white">
+          Eigenschaften
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-form-field class="property-form-field">
+          <mat-label for="hero-mu">MU</mat-label>
+          <input matInput id="hero-mu" [(ngModel)]="hero.hero_stats.mu" placeholder="mu" type="number">
+        </mat-form-field>
+
+        <mat-form-field class="property-form-field">
+          <mat-label for="hero-kl">KL</mat-label>
+          <input matInput id="hero-kl" [(ngModel)]="hero.hero_stats.kl" placeholder="kl" type="number">
+        </mat-form-field>
+
+        <mat-form-field class="property-form-field">
+          <mat-label for="hero-in">IN</mat-label>
+          <input matInput id="hero-in" [(ngModel)]="hero.hero_stats.in" placeholder="in" type="number">
+        </mat-form-field>
+
+        <mat-form-field class="property-form-field">
+          <mat-label for="hero-ch">CH</mat-label>
+          <input matInput id="hero-ch" [(ngModel)]="hero.hero_stats.ch" placeholder="ch" type="number">
+        </mat-form-field>
+
+        <mat-form-field class="property-form-field">
+          <mat-label for="hero-ff">FF</mat-label>
+          <input matInput id="hero-ff" [(ngModel)]="hero.hero_stats.ff" placeholder="ff" type="number">
+        </mat-form-field>
+
+        <mat-form-field class="property-form-field">
+          <mat-label for="hero-ge">GE</mat-label>
+          <input matInput id="hero-ge" [(ngModel)]="hero.hero_stats.ge" placeholder="ge" type="number">
+        </mat-form-field>
+
+        <mat-form-field class="property-form-field">
+          <mat-label for="hero-ko">KO</mat-label>
+          <input matInput id="hero-ko" [(ngModel)]="hero.hero_stats.ko" placeholder="ko" type="number">
+        </mat-form-field>
+
+        <mat-form-field class="property-form-field">
+          <mat-label for="hero-kk">KK</mat-label>
+          <input matInput id="hero-kk" [(ngModel)]="hero.hero_stats.kk" placeholder="kk" type="number">
+        </mat-form-field>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="my-card">
+      <mat-card-header>
+        <mat-card-title style="color:white">
+          Talente
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+          <!-- Talent Column -->
+          <ng-container matColumnDef="talent">
+            <mat-header-cell *matHeaderCellDef>Talent</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.talent}} </mat-cell>
+          </ng-container>
+
+          <!-- Probe Column -->
+          <ng-container matColumnDef="probe">
+            <mat-header-cell *matHeaderCellDef>Probe</mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <div matTooltip="12/12/14">{{element.probe}}</div>
+            </mat-cell>
+          </ng-container>
+
+          <!-- Skill Column -->
+          <ng-container matColumnDef="fw">
+            <mat-header-cell *matHeaderCellDef>FW</mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <mat-form-field class="table-form-field">
+                <input matInput id="hero-fw" [(ngModel)]="element.fw" placeholder="fw" type="number">
+              </mat-form-field>
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="attributeColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: attributeColumns;" class="table-row"></mat-row>
+        </mat-table>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

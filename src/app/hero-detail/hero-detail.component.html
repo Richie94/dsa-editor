@@ -9,9 +9,9 @@
 <mat-sidenav-container>
   <mat-sidenav #sidenav  mode="side" opened="true">
     <mat-nav-list>
-      <a mat-list-item routerLink="/heroes" routerLinkActive="active">Helden</a>
-      <a *ngIf="hero" mat-list-item routerLink="/notes/{{hero.id}}" routerLinkActive="active">Notizen</a>
-      <a *ngIf="hero" mat-list-item (click)="saveHero()">Speichern</a>
+      <a mat-list-item routerLink="/heroes" routerLinkActive="active"><mat-icon>dashboard</mat-icon>Helden</a>
+      <a *ngIf="hero" mat-list-item routerLink="/notes/{{hero.id}}" routerLinkActive="active"><mat-icon>notes</mat-icon>Notizen</a>
+      <a *ngIf="hero" mat-list-item (click)="saveHero()"><mat-icon>save</mat-icon>Speichern</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -100,7 +100,7 @@
               <!-- Probe Column -->
               <ng-container matColumnDef="probe">
                 <mat-header-cell *matHeaderCellDef>Probe</mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.probe}} </mat-cell>
+                <mat-cell *matCellDef="let element"><div matTooltip="12/12/14">{{element.probe}}</div>  </mat-cell>
               </ng-container>
 
               <!-- Skill Column -->

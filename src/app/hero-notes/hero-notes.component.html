@@ -10,31 +10,31 @@
 <mat-sidenav-container class="example-container">
   <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true">
     <mat-nav-list>
-      <a mat-list-item routerLink="/heroes" routerLinkActive="active">Helden</a>
-      <a *ngIf="heroId" mat-list-item routerLink="/detail/{{heroId}}" routerLinkActive="active">Details</a>
-      <a *ngIf="heroId" mat-list-item (click)="saveNotes()">Speichern</a>
+      <a mat-list-item routerLink="/heroes" routerLinkActive="active"><mat-icon>dashboard</mat-icon>Helden</a>
+      <a *ngIf="heroId" mat-list-item routerLink="/detail/{{heroId}}" routerLinkActive="active"><mat-icon>details</mat-icon>Details</a>
+      <a *ngIf="heroId" mat-list-item (click)="saveNotes()"><mat-icon>save</mat-icon>Speichern</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <button class="dsa-button" mat-raised-button type="button" (click)="addNewNote()">Neuer Eintrag</button>
+    <button class="dsa-button" mat-raised-button type="button" (click)="addNewNote()" color="primary">Neuer Eintrag</button>
     <mat-card *ngFor="let note of notes" class="notes">
       <mat-card-header>
         <mat-card-title class="note-header">{{note.date.toLocaleDateString()}}</mat-card-title>
         <mat-card-subtitle>
           <mat-form-field class="prim-stats">
-            <mat-label for="hero-lep">LeP:</mat-label>
+            <mat-label for="hero-lep">LeP</mat-label>
             <input matInput id="hero-lep" placeholder="LeP" type="number" [(ngModel)]='note.lep'>
           </mat-form-field>
           <mat-form-field class="prim-stats">
-            <mat-label for="hero-kap">KaP:</mat-label>
+            <mat-label for="hero-kap">KaP</mat-label>
             <input matInput id="hero-kap" placeholder="KaP" type="number" [(ngModel)]='note.kap'>
           </mat-form-field>
           <mat-form-field class="prim-stats">
-            <mat-label for="hero-asp">AsP:</mat-label>
+            <mat-label for="hero-asp">AsP</mat-label>
             <input matInput id="hero-asp" placeholder="AsP" type="number" [(ngModel)]='note.asp'>
           </mat-form-field>
           <mat-form-field class="prim-stats">
-            <mat-label for="hero-sch">Sch:</mat-label>
+            <mat-label for="hero-sch">Sch</mat-label>
             <input matInput id="hero-sch" placeholder="Sch" type="number" [(ngModel)]='note.sch'>
           </mat-form-field>
         </mat-card-subtitle>

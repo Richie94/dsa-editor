@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {Hero} from '../shared/hero';
-import {HeroService} from '../shared/hero.service';
+import {Hero} from '../../shared/hero';
+import {HeroService} from '../../shared/hero.service';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 
 @Component({
@@ -31,7 +31,7 @@ export class HeroesComponent implements OnInit {
   }
 
   createHero(name: string): void {
-    this.heroService.createHero(name)
+    this.heroService.createHero(name).subscribe((h) => this.heroes.push(h))
   }
 
   ngOnInit(): void {

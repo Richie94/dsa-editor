@@ -40,8 +40,9 @@ export class HeroService {
     return of(hero);
   }
 
-  createHero(name: string) {
-    this.HEROES.push({
+  createHero(name: string) : Observable<Hero> {
+    console.log("Create hero " + name)
+    let hero = {
       id: this.HEROES.length + 1,
       name: name,
       description: "",
@@ -60,8 +61,10 @@ export class HeroService {
       disadvantages: [],
       creator_id: 1,
       hero_stats: {mu: 8, kl: 8, in: 8, ch: 8, ge: 8, ff: 8, kk: 8, ko: 8}
-    })
+    };
+    this.HEROES.push(hero)
     localStorage.setItem("hero", JSON.stringify(this.HEROES))
+    return of(hero)
   }
 
   updateHero(hero: Hero) {

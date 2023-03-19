@@ -10,7 +10,7 @@
 <mat-sidenav-container>
   <mat-sidenav #sidenav mode="side" opened="true">
     <mat-nav-list>
-      <a mat-list-item routerLink="/heroes" routerLinkActive="active">
+      <a mat-list-item routerLink="/hero" routerLinkActive="active">
         <mat-icon>dashboard</mat-icon>
         Helden</a>
       <a *ngIf="compHeroId" mat-list-item routerLink="/hero/general/{{compHeroId}}" routerLinkActive="active">

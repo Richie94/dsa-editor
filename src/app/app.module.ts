@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-import {AddNewHeroDialog, HeroesComponent} from './herolist/heroes.component';
+import {AddNewHeroDialog, HeroesComponent} from './hero/herolist/heroes.component';
 import { HeroDetailComponent } from './hero/hero-detail/hero-detail.component';
 import { HeroNotesComponent } from './hero/hero-notes/hero-notes.component';
 import {MatCardModule} from '@angular/material/card';

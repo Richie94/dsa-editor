@@ -27,6 +27,9 @@ export class HeroComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.compHeroId = Number(this.router.url.split("/").slice(-1));
+    this.router.events.subscribe(() => {
+      this.compHeroId = Number(this.router.url.split("/").slice(-1));
+    })
   }
 
   ngAfterViewInit() {

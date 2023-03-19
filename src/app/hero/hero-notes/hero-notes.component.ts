@@ -25,14 +25,15 @@ export class HeroNotesComponent implements OnInit, OnDestroy {
     })
   }
 
-  ngOnDestroy() {
-    // prevent memory leak when component destroyed
-    this.saveSubscription.unsubscribe();
-  }
-
   ngOnInit(): void {
     this.heroId = Number(this.route.snapshot.paramMap.get('id'));
     this.getNotes();
+  }
+
+  ngOnDestroy() {
+    // prevent memory leak when component destroyed
+    this.saveSubscription.unsubscribe();
+    this.saveNotes()
   }
 
   getNotes(): void {

@@ -40,6 +40,7 @@ export class HeroDetailComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     // prevent memory leak when component destroyed
     this.saveSubscription.unsubscribe();
+    this.saveHero()
   }
 
   getHero(): void {

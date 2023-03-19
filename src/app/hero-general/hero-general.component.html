@@ -81,16 +81,38 @@
         <!-- create a card for the advantages string list -->
         <mat-card class="my-card">
           <mat-card-header>
-            <mat-card-title>Vorteile</mat-card-title>
+            <mat-card-title>Vorteile & Nachteile</mat-card-title>
           </mat-card-header>
           <mat-card-content>
-            <mat-list style="width:50%">
-              <mat-list-item *ngFor="let advantage of hero.advantages; let i = index;">
-                <mat-form-field class="descriptive-form-field">
-                  <input matInput [(ngModel)]="hero.advantages[i]" placeholder="Vorteil" type="text">
-                </mat-form-field>
-              </mat-list-item>
-            </mat-list>
+            <div style="width: 100%">
+              <div style="width:40%; float: left">
+                Vorteile
+                <mat-list>
+                  <mat-list-item *ngFor="let advantage of hero.advantages; let i = index;">
+                    <mat-form-field class="descriptive-form-field">
+                      <input matInput [(ngModel)]="hero.advantages[i]" placeholder="Vorteil" type="text">
+                    </mat-form-field>
+                  </mat-list-item>
+                  <mat-list-item>
+                    <button mat-button (click)="newAdvantage()">+</button>
+                  </mat-list-item>
+                </mat-list>
+              </div>
+              <div style="width:40%; float: right">
+                Nachteile
+                <mat-list >
+                  <mat-list-item *ngFor="let advantage of hero.disadvantages; let i = index;">
+                    <mat-form-field class="descriptive-form-field">
+                      <input matInput [(ngModel)]="hero.disadvantages[i]" placeholder="Vorteil" type="text">
+                    </mat-form-field>
+                  </mat-list-item>
+
+                  <mat-list-item>
+                    <button mat-button (click)="newDisadvantage()">+</button>
+                  </mat-list-item>
+                </mat-list>
+              </div>
+            </div>
           </mat-card-content>
         </mat-card>
 

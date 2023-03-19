@@ -21,7 +21,7 @@ export class HeroService {
   getHero(id: number): Observable<Hero> {
     const localHero = localStorage.getItem("hero")
     if (localHero) {
-      let heroes : Hero[] = JSON.parse(localHero)
+      let heroes: Hero[] = JSON.parse(localHero)
       return of(heroes.find(h => h.id === id)!);
     }
     const hero = this.HEROES.find(h => h.id === id)!;
@@ -53,7 +53,7 @@ export class HeroService {
   }
 
   updateHero(hero: Hero) {
-    const index = this.HEROES.indexOf(hero, 0)
+    const index = this.HEROES.findIndex(h => h.id == hero.id)
     if (index > -1) {
       this.HEROES[index] = hero
       localStorage.setItem("hero", JSON.stringify(this.HEROES))
@@ -66,18 +66,41 @@ export class HeroService {
     return of(notes);
   }
 
+  maxByDate(e1: Evening, e2: Evening): Evening {
+    if (e1.date > e2.date) {
+      return e1
+    } else {
+      return e2
+    }
+  }
+
   addNewNoteForHero(hero_id: number): Observable<Evening> {
     const notes = this.NOTES.filter(h => h.hero_id === hero_id)!;
-    // TODO: get newest not to copy lep/asp/...
-    const note: Evening = {
-      id: this.NOTES.length + 1,
-      hero_id: hero_id,
-      date: new Date(),
-      text: "...",
-      lep: 35,
-      asp: 0,
-      kap: 0,
-      sch: 3
+    // get the newest note by date
+    const newestNote = notes.reduce(this.maxByDate)
+    let note: Evening
+    if (newestNote) {
+      note = {
+        id: this.NOTES.length + 1,
+        hero_id: hero_id,
+        date: new Date(),
+        text: "...",
+        lep: newestNote.lep,
+        asp: newestNote.asp,
+        kap: newestNote.kap,
+        sch: newestNote.sch
+      }
+    } else {
+      note = {
+        id: this.NOTES.length + 1,
+        hero_id: hero_id,
+        date: new Date(),
+        text: "...",
+        lep: 0,
+        asp: 0,
+        kap: 0,
+        sch: 0
+      }
     }
     this.NOTES.unshift(note)
     return of(note)

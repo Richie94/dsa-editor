@@ -8,7 +8,7 @@ import {HeroService} from "../hero.service";
   templateUrl: './hero-general.component.html',
   styleUrls: ['./hero-general.component.css']
 })
-export class HeroGeneralComponent implements OnInit{
+export class HeroGeneralComponent implements OnInit {
 
 
   hero: Hero | undefined;
@@ -37,4 +37,17 @@ export class HeroGeneralComponent implements OnInit{
   }
 
 
+  newAdvantage() {
+    if (this.hero) {
+      this.hero.advantages.push("")
+      this.saveHero()
+    }
+  }
+
+  newDisadvantage() {
+    if (this.hero) {
+      this.hero.disadvantages.push("")
+      this.saveHero()
+    }
+  }
 }

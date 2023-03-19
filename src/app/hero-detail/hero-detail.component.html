@@ -7,7 +7,7 @@
 </mat-toolbar>
 <!-- create material sidenav-->
 <mat-sidenav-container>
-  <mat-sidenav #sidenav  mode="side" opened="true">
+  <mat-sidenav #sidenav  mode="side">
     <mat-nav-list>
       <a mat-list-item routerLink="/heroes" routerLinkActive="active"><mat-icon>dashboard</mat-icon>Helden</a>
       <a *ngIf="hero" mat-list-item routerLink="/general/{{hero.id}}" routerLinkActive="active"><mat-icon>text_fields</mat-icon>Allgemein</a>

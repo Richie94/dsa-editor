@@ -7,7 +7,7 @@
 </mat-toolbar>
 <!-- create material sidenav-->
 <mat-sidenav-container>
-  <mat-sidenav #sidenav mode="side" opened="true">
+  <mat-sidenav #sidenav mode="side">
     <mat-nav-list>
       <a mat-list-item routerLink="/heroes" routerLinkActive="active">
         <mat-icon>dashboard</mat-icon>
@@ -85,7 +85,7 @@
           </mat-card-header>
           <mat-card-content>
             <div style="width: 100%">
-              <div style="width:40%; float: left">
+              <div class="advantage-div">
                 Vorteile
                 <mat-list>
                   <mat-list-item *ngFor="let advantage of hero.advantages; let i = index;">
@@ -98,10 +98,10 @@
                   </mat-list-item>
                 </mat-list>
               </div>
-              <div style="width:40%; float: right">
+              <div  class="disadvantage-div">
                 Nachteile
-                <mat-list >
-                  <mat-list-item *ngFor="let advantage of hero.disadvantages; let i = index;">
+                <mat-list>
+                  <mat-list-item *ngFor="let disadvantage of hero.disadvantages; let i = index;">
                     <mat-form-field class="descriptive-form-field">
                       <input matInput [(ngModel)]="hero.disadvantages[i]" placeholder="Vorteil" type="text">
                     </mat-form-field>

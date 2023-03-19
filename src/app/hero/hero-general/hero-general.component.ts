@@ -59,4 +59,8 @@ export class HeroGeneralComponent implements OnInit, OnDestroy {
       this.saveHero()
     }
   }
+
+  trackByIndex(index: number, obj: any): any {
+    return index;
+  }
 }

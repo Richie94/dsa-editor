@@ -61,7 +61,7 @@
           <div class="advantage-div">
             Vorteile
             <mat-list>
-              <mat-list-item *ngFor="let advantage of hero.advantages; let i = index;">
+              <mat-list-item *ngFor="let advantage of hero.advantages; let i = index;trackBy:trackByIndex;">
                 <mat-form-field class="descriptive-form-field">
                   <input matInput [(ngModel)]="hero.advantages[i]" placeholder="Vorteil" type="text">
                 </mat-form-field>
@@ -74,7 +74,7 @@
           <div class="disadvantage-div">
             Nachteile
             <mat-list>
-              <mat-list-item *ngFor="let disadvantage of hero.disadvantages; let i = index;">
+              <mat-list-item *ngFor="let disadvantage of hero.disadvantages; let i = index;trackBy:trackByIndex;">
                 <mat-form-field class="descriptive-form-field">
                   <input matInput [(ngModel)]="hero.disadvantages[i]" placeholder="Vorteil" type="text">
                 </mat-form-field>

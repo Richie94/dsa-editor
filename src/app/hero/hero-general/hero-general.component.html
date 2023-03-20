@@ -54,12 +54,14 @@
     <!-- create a card for the advantages string list -->
     <mat-card class="my-card">
       <mat-card-header>
-        <mat-card-title>Vorteile & Nachteile</mat-card-title>
+        <mat-card-title style="color: white">Vorteile & Nachteile</mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <div style="width: 100%">
           <div class="advantage-div">
-            Vorteile
+            <span style="color: white">
+              Vorteile
+            </span>
             <mat-list>
               <mat-list-item *ngFor="let advantage of hero.advantages; let i = index;trackBy:trackByIndex;">
                 <mat-form-field class="descriptive-form-field">
@@ -72,7 +74,9 @@
             </mat-list>
           </div>
           <div class="disadvantage-div">
-            Nachteile
+            <span style="color: white">
+              Nachteile
+            </span>
             <mat-list>
               <mat-list-item *ngFor="let disadvantage of hero.disadvantages; let i = index;trackBy:trackByIndex;">
                 <mat-form-field class="descriptive-form-field">
@@ -91,7 +95,7 @@
 
     <mat-card class="my-card">
       <mat-card-header>
-        <mat-card-title>Beschreibung</mat-card-title>
+        <mat-card-title style="color: white">Beschreibung</mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <mat-form-field class="hero-description">

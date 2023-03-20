@@ -2,7 +2,6 @@ import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {HeroService} from "../shared/hero.service";
 import {BreakpointObserver} from "@angular/cdk/layout";
-import {MatSidenav} from "@angular/material/sidenav";
 import {HeroDetailComponent} from "./hero-detail/hero-detail.component";
 
 @Component({
@@ -11,18 +10,14 @@ import {HeroDetailComponent} from "./hero-detail/hero-detail.component";
   styleUrls: ['./hero.component.scss'],
   providers: [HeroDetailComponent]
 })
-export class HeroComponent implements OnInit, AfterViewInit {
-
-  @ViewChild(MatSidenav)
-  sidenav!: MatSidenav;
+export class HeroComponent implements OnInit {
 
   compHeroId: number | undefined;
 
   constructor(
     private route: ActivatedRoute,
     private heroService: HeroService,
-    private router: Router,
-    private observer: BreakpointObserver) {
+    private router: Router) {
   }
 
   ngOnInit(): void {
@@ -30,18 +25,6 @@ export class HeroComponent implements OnInit, AfterViewInit {
     this.router.events.subscribe(() => {
       this.compHeroId = Number(this.router.url.split("/").slice(-1));
     })
-  }
-
-  ngAfterViewInit() {
-    this.observer.observe(['(max-width: 767px)']).subscribe((res) => {
-      if (res.matches) {
-        this.sidenav.mode = 'over';
-        this.sidenav.close();
-      } else {
-        this.sidenav.mode = 'side';
-        this.sidenav.open();
-      }
-    });
   }
 
   save(): void {

@@ -12,6 +12,7 @@ import {Subscription} from "rxjs";
 export class HeroNotesComponent implements OnInit, OnDestroy {
 
   notes: Evening[] | undefined;
+  private origNotes: Evening[] | undefined;
 
   heroId: number | undefined;
   saveSubscription: Subscription
@@ -39,7 +40,10 @@ export class HeroNotesComponent implements OnInit, OnDestroy {
   getNotes(): void {
     if (this.heroId) {
       this.heroService.getNotesFromHero(this.heroId)
-        .subscribe(notes => this.notes = notes);
+        .subscribe(notes => {
+          this.notes = notes
+          this.origNotes = JSON.parse(JSON.stringify(notes))
+        });
     }
   }
 
@@ -50,10 +54,12 @@ export class HeroNotesComponent implements OnInit, OnDestroy {
   }
 
   saveNotes(): void {
-    console.log("Save notes")
-    if (this.notes) {
+    if (this.notes && JSON.stringify(this.notes) !== JSON.stringify(this.origNotes)) {
+      console.log("Save notes")
       const id = Number(this.route.snapshot.paramMap.get('id'));
       this.heroService.saveNotesForHero(id, this.notes)
+    } else {
+      console.log("Skip save notes")
     }
   }
 

@@ -13,6 +13,7 @@ export class HeroGeneralComponent implements OnInit, OnDestroy {
 
 
   hero: Hero | undefined;
+  private origHero: Hero | undefined;
   saveSubscription: Subscription
 
   constructor(
@@ -35,13 +36,19 @@ export class HeroGeneralComponent implements OnInit, OnDestroy {
   getHero(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.heroService.getHero(id)
-      .subscribe(hero => this.hero = hero);
+      .subscribe(hero => {
+        this.hero = hero
+        // clone the nested objects
+        this.origHero = JSON.parse(JSON.stringify(hero))
+      });
   }
 
   saveHero(): void {
-    if (this.hero) {
+    if (this.hero && JSON.stringify(this.hero) !== JSON.stringify(this.origHero)) {
       console.log("Save general")
       this.heroService.updateHero(this.hero)
+    } else {
+      console.log("Skip save general")
     }
   }
 
@@ -49,14 +56,12 @@ export class HeroGeneralComponent implements OnInit, OnDestroy {
   newAdvantage() {
     if (this.hero) {
       this.hero.advantages.push("")
-      this.saveHero()
     }
   }
 
   newDisadvantage() {
     if (this.hero) {
       this.hero.disadvantages.push("")
-      this.saveHero()
     }
   }
 

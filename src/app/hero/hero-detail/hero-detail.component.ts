@@ -12,6 +12,8 @@ import {Subscription} from "rxjs";
 export class HeroDetailComponent implements OnInit, OnDestroy {
 
   hero: Hero | undefined;
+
+  private origHero: Hero | undefined;
   saveSubscription: Subscription
 
   attributeColumns: string[] = ['talent', 'probe', 'fw'];
@@ -46,13 +48,19 @@ export class HeroDetailComponent implements OnInit, OnDestroy {
   getHero(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.heroService.getHero(id)
-      .subscribe(hero => this.hero = hero);
+      .subscribe(hero => {
+          this.hero = hero
+          this.origHero = JSON.parse(JSON.stringify(hero))
+        }
+      );
   }
 
   saveHero(): void {
-    if (this.hero) {
+    if (this.hero && this.origHero && JSON.stringify(this.hero) !== JSON.stringify(this.origHero)) {
       console.log("Save detail")
       this.heroService.updateHero(this.hero)
+    } else {
+      console.log("Skip save details")
     }
   }
 

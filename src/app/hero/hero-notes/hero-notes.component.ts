@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {Evening} from '../../shared/hero';
-import {HeroService} from '../../shared/hero.service';
+import {Evening} from '../../shared/model/hero';
+import {HeroService} from '../../shared/services/hero.service';
 import {Subscription} from "rxjs";
 
 @Component({

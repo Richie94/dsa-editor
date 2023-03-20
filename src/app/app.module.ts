@@ -21,6 +21,8 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import { HeroGeneralComponent } from './hero/hero-general/hero-general.component';
 import { HeroComponent } from './hero/hero.component';
+import {AuthService} from "./shared/services/auth.service";
+import { SignInComponent } from './sign-in/sign-in/sign-in.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { HeroComponent } from './hero/hero.component';
     HeroComponent,
     HeroGeneralComponent,
     HeroDetailComponent,
-    HeroNotesComponent
+    HeroNotesComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +53,7 @@ import { HeroComponent } from './hero/hero.component';
     MatTooltipModule
   ],
   providers: [
-
+AuthService
   ],
   bootstrap: [AppComponent]
 })

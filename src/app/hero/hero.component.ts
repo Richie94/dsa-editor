@@ -1,7 +1,6 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {HeroService} from "../shared/hero.service";
-import {BreakpointObserver} from "@angular/cdk/layout";
+import {HeroService} from "../shared/services/hero.service";
 import {HeroDetailComponent} from "./hero-detail/hero-detail.component";
 
 @Component({

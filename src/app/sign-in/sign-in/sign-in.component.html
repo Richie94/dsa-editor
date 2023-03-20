@@ -1,0 +1,25 @@
+<mat-toolbar class="my-toolbar">
+  <span>DSA Editor</span>
+</mat-toolbar>
+<mat-card class="my-card">
+  <mat-card-header>
+    <mat-card-title style="color: white">
+      Log In
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-form-field style="margin: 5px">
+      <mat-label for="user-name">Name</mat-label>
+      <input matInput id="user-name" placeholder="Name" type="text"  #userName required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label for="user-password">Password</mat-label>
+      <input matInput id="user-password" type="password" class="formControl" placeholder="Password" #userPassword required>
+    </mat-form-field>
+
+    <br>
+
+    <button mat-raised-button color="primary"
+            (click)="authService.signIn(userName.value, userPassword.value)">Log In</button>
+  </mat-card-content>
+</mat-card>

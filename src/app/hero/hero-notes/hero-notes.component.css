@@ -12,7 +12,17 @@
   text-align: center
 }
 
-.prim-stats {
-  margin: 5px;
-  width: 4em
+@media screen and (max-width: 600px) {
+  .prim-stats {
+    margin: 5px;
+    width: 4em
+  }
 }
+@media screen and (min-width: 600px) {
+  .prim-stats {
+    margin: 5px;
+    width: 6em
+  }
+}
+
+

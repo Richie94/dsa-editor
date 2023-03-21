@@ -1,7 +1,16 @@
-.property-form-field {
-  margin: 5px;
-  width: 4em;
+@media screen and (max-width: 600px) {
+  .property-form-field {
+    margin: 5px;
+    width: 4em;
+  }
 }
+@media screen and (min-width: 600px) {
+  .property-form-field {
+    margin: 5px;
+    width: 6em;
+  }
+}
+
 
 .table-form-field {
   margin: 5px;

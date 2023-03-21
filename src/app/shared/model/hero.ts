@@ -21,14 +21,14 @@ export interface Hero {
 }
 
 export interface HeroStats {
-  mu: Number;
-  kl: Number;
-  in: Number;
-  ch: Number;
-  ff: Number;
-  ge: Number;
-  ko: Number;
-  kk: Number;
+  mu: number;
+  kl: number;
+  in: number;
+  ch: number;
+  ff: number;
+  ge: number;
+  ko: number;
+  kk: number;
 }
 
 export interface Evening {

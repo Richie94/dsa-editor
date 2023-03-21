@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {Evening} from '../../shared/model/hero';
+import {Evening, Hero} from '../../shared/model/hero';
 import {HeroService} from '../../shared/services/hero.service';
 import {Subscription} from "rxjs";
 
@@ -11,8 +11,8 @@ import {Subscription} from "rxjs";
 })
 export class HeroNotesComponent implements OnInit, OnDestroy {
 
-  notes: Evening[] | undefined;
-  private origNotes: Evening[] | undefined;
+  hero: Hero | undefined;
+  private origHero: Hero | undefined;
 
   heroId: number | undefined;
   saveSubscription: Subscription
@@ -28,7 +28,7 @@ export class HeroNotesComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.heroId = Number(this.route.snapshot.paramMap.get('id'));
-    this.getNotes();
+    this.getHero();
   }
 
   ngOnDestroy() {
@@ -37,27 +37,51 @@ export class HeroNotesComponent implements OnInit, OnDestroy {
     this.saveNotes()
   }
 
-  getNotes(): void {
+  getHero(): void {
     if (this.heroId) {
-      this.heroService.getNotesFromHero(this.heroId)
-        .subscribe(notes => {
-          this.notes = notes
-          this.origNotes = JSON.parse(JSON.stringify(notes))
+      this.heroService.getHero(this.heroId)
+        .subscribe(hero => {
+          this.hero = hero
+          this.origHero = JSON.parse(JSON.stringify(hero))
         });
     }
   }
 
   addNewNote(): void {
-    if (this.heroId) {
-      this.heroService.addNewNoteForHero(this.heroId).subscribe(note => this.notes?.unshift(note))
+    if (this.hero) {
+      let newestNote: Evening | undefined = undefined
+      if (this.hero.notes.length > 0) {
+        newestNote = this.hero.notes[0]
+      }
+
+      let note: Evening
+      if (newestNote) {
+        note = {
+          date: new Date().toLocaleDateString(),
+          text: "...",
+          lep: newestNote.lep,
+          asp: newestNote.asp,
+          kap: newestNote.kap,
+          sch: newestNote.sch
+        }
+      } else {
+        note = {
+          date: new Date().toLocaleDateString(),
+          text: "...",
+          lep: 0,
+          asp: 0,
+          kap: 0,
+          sch: 0
+        }
+      }
+      this.hero.notes.unshift(note)
     }
   }
 
   saveNotes(): void {
-    if (this.notes && JSON.stringify(this.notes) !== JSON.stringify(this.origNotes)) {
+    if (this.hero && JSON.stringify(this.hero) !== JSON.stringify(this.origHero)) {
       console.log("Save notes")
-      const id = Number(this.route.snapshot.paramMap.get('id'));
-      this.heroService.saveNotesForHero(id, this.notes)
+      this.heroService.updateHero(this.hero)
     } else {
       console.log("Skip save notes")
     }

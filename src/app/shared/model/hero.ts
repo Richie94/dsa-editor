@@ -17,6 +17,7 @@ export interface Hero {
   disadvantages: string[],
   creator_id: number;
   hero_stats: HeroStats;
+  notes: Evening[]
 }
 
 export interface HeroStats {
@@ -31,9 +32,7 @@ export interface HeroStats {
 }
 
 export interface Evening {
-  id: number;
-  hero_id: number;
-  date: Date;
+  date: string;
   text: string;
   lep: number;
   kap: number;

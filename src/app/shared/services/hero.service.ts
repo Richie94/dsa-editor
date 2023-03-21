@@ -60,7 +60,8 @@ export class HeroService {
       advantages: [],
       disadvantages: [],
       creator_id: 1,
-      hero_stats: {mu: 8, kl: 8, in: 8, ch: 8, ge: 8, ff: 8, kk: 8, ko: 8}
+      hero_stats: {mu: 8, kl: 8, in: 8, ch: 8, ge: 8, ff: 8, kk: 8, ko: 8},
+      notes: []
     };
     this.HEROES.push(hero)
     localStorage.setItem("hero", JSON.stringify(this.HEROES))
@@ -74,83 +75,6 @@ export class HeroService {
       localStorage.setItem("hero", JSON.stringify(this.HEROES))
     }
   }
-
-  getNotesFromHero(hero_id: number): Observable<Evening[]> {
-    const notes = this.NOTES.filter(h => h.hero_id === hero_id)!;
-    return of(notes);
-  }
-
-  maxByDate(e1: Evening, e2: Evening): Evening {
-    if (e1.date > e2.date) {
-      return e1
-    } else {
-      return e2
-    }
-  }
-
-  addNewNoteForHero(hero_id: number): Observable<Evening> {
-    const notes = this.NOTES.filter(h => h.hero_id === hero_id)!;
-    // get the newest note by date
-    let newestNote : Evening | undefined = undefined
-    if (notes.length > 0) {
-      newestNote = notes.reduce(this.maxByDate)
-    }
-
-    let note: Evening
-    if (newestNote) {
-      note = {
-        id: this.NOTES.length + 1,
-        hero_id: hero_id,
-        date: new Date(),
-        text: "...",
-        lep: newestNote.lep,
-        asp: newestNote.asp,
-        kap: newestNote.kap,
-        sch: newestNote.sch
-      }
-    } else {
-      note = {
-        id: this.NOTES.length + 1,
-        hero_id: hero_id,
-        date: new Date(),
-        text: "...",
-        lep: 0,
-        asp: 0,
-        kap: 0,
-        sch: 0
-      }
-    }
-    this.NOTES.unshift(note)
-    return of(note)
-  }
-
-  saveNotesForHero(hero_id: number, notes: Evening[]) {
-    this.NOTES = this.NOTES.filter(h => h.hero_id != hero_id)!;
-    this.NOTES.push(...notes)
-  }
-
-  NOTES: Evening[] = [
-    {
-      id: 1,
-      hero_id: 1,
-      text: "Wir lagen vor Madagaskar.",
-      date: new Date("2023-03-01"),
-      lep: 35,
-      asp: 0,
-      kap: 0,
-      sch: 3
-    },
-    {
-      id: 2,
-      hero_id: 1,
-      text: "Und gestorben.",
-      date: new Date("2023-02-16"),
-      lep: 27,
-      asp: 0,
-      kap: 0,
-      sch: 3
-    }
-  ]
 
   HEROES: Hero[] = [
     {
@@ -180,7 +104,25 @@ export class HeroService {
         ge: 13,
         ko: 15,
         kk: 17
-      }
+      },
+      notes: [
+        {
+          text: "Wir lagen vor Madagaskar.",
+          date: "10.1.2023",
+          lep: 35,
+          asp: 0,
+          kap: 0,
+          sch: 3
+        },
+        {
+          text: "Und gestorben.",
+          date: "22.12.2022",
+          lep: 27,
+          asp: 0,
+          kap: 0,
+          sch: 3
+        }
+      ]
     },
     {
       id: 2,
@@ -209,7 +151,8 @@ export class HeroService {
         ge: 13,
         ko: 15,
         kk: 17
-      }
+      },
+      notes: []
     },
     {
       id: 3,
@@ -238,7 +181,8 @@ export class HeroService {
         ge: 13,
         ko: 15,
         kk: 17
-      }
+      },
+      notes: []
     }
   ]
 }

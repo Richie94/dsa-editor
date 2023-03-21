@@ -12,14 +12,15 @@
         </mat-card-title>
       </mat-card-header>
       <mat-card-content>
-
-        <button mat-raised-button routerLink="/hero/general/{{hero.id}}" class="overview-buttons" color="primary">
-          Allgemein
-        </button>
-        <button mat-raised-button routerLink="/hero/detail/{{hero.id}}" class="overview-buttons" color="primary">Details
-        </button>
-        <button mat-raised-button routerLink="/hero/notes/{{hero.id}}" class="overview-buttons" color="primary">Notizen
-        </button>
+        <div>
+          <button mat-raised-button routerLink="/hero/general/{{hero.id}}" class="overview-buttons" color="primary">
+            Allgemein
+          </button>
+          <button mat-raised-button routerLink="/hero/detail/{{hero.id}}" class="overview-buttons" color="primary">Details
+          </button>
+          <button mat-raised-button routerLink="/hero/notes/{{hero.id}}" class="overview-buttons" color="primary">Notizen
+          </button>
+        </div>
       </mat-card-content>
     </mat-card>
   </mat-list>

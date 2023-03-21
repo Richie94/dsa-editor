@@ -1,68 +1,72 @@
 <mat-toolbar class="my-toolbar">
-  <img src="assets/logo-inverted.png" width="40" height="40" style="margin-right: 5px">
-  <span>Dark Editor</span>
-  <span class="flexExpand"></span>
-  <button mat-button routerLink="/hero" routerLinkActive="active" class="my-link" color="primary">
-    <mat-icon>dashboard</mat-icon>
-    <span class="my-link-text">
+  <mat-toolbar-row>
+    <img src="assets/logo-inverted.png" width="40" height="40" style="margin-right: 5px">
+    <span>Dark Editor</span>
+  </mat-toolbar-row>
+  <mat-toolbar-row>
+
+    <button mat-button routerLink="/hero" routerLinkActive="active" class="my-link" color="primary">
+      <ic-icon icon="dashboard"></ic-icon>
+      <span class="my-link-text">
     Helden
     </span>
-  </button>
-  <button mat-button *ngIf="compHeroId" routerLink="/hero/general/{{compHeroId}}" routerLinkActive="active"
-          class="my-link" color="primary">
-    <mat-icon>text_fields</mat-icon>
-    <span class="my-link-text">
+    </button>
+    <button mat-button *ngIf="compHeroId" routerLink="/hero/general/{{compHeroId}}" routerLinkActive="active"
+            class="my-link" color="primary">
+      <ic-icon icon="text"></ic-icon>
+      <span class="my-link-text">
       Allgemein
     </span>
-  </button>
-  <button mat-button *ngIf="compHeroId" routerLink="/hero/detail/{{compHeroId}}" routerLinkActive="active"
-          class="my-link" color="primary">
-    <mat-icon>details</mat-icon>
-    <span class="my-link-text">
+    </button>
+    <button mat-button *ngIf="compHeroId" routerLink="/hero/detail/{{compHeroId}}" routerLinkActive="active"
+            class="my-link" color="primary">
+      <ic-icon icon="pickaxe"></ic-icon>
+      <span class="my-link-text">
     Talente
     </span>
-  </button>
-  <button mat-button *ngIf="compHeroId" routerLink="/hero/notes/{{compHeroId}}" routerLinkActive="active"
-          class="my-link" color="primary">
-    <mat-icon>notes</mat-icon>
-    <span class="my-link-text">
+    </button>
+    <button mat-button *ngIf="compHeroId" routerLink="/hero/notes/{{compHeroId}}" routerLinkActive="active"
+            class="my-link" color="primary">
+      <ic-icon icon="calendar-text"></ic-icon>
+      <span class="my-link-text">
     Notizen
     </span>
-  </button>
-  <button mat-button *ngIf="compHeroId" routerLink="/hero/fight/{{compHeroId}}" routerLinkActive="active"
-          class="my-link" color="primary">
-    <ic-icon icon="sword-cross"></ic-icon>
-    <span class="my-link-text">
+    </button>
+    <button mat-button *ngIf="compHeroId" routerLink="/hero/fight/{{compHeroId}}" routerLinkActive="active"
+            class="my-link" color="primary">
+      <ic-icon icon="sword-cross"></ic-icon>
+      <span class="my-link-text">
     Kampf
     </span>
-  </button>
-  <button mat-button *ngIf="compHeroId" routerLink="/hero/magic/{{compHeroId}}" routerLinkActive="active"
-          class="my-link" color="primary">
-    <ic-icon icon="magic"></ic-icon>
-    <span class="my-link-text">
+    </button>
+    <button mat-button *ngIf="compHeroId" routerLink="/hero/magic/{{compHeroId}}" routerLinkActive="active"
+            class="my-link" color="primary">
+      <ic-icon icon="magic"></ic-icon>
+      <span class="my-link-text">
     Magie
     </span>
-  </button>
-  <button mat-button *ngIf="compHeroId" routerLink="/hero/liturgic/{{compHeroId}}" routerLinkActive="active"
-          class="my-link" color="primary">
-    <ic-icon icon="liturgic"></ic-icon>
-    <span class="my-link-text">
+    </button>
+    <button mat-button *ngIf="compHeroId" routerLink="/hero/liturgic/{{compHeroId}}" routerLinkActive="active"
+            class="my-link" color="primary">
+      <ic-icon icon="liturgic"></ic-icon>
+      <span class="my-link-text">
     Liturgie
     </span>
-  </button>
-  <button mat-button *ngIf="compHeroId" routerLink="/hero/inventory/{{compHeroId}}" routerLinkActive="active"
-          class="my-link" color="primary">
-    <ic-icon icon="inventory"></ic-icon>
-    <span class="my-link-text">
+    </button>
+    <button mat-button *ngIf="compHeroId" routerLink="/hero/inventory/{{compHeroId}}" routerLinkActive="active"
+            class="my-link" color="primary">
+      <ic-icon icon="inventory"></ic-icon>
+      <span class="my-link-text">
     Inventar
     </span>
-  </button>
-  <button mat-button *ngIf="compHeroId" (click)="save()" class="my-link" color="primary">
-    <mat-icon>save</mat-icon>
-    <span class="my-link-text">
+    </button>
+    <button mat-button *ngIf="compHeroId" (click)="save()" class="my-link" color="primary">
+      <ic-icon icon="save"></ic-icon>
+      <span class="my-link-text">
     Speichern
     </span>
-  </button>
+    </button>
+  </mat-toolbar-row>
 </mat-toolbar>
 
 <div style="background: #303030; height: 100%">

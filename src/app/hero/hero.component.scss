@@ -1,4 +1,4 @@
-@media screen and (min-width: 660px) {
+@media screen and (min-width: 980px) {
   .my-link {
     width: 10em !important;
     margin-right: 5px;
@@ -11,7 +11,7 @@
   flex: 1 1 auto;
 }
 
-@media only screen and (max-width: 660px) {
+@media only screen and (max-width: 980px) {
   .my-link-text {
     display: none;
   }

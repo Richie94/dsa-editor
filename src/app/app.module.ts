@@ -23,6 +23,11 @@ import { HeroGeneralComponent } from './hero/hero-general/hero-general.component
 import { HeroComponent } from './hero/hero.component';
 import {AuthService} from "./shared/services/auth.service";
 import { SignInComponent } from './sign-in/sign-in/sign-in.component';
+import { HeroFightComponent } from './hero/hero-fight/hero-fight.component';
+import { HeroMagicComponent } from './hero/hero-magic/hero-magic.component';
+import { HeroLiturgicComponent } from './hero/hero-liturgic/hero-liturgic.component';
+import { HeroInventoryComponent } from './hero/hero-inventory/hero-inventory.component';
+import {IconModule} from "@visurel/iconify-angular";
 
 @NgModule({
   declarations: [
@@ -33,7 +38,11 @@ import { SignInComponent } from './sign-in/sign-in/sign-in.component';
     HeroGeneralComponent,
     HeroDetailComponent,
     HeroNotesComponent,
-    SignInComponent
+    SignInComponent,
+    HeroFightComponent,
+    HeroMagicComponent,
+    HeroLiturgicComponent,
+    HeroInventoryComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +59,8 @@ import { SignInComponent } from './sign-in/sign-in/sign-in.component';
     MatTableModule,
     MatDialogModule,
     MatIconModule,
-    MatTooltipModule
+    MatTooltipModule,
+    IconModule
   ],
   providers: [
 AuthService

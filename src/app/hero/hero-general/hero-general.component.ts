@@ -11,7 +11,6 @@ import {Subscription} from "rxjs";
 })
 export class HeroGeneralComponent implements OnInit, OnDestroy {
 
-
   hero: Hero | undefined;
   private origHero: Hero | undefined;
   saveSubscription: Subscription

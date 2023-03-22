@@ -57,6 +57,12 @@ export class HeroService {
       eyeColor: "",
       hairColor: "",
       sex: "",
+      le: 20,
+      gs: 8,
+      ini: 10,
+      sk: 1,
+      zk: 1,
+      aw: 8,
       age: null,
       size: null,
       weight: null,
@@ -75,6 +81,8 @@ export class HeroService {
       fight_techniques: this.fightTechniqueService.initFightTechniques(),
       talents: this.talentService.initTalents(),
       items: [],
+      liturgic_spells: [],
+      magic_spells: [],
       wallet: {
         dukaten: 0,
         silbertaler: 0,
@@ -87,7 +95,6 @@ export class HeroService {
     localStorage.setItem("hero", JSON.stringify(this.HEROES))
     return of(hero)
   }
-
 
 
   updateHero(hero: Hero) {
@@ -116,6 +123,12 @@ export class HeroService {
       age: 30,
       size: 180,
       weight: 80,
+      le: 20,
+      gs: 8,
+      ini: 10,
+      sk: 1,
+      zk: 1,
+      aw: 8,
       description: "Treuer Held",
       creator_id: "1",
       hero_stats: {
@@ -138,13 +151,34 @@ export class HeroService {
           pa: 10,
           barrier: "KK 10"
         }],
-      armor: [],
-      shield: [],
-      special_abilities: [],
-      special_fight_abilities: [],
+      armor: [
+        {
+          name: "Lederpanzer",
+          rs: 2,
+          be: 1,
+          mod: ""
+        }
+      ],
+      shield: [
+        {
+          name: "Schild",
+          sp: 22,
+          at: 12,
+          pa: 12
+        }
+      ],
+      special_abilities: ["Athlet"],
+      special_fight_abilities: ["Tritt in die Eier"],
       fight_techniques: this.fightTechniqueService.initFightTechniques(),
       talents: this.talentService.initTalents(),
-      items: [],
+      items: [
+        {
+          name: "Brot",
+          amount: 2,
+          weight: 1.24,
+          price: 1
+        }
+      ],
       wallet: {
         dukaten: 10,
         silbertaler: 10,
@@ -170,10 +204,60 @@ export class HeroService {
           kap: 0,
           sch: 3
         }
+      ],
+      liturgic_spells: [
+        {
+          name: "Ablativum",
+          probe: "MU/KL/CH",
+          target: "selbst",
+          sf: "D",
+          spell_duration: "1",
+          cost: "1",
+          cast_duration: "2",
+          range: "selbst",
+        },
+        {
+          name: "Ablativum",
+          probe: "MU/KL/CH",
+          target: "selbst",
+          sf: "D",
+          spell_duration: "1",
+          cost: "1",
+          cast_duration: "2",
+          range: "selbst",
+        }
+      ],
+      magic_spells: [
+        {
+          name: "Ablativum",
+          probe: "MU/KL/CH",
+          target: "selbst",
+          sf: "D",
+          spell_duration: "1",
+          cost: "1",
+          cast_duration: "2",
+          range: "selbst",
+        },
+        {
+          name: "Ablativum",
+          probe: "MU/KL/CH",
+          target: "selbst",
+          sf: "D",
+          spell_duration: "1",
+          cost: "1",
+          cast_duration: "2",
+          range: "selbst",
+        }
       ]
     },
     {
       id: 2,
+      le: 20,
+      gs: 8,
+      ini: 10,
+      sk: 1,
+      zk: 1,
+      aw: 8,
       name: "Berta",
       ap: 1200,
       description: "dicke Tante",
@@ -202,6 +286,8 @@ export class HeroService {
         kk: 17
       },
       notes: [],
+      liturgic_spells: [],
+      magic_spells: [],
       weapons: [
         {
           name: "Hammer",
@@ -228,6 +314,12 @@ export class HeroService {
     },
     {
       id: 3,
+      le: 20,
+      gs: 8,
+      ini: 10,
+      sk: 1,
+      zk: 1,
+      aw: 8,
       ap: 1100,
       name: "Grimelda",
       description: "Alte Frau",
@@ -255,6 +347,8 @@ export class HeroService {
         ko: 15,
         kk: 17
       },
+      liturgic_spells: [],
+      magic_spells: [],
       notes: [],
       weapons: [
         {

@@ -1,7 +1,12 @@
 export interface Hero {
   id: number;
-
   ap: number;
+  le: number;
+  sk: number;
+  zk: number;
+  aw: number;
+  ini: number;
+  gs: number;
   name: string;
   description: string;
   species: string;
@@ -29,6 +34,20 @@ export interface Hero {
   weapons: Weapon[],
   armor: Armor[],
   shield: Shield[],
+  magic_spells: Spell[],
+  liturgic_spells: Spell[],
+}
+
+export interface Spell {
+  name: string;
+  probe: string;
+  spell_duration: string;
+  cast_duration: string;
+  range: string;
+  target: string;
+  sf: string;
+  cost: string;
+
 }
 
 export interface Weapon {
@@ -50,7 +69,7 @@ export interface Armor {
 
 export interface Shield {
   name: string;
-  structure: number;
+  sp: number;
   at: number;
   pa: number;
 }

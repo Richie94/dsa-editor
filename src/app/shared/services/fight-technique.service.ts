@@ -14,7 +14,7 @@ export class FightTechniqueService {
         name: "Armbrüste",
         ktw: 6,
         at: 7,
-        pa: 0
+        pa: 0,
       }, {
         name: "Bögen",
         ktw: 6,

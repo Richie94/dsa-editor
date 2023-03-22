@@ -1,18 +1,22 @@
 import {Injectable} from '@angular/core';
-import {Evening, Hero} from '../model/hero';
+import {Evening, FightTechnique, Hero, Talent} from '../model/hero';
 import {Observable, of, Subject} from 'rxjs';
+import {AuthService} from "./auth.service";
+import {TalentService} from "./talent.service";
+import {FightTechniqueService} from "./fight-technique.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class HeroService {
 
-  hero : Hero | undefined;
+  hero: Hero | undefined;
 
   private saveSubscription = new Subject<string>();
   shouldSave = this.saveSubscription.asObservable()
 
-  constructor() {
+  constructor(private authService: AuthService, private talentService: TalentService, private fightTechniqueService: FightTechniqueService) {
+
   }
 
   triggerSave() {
@@ -40,10 +44,11 @@ export class HeroService {
     return of(hero);
   }
 
-  createHero(name: string) : Observable<Hero> {
+  createHero(name: string): Observable<Hero> {
     console.log("Create hero " + name)
     let hero = {
       id: this.HEROES.length + 1,
+      ap: 1000,
       name: name,
       description: "",
       species: "",
@@ -59,14 +64,31 @@ export class HeroService {
       writings: [],
       advantages: [],
       disadvantages: [],
-      creator_id: 1,
+      creator_id: this.authService.userData!.uid,
       hero_stats: {mu: 8, kl: 8, in: 8, ch: 8, ge: 8, ff: 8, kk: 8, ko: 8},
-      notes: []
+      notes: [],
+      weapons: [],
+      armor: [],
+      shield: [],
+      special_abilities: [],
+      special_fight_abilities: [],
+      fight_techniques: this.fightTechniqueService.initFightTechniques(),
+      talents: this.talentService.initTalents(),
+      items: [],
+      wallet: {
+        dukaten: 0,
+        silbertaler: 0,
+        heller: 0,
+        kreuzer: 0
+      },
+
     };
     this.HEROES.push(hero)
     localStorage.setItem("hero", JSON.stringify(this.HEROES))
     return of(hero)
   }
+
+
 
   updateHero(hero: Hero) {
     const index = this.HEROES.findIndex(h => h.id == hero.id)
@@ -79,6 +101,7 @@ export class HeroService {
   HEROES: Hero[] = [
     {
       id: 1,
+      ap: 1520,
       name: "Hammer Harald",
       species: "Mensch",
       culture: "Nordland",
@@ -94,7 +117,7 @@ export class HeroService {
       size: 180,
       weight: 80,
       description: "Treuer Held",
-      creator_id: 1,
+      creator_id: "1",
       hero_stats: {
         mu: 14,
         kl: 10,
@@ -105,8 +128,32 @@ export class HeroService {
         ko: 15,
         kk: 17
       },
+      weapons: [
+        {
+          name: "Hammer",
+          technique: "Hiebwaffen",
+          tp: "1W6+1",
+          reach: "kurz",
+          at: 16,
+          pa: 10,
+          barrier: "KK 10"
+        }],
+      armor: [],
+      shield: [],
+      special_abilities: [],
+      special_fight_abilities: [],
+      fight_techniques: this.fightTechniqueService.initFightTechniques(),
+      talents: this.talentService.initTalents(),
+      items: [],
+      wallet: {
+        dukaten: 10,
+        silbertaler: 10,
+        heller: 10,
+        kreuzer: 10
+      },
       notes: [
         {
+          id: 1,
           text: "Wir lagen vor Madagaskar.",
           date: "10.1.2023",
           lep: 35,
@@ -115,6 +162,7 @@ export class HeroService {
           sch: 3
         },
         {
+          id: 0,
           text: "Und gestorben.",
           date: "22.12.2022",
           lep: 27,
@@ -127,8 +175,9 @@ export class HeroService {
     {
       id: 2,
       name: "Berta",
+      ap: 1200,
       description: "dicke Tante",
-      creator_id: 1,
+      creator_id: "1",
       species: "Mensch",
       culture: "Nordland",
       profession: "Krieger",
@@ -152,10 +201,34 @@ export class HeroService {
         ko: 15,
         kk: 17
       },
-      notes: []
+      notes: [],
+      weapons: [
+        {
+          name: "Hammer",
+          technique: "Hiebwaffen",
+          tp: "1W6+1",
+          reach: "kurz",
+          at: 16,
+          pa: 10,
+          barrier: "KK 10"
+        }],
+      armor: [],
+      shield: [],
+      special_abilities: [],
+      special_fight_abilities: [],
+      fight_techniques: this.fightTechniqueService.initFightTechniques(),
+      talents: this.talentService.initTalents(),
+      items: [],
+      wallet: {
+        dukaten: 10,
+        silbertaler: 10,
+        heller: 10,
+        kreuzer: 10
+      },
     },
     {
       id: 3,
+      ap: 1100,
       name: "Grimelda",
       description: "Alte Frau",
       species: "Mensch",
@@ -171,7 +244,7 @@ export class HeroService {
       age: 30,
       size: 180,
       weight: 80,
-      creator_id: 1,
+      creator_id: "1",
       hero_stats: {
         mu: 14,
         kl: 10,
@@ -182,7 +255,30 @@ export class HeroService {
         ko: 15,
         kk: 17
       },
-      notes: []
+      notes: [],
+      weapons: [
+        {
+          name: "Hammer",
+          technique: "Hiebwaffen",
+          tp: "1W6+1",
+          reach: "kurz",
+          at: 16,
+          pa: 10,
+          barrier: "KK 10"
+        }],
+      armor: [],
+      shield: [],
+      special_abilities: [],
+      special_fight_abilities: [],
+      fight_techniques: this.fightTechniqueService.initFightTechniques(),
+      talents: this.talentService.initTalents(),
+      items: [],
+      wallet: {
+        dukaten: 10,
+        silbertaler: 10,
+        heller: 10,
+        kreuzer: 10
+      },
     }
   ]
 }

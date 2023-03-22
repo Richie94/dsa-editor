@@ -57,6 +57,7 @@ export class HeroNotesComponent implements OnInit, OnDestroy {
       let note: Evening
       if (newestNote) {
         note = {
+          id: this.hero.notes.length,
           date: new Date().toLocaleDateString(),
           text: "...",
           lep: newestNote.lep,
@@ -66,6 +67,7 @@ export class HeroNotesComponent implements OnInit, OnDestroy {
         }
       } else {
         note = {
+          id: this.hero.notes.length,
           date: new Date().toLocaleDateString(),
           text: "...",
           lep: 0,

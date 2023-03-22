@@ -63,9 +63,10 @@
             </span>
             <mat-list>
               <mat-list-item *ngFor="let advantage of hero.advantages; let i = index;trackBy:trackByIndex;">
-                <mat-form-field class="descriptive-form-field">
+                <mat-form-field class="advantage-form-field">
                   <input matInput [(ngModel)]="hero.advantages[i]" placeholder="Vorteil" type="text">
                 </mat-form-field>
+                <a href="https://ulisses-regelwiki.de/suche.html?keywords={{hero.advantages[i]}}"><ic-icon icon="magnify" style="color: white"></ic-icon></a>
               </mat-list-item>
               <mat-list-item>
                 <button mat-button (click)="newAdvantage()">+</button>
@@ -78,9 +79,10 @@
             </span>
             <mat-list>
               <mat-list-item *ngFor="let disadvantage of hero.disadvantages; let i = index;trackBy:trackByIndex;">
-                <mat-form-field class="descriptive-form-field">
-                  <input matInput [(ngModel)]="hero.disadvantages[i]" placeholder="Vorteil" type="text">
+                <mat-form-field class="advantage-form-field">
+                  <input matInput [(ngModel)]="hero.disadvantages[i]" placeholder="Nachteil" type="text">
                 </mat-form-field>
+                <a href="https://ulisses-regelwiki.de/suche.html?keywords={{hero.disadvantages[i]}}"><ic-icon icon="magnify" style="color: white"></ic-icon></a>
               </mat-list-item>
 
               <mat-list-item>

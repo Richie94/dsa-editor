@@ -9,6 +9,7 @@ import viewDashboard from '@iconify/icons-mdi/view-dashboard';
 import cardText from '@iconify/icons-mdi/card-text';
 import pickaxe from '@iconify/icons-mdi/pickaxe';
 import calendarText from '@iconify/icons-mdi/calendar-text';
+import magnify from '@iconify/icons-mdi/magnify';
 import {IconService} from "@visurel/iconify-angular";
 
 export const appIcons = {
@@ -20,6 +21,7 @@ export const appIcons = {
   'dashboard': viewDashboard,
   'liturgic': handsPray,
   'save': contentSave,
+  'magnify': magnify,
   'inventory': bagSuitcase
 }
 

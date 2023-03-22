@@ -7,14 +7,19 @@
   width: 12em;
 }
 
-@media only screen and (min-width: 768px) {
+.advantage-form-field {
+  margin: 5px;
+  width: 80%;
+}
+
+@media only screen and (min-width: 600px) {
   .advantage-div {
-    min-width: 40%;
+    min-width: 45%;
     float: left
   }
 
   .disadvantage-div {
-    min-width: 40%;
+    min-width: 45%;
     float: right
   }
 }

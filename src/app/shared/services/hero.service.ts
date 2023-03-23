@@ -150,6 +150,14 @@ export class HeroService {
           at: 16,
           pa: 10,
           barrier: "KK 10"
+        }, {
+          name: "Axt",
+          technique: "Hiebwaffen",
+          tp: "1W6+1",
+          reach: "kurz",
+          at: 16,
+          pa: 10,
+          barrier: "KK 10"
         }],
       armor: [
         {
@@ -187,7 +195,6 @@ export class HeroService {
       },
       notes: [
         {
-          id: 1,
           text: "Wir lagen vor Madagaskar.",
           date: "10.1.2023",
           lep: 35,
@@ -196,7 +203,6 @@ export class HeroService {
           sch: 3
         },
         {
-          id: 0,
           text: "Und gestorben.",
           date: "22.12.2022",
           lep: 27,

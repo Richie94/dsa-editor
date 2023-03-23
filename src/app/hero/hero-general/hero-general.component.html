@@ -67,6 +67,7 @@
                   <input matInput [(ngModel)]="hero.advantages[i]" placeholder="Vorteil" type="text">
                 </mat-form-field>
                 <a href="https://ulisses-regelwiki.de/vorteil.html?vorteil=={{hero.advantages[i]}}"><ic-icon icon="magnify" style="color: white"></ic-icon></a>
+              <button mat-button (click)="deleteAdvantage(i)"><mat-icon style="color: white">delete</mat-icon></button>
               </mat-list-item>
               <mat-list-item>
                 <button mat-button (click)="newAdvantage()">+</button>
@@ -83,6 +84,7 @@
                   <input matInput [(ngModel)]="hero.disadvantages[i]" placeholder="Nachteil" type="text">
                 </mat-form-field>
                 <a href="https://ulisses-regelwiki.de/nachteil.html?nachteil={{hero.disadvantages[i]}}"><ic-icon icon="magnify" style="color: white"></ic-icon></a>
+                <button mat-button (click)="deleteDisadvantage(i)"><mat-icon style="color: white">delete</mat-icon></button>
               </mat-list-item>
 
               <mat-list-item>

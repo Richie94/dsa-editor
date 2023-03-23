@@ -1,9 +1,10 @@
 <button class="dsa-button" mat-raised-button type="button" (click)="addNewNote()" color="primary">Neuer Eintrag</button>
 <div *ngIf="hero">
-  <mat-card *ngFor="let note of hero.notes" class="notes">
+  <mat-card *ngFor="let note of hero.notes; let i = index" class="notes">
     <mat-card-header>
       <mat-card-title class="note-header">
-        {{note.date.toLocaleString()}}</mat-card-title>
+        {{note.date.toLocaleString()}}
+      </mat-card-title>
       <mat-card-subtitle>
         <mat-form-field class="prim-stats">
           <mat-label for="hero-lep">LeP</mat-label>
@@ -22,6 +23,7 @@
           <input matInput id="hero-sch" placeholder="Sch" type="number" [(ngModel)]='note.sch'>
         </mat-form-field>
       </mat-card-subtitle>
+      <button mat-icon-button (click)="deleteNote(i)"><mat-icon style="color: white">delete</mat-icon></button>
 
     </mat-card-header>
     <mat-card-content>

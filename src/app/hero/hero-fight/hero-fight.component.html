@@ -45,17 +45,27 @@
     </mat-card-header>
     <mat-card-content>
       <div style="width: 100%">
-          <mat-list>
-            <mat-list-item *ngFor="let ability of hero.special_fight_abilities; let i = index;trackBy:trackByIndex;">
-              <mat-form-field>
+        <mat-list>
+          <mat-list-item *ngFor="let ability of hero.special_fight_abilities; let i = index;trackBy:trackByIndex;">
+            <div>
+              <mat-form-field style="width:85%">
                 <input matInput [(ngModel)]="hero.special_fight_abilities[i]" placeholder="Fähigkeit" type="text">
               </mat-form-field>
-              <a href="https://ulisses-regelwiki.de/suche.html?keywords={{hero.special_fight_abilities[i]}}"><ic-icon icon="magnify" style="color: white"></ic-icon></a>
-            </mat-list-item>
-            <mat-list-item>
-              <button mat-button (click)="newSpecialFightAbility()">+</button>
-            </mat-list-item>
-          </mat-list>
+              <button mat-stroked-button>
+                <a href="https://ulisses-regelwiki.de/suche.html?keywords={{hero.special_fight_abilities[i]}}">
+                  <mat-icon style="color: white">help</mat-icon>
+                </a>
+              </button>
+              <button mat-stroked-button (click)="removeSpecialFightAbility(i)" style="vertical-align: middle">
+                <mat-icon style="color: white">delete</mat-icon>
+              </button>
+            </div>
+
+          </mat-list-item>
+          <mat-list-item>
+            <button mat-stroked-button style="width:100%" (click)="newSpecialFightAbility()">+</button>
+          </mat-list-item>
+        </mat-list>
       </div>
     </mat-card-content>
   </mat-card>
@@ -66,75 +76,33 @@
       </mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <mat-table [dataSource]="hero.weapons" class="mat-elevation-z8">
-
-        <ng-container matColumnDef="name">
-          <mat-header-cell *matHeaderCellDef>Waffe</mat-header-cell>
-          <mat-cell *matCellDef="let element">
-            <mat-form-field class="table-form-field">
-              <input matInput [(ngModel)]="element.name" placeholder="name" type="string">
-            </mat-form-field>
-          </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="technique">
-          <mat-header-cell *matHeaderCellDef>Kampftechnik</mat-header-cell>
-          <mat-cell *matCellDef="let element">
-            <mat-form-field class="table-form-field">
-              <input matInput [(ngModel)]="element.technique" placeholder="technique" type="string">
-            </mat-form-field>
-          </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="tp">
-          <mat-header-cell *matHeaderCellDef>TP</mat-header-cell>
-          <mat-cell *matCellDef="let element">
-            <mat-form-field class="table-form-field">
-              <input matInput [(ngModel)]="element.tp" placeholder="tp" type="string">
-            </mat-form-field>
-          </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="at">
-          <mat-header-cell *matHeaderCellDef>AT</mat-header-cell>
-          <mat-cell *matCellDef="let element">
-            <mat-form-field class="table-form-field">
-              <input matInput [(ngModel)]="element.at" placeholder="at" type="number">
-            </mat-form-field>
-          </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="pa">
-          <mat-header-cell *matHeaderCellDef>PA</mat-header-cell>
-          <mat-cell *matCellDef="let element">
-            <mat-form-field class="table-form-field">
-              <input matInput [(ngModel)]="element.pa" placeholder="pa" type="number">
-            </mat-form-field>
-          </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="barrier">
-          <mat-header-cell *matHeaderCellDef>Schadensbegr</mat-header-cell>
-          <mat-cell *matCellDef="let element">
-            <mat-form-field class="table-form-field">
-              <input matInput [(ngModel)]="element.barrier" placeholder="Schadensbegr" type="string">
-            </mat-form-field>
-          </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="reach">
-          <mat-header-cell *matHeaderCellDef>Reichweite</mat-header-cell>
-          <mat-cell *matCellDef="let element">
-            <mat-form-field class="table-form-field">
-              <input matInput [(ngModel)]="element.reach" placeholder="Reichweite" type="string">
-            </mat-form-field>
-          </mat-cell>
-        </ng-container>
-
-
-        <mat-header-row *matHeaderRowDef="weaponAttributeColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: weaponAttributeColumns;" class="table-row"></mat-row>
-      </mat-table>
+      <div *ngFor="let weapon of hero.weapons; let i = index;trackBy:trackByIndex;"
+           style="border: 1px solid #ccc; margin: 5px">
+        <mat-form-field class="weapon-form-field">
+          <mat-label for="weapon-name">Waffe</mat-label>
+          <input matInput id="weapon-name" [(ngModel)]="hero.weapons[i].name" placeholder="Waffe" type="text">
+        </mat-form-field>
+        <mat-form-field class="weapon-form-field">
+          <mat-label for="weapon-tech">Kampftechnik</mat-label>
+          <input matInput id="weapon-tech" [(ngModel)]="hero.weapons[i].technique" placeholder="Technik" type="text">
+        </mat-form-field>
+        <mat-form-field class="weapon-tp-form-field">
+          <mat-label for="weapon-tp">TP</mat-label>
+          <input matInput id="weapon-tp" [(ngModel)]="hero.weapons[i].tp" placeholder="TP" type="text">
+        </mat-form-field>
+        <mat-form-field class="weapon-number-form-field">
+          <mat-label for="weapon-at">AT</mat-label>
+          <input matInput id="weapon-at" [(ngModel)]="hero.weapons[i].at" placeholder="AT" type="number">
+        </mat-form-field>
+        <mat-form-field class="weapon-number-form-field">
+          <mat-label for="weapon-pa">PA</mat-label>
+          <input matInput id="weapon-pa" [(ngModel)]="hero.weapons[i].pa" placeholder="PA" type="number">
+        </mat-form-field>
+        <button mat-stroked-button (click)="removeWeapon(i)">
+          <mat-icon style="color: white">delete</mat-icon>
+        </button>
+      </div>
+      <button mat-stroked-button style="width:100%" (click)="newWeapon()">+</button>
     </mat-card-content>
   </mat-card>
   <mat-card class="my-card">

@@ -65,4 +65,30 @@ export class HeroFightComponent implements OnInit, OnDestroy {
       this.hero.special_fight_abilities.push("")
     }
   }
+
+  removeSpecialFightAbility(index: number) {
+    if (this.hero) {
+      this.hero.special_fight_abilities.splice(index, 1)
+    }
+  }
+
+  newWeapon() {
+    if (this.hero) {
+      this.hero.weapons.push({
+        name: "",
+        technique: "",
+        tp: "",
+        at: 0,
+        pa: 0,
+        reach: "",
+        barrier: "",
+      })
+    }
+  }
+
+  removeWeapon(index: number) {
+    if (this.hero) {
+      this.hero.weapons.splice(index, 1)
+    }
+  }
 }

@@ -67,4 +67,16 @@ export class HeroGeneralComponent implements OnInit, OnDestroy {
   trackByIndex(index: number, obj: any): any {
     return index;
   }
+
+  deleteDisadvantage(i: number) {
+    if (this.hero) {
+      this.hero.disadvantages.splice(i, 1)
+    }
+  }
+
+  deleteAdvantage(i: number) {
+    if (this.hero) {
+      this.hero.advantages.splice(i, 1)
+    }
+  }
 }

@@ -28,6 +28,7 @@ import { HeroMagicComponent } from './hero/hero-magic/hero-magic.component';
 import { HeroLiturgicComponent } from './hero/hero-liturgic/hero-liturgic.component';
 import { HeroInventoryComponent } from './hero/hero-inventory/hero-inventory.component';
 import {IconModule} from "@visurel/iconify-angular";
+import {MatGridListModule} from "@angular/material/grid-list";
 
 @NgModule({
   declarations: [
@@ -44,24 +45,25 @@ import {IconModule} from "@visurel/iconify-angular";
     HeroLiturgicComponent,
     HeroInventoryComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    MatCardModule,
-    MatInputModule,
-    MatToolbarModule,
-    MatListModule,
-    MatButtonModule,
-    BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatDividerModule,
-    MatTableModule,
-    MatDialogModule,
-    MatIconModule,
-    MatTooltipModule,
-    IconModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        MatCardModule,
+        MatInputModule,
+        MatToolbarModule,
+        MatListModule,
+        MatButtonModule,
+        BrowserAnimationsModule,
+        MatFormFieldModule,
+        MatDividerModule,
+        MatTableModule,
+        MatDialogModule,
+        MatIconModule,
+        MatTooltipModule,
+        IconModule,
+        MatGridListModule
+    ],
   providers: [
 AuthService
   ],

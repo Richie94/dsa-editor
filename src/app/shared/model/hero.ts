@@ -114,7 +114,6 @@ export interface HeroStats {
 }
 
 export interface Evening {
-  id: number;
   date: string;
   text: string;
   lep: number;

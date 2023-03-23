@@ -8,11 +8,19 @@
     margin: 5px;
     width: 2em;
   }
+
+  .mat-fight-ability {
+    width:55%
+  }
 }
 @media screen and (min-width: 600px) {
   .property-form-field {
     margin: 5px;
     width: 6em;
+  }
+
+  .mat-fight-ability {
+    width:85%
   }
 }
 

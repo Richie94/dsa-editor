@@ -1,34 +1,68 @@
 import {Injectable} from '@angular/core';
-import {User} from "../model/user";
 import {Router} from "@angular/router";
+import {AngularFireAuth} from '@angular/fire/compat/auth';
+import {User} from "../model/user";
+import {
+  AngularFirestore,
+  AngularFirestoreDocument,
+} from '@angular/fire/compat/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  userData: User | undefined;
+  userData: any;
 
   constructor(
-    private router: Router
+    private router: Router,
+    public afs: AngularFirestore, // Inject Firestore service
+    public afAuth: AngularFireAuth, // Inject Firebase auth service
   ) {
-    this.userData = JSON.parse(localStorage.getItem('user')!)
+    this.afAuth.authState.subscribe((user) => {
+      if (user) {
+        this.userData = user;
+        localStorage.setItem('user', JSON.stringify(this.userData));
+        JSON.parse(localStorage.getItem('user')!);
+      } else {
+        localStorage.setItem('user', 'null');
+        JSON.parse(localStorage.getItem('user')!);
+      }
+    });
   }
 
   signIn(email: string, password: string) {
-    if (email == "test" && password == "test") {
-      this.userData = {
-        uid: "test",
-        email: "test",
-        displayName: "test",
-        photoURL: "test",
-        emailVerified: true
-      }
-      localStorage.setItem('user', JSON.stringify(this.userData))
-      this.router.navigate(['hero'])
-    } else {
-      this.userData = undefined
-      localStorage.removeItem('user')
-    }
+    return this.afAuth
+      .signInWithEmailAndPassword(email, password)
+      .then((result) => {
+        this.setUserData(result.user);
+        this.afAuth.authState.subscribe((user) => {
+          if (user) {
+            this.router.navigate(['hero']);
+          }
+        });
+      })
+      .catch((error) => {
+        window.alert(error.message);
+      });
+  }
+
+  /* Setting up user data when sign in with username/password,
+  sign up with username/password and sign in with social auth
+  provider in Firestore database using AngularFirestore + AngularFirestoreDocument service */
+  setUserData(user: any) {
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(
+      `users/${user.uid}`
+    );
+    const userData: User = {
+      uid: user.uid,
+      email: user.email,
+      displayName: user.displayName,
+      photoURL: user.photoURL,
+      emailVerified: user.emailVerified,
+    };
+    return userRef.set(userData, {
+      merge: true,
+    });
   }
 
   get isLoggedIn(): boolean {
@@ -38,5 +72,13 @@ export class AuthService {
     }
     const user = JSON.parse(item);
     return user !== null;
+  }
+
+  // Sign out
+  signOut() {
+    return this.afAuth.signOut().then(() => {
+      localStorage.removeItem('user');
+      this.router.navigate(['sign-in']);
+    });
   }
 }

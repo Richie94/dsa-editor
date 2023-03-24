@@ -11,6 +11,10 @@
         <input matInput id="hero-name" [(ngModel)]="hero.name" placeholder="Name" type="text">
       </mat-form-field>
       <mat-form-field class="descriptive-form-field">
+        <mat-label for="hero-ap">AP</mat-label>
+        <input matInput id="hero-ap" [(ngModel)]="hero.ap" placeholder="Name" type="number">
+      </mat-form-field>
+      <mat-form-field class="descriptive-form-field">
         <mat-label for="hero-sex">Geschlecht</mat-label>
         <input matInput id="hero-sex" [(ngModel)]="hero.sex" placeholder="Sex" type="text">
       </mat-form-field>
@@ -68,7 +72,7 @@
                   <input matInput [(ngModel)]="hero.advantages[i]" placeholder="Vorteil" type="text">
                 </mat-form-field>
                 <button mat-stroked-button>
-                  <a href="https://ulisses-regelwiki.de/vorteil.html?vorteil=={{hero.advantages[i]}}">
+                  <a href="https://ulisses-regelwiki.de/vorteil.html?vorteil={{hero.advantages[i] | lowercase}}">
                     <mat-icon style="color: white">help</mat-icon>
                   </a>
                 </button>
@@ -92,7 +96,7 @@
                 <input matInput [(ngModel)]="hero.disadvantages[i]" placeholder="Nachteil" type="text">
               </mat-form-field>
               <button mat-stroked-button>
-                <a href="https://ulisses-regelwiki.de/nachteil.html?nachteil={{hero.disadvantages[i]}}">
+                <a href="https://ulisses-regelwiki.de/nachteil.html?nachteil={{hero.disadvantages[i] | lowercase}}">
                   <mat-icon style="color: white">help</mat-icon>
                 </a>
               </button>

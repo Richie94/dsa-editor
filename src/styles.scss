@@ -1,6 +1,12 @@
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 .dsa-button {
   margin: 10px
@@ -10,10 +16,51 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   margin: 5px
 }
 
+.my-top-card {
+  margin: 0 5px 5px;
+}
+
+.my-card-title {
+  color: white;
+}
+
+.my-table-card-replacement {
+  border: 1px solid #ccc;
+  margin: 5px;
+  border-radius: 10px
+}
+
 .my-toolbar {
   position: sticky;
   position: -webkit-sticky; /* For macOS/iOS Safari */
   top: 0; /* Sets the sticky toolbar to be on top */
   z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
+  width: 100%;
+}
+
+@media screen and (min-width: 600px) {
+  .property-form-field {
+    margin: 5px;
+    width: 6em;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .property-form-field {
+    margin: 5px;
+    width: 4em;
+  }
+
+  .probe-form-field {
+    margin: 5px;
+    width: 2em;
+  }
+}
+
+.remove-action-button {
+  margin-left: 5px;
+}
+
+.add-action-button {
   width: 100%;
 }

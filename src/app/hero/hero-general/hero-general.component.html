@@ -1,7 +1,7 @@
 <div *ngIf="hero">
-  <mat-card class="my-card" style="margin-top: 0">
+  <mat-card class="my-top-card">
     <mat-card-header>
-      <mat-card-title style="color:white">
+      <mat-card-title class="my-card-title">
         Allgemein
       </mat-card-title>
     </mat-card-header>
@@ -71,18 +71,18 @@
                 <mat-form-field class="advantage-form-field">
                   <input matInput [(ngModel)]="hero.advantages[i]" placeholder="Vorteil" type="text">
                 </mat-form-field>
-                <button mat-stroked-button>
+                <button mat-raised-button color="primary" class="remove-action-button">
                   <a href="https://ulisses-regelwiki.de/vorteil.html?vorteil={{hero.advantages[i] | lowercase}}">
                     <mat-icon style="color: white">help</mat-icon>
                   </a>
                 </button>
-                <button mat-stroked-button (click)="deleteAdvantage(i)">
+                <button mat-raised-button (click)="deleteAdvantage(i)" color="primary" class="remove-action-button">
                   <mat-icon style="color: white">delete</mat-icon>
                 </button>
               </div>
             </mat-list-item>
             <mat-list-item>
-              <button mat-stroked-button (click)="newAdvantage()">+</button>
+              <button mat-raised-button (click)="newAdvantage()" color="primary" class="add-action-button">+</button>
             </mat-list-item>
           </mat-list>
         </div>
@@ -95,18 +95,18 @@
               <mat-form-field class="advantage-form-field">
                 <input matInput [(ngModel)]="hero.disadvantages[i]" placeholder="Nachteil" type="text">
               </mat-form-field>
-              <button mat-stroked-button>
+              <button mat-raised-button class="remove-action-button" color="primary">
                 <a href="https://ulisses-regelwiki.de/nachteil.html?nachteil={{hero.disadvantages[i] | lowercase}}">
                   <mat-icon style="color: white">help</mat-icon>
                 </a>
               </button>
-              <button mat-stroked-button (click)="deleteDisadvantage(i)">
+              <button mat-raised-button class="remove-action-button" color="primary"  (click)="deleteDisadvantage(i)">
                 <mat-icon style="color: white">delete</mat-icon>
               </button>
             </mat-list-item>
 
             <mat-list-item>
-              <button mat-stroked-button (click)="newDisadvantage()">+</button>
+              <button mat-raised-button class="add-action-button" color="primary" (click)="newDisadvantage()">+</button>
             </mat-list-item>
           </mat-list>
         </div>

@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {AbstractHeroComponent} from "../abstract-hero-component";
 import {HeroService} from "../../shared/services/hero.service";
 import {ActivatedRoute} from "@angular/router";
+import {AuthService} from "../../shared/services/auth.service";
 
 @Component({
   selector: 'app-hero-magic',
@@ -10,12 +11,15 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class HeroMagicComponent extends AbstractHeroComponent {
 
-  constructor(heroService: HeroService, route: ActivatedRoute) {
-    super(route, heroService);
+  constructor(
+    heroService: HeroService,
+    route: ActivatedRoute,
+    authService: AuthService,) {
+    super(route, authService, heroService);
   }
 
   addSpell() {
-    if (this.hero) {
+    if (this.hero && !this.readOnly()) {
       this.hero.magic_spells.push({
         name: "",
         probe: "",
@@ -30,7 +34,7 @@ export class HeroMagicComponent extends AbstractHeroComponent {
   }
 
   deleteSpell(i: number) {
-    if (this.hero) {
+    if (this.hero && !this.readOnly()) {
       this.hero.magic_spells.splice(i, 1)
     }
   }

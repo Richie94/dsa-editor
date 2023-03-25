@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {HeroService} from '../../shared/services/hero.service';
 import {AbstractHeroComponent} from "../abstract-hero-component";
+import {AuthService} from "../../shared/services/auth.service";
 
 @Component({
   selector: 'app-hero-detail',
@@ -13,8 +14,9 @@ export class HeroDetailComponent extends AbstractHeroComponent {
   constructor(
     route: ActivatedRoute,
     heroService: HeroService,
+    authService: AuthService,
   ) {
-    super(route, heroService);
+    super(route, authService, heroService);
   }
 
   attributeColumns: string[] = ['name', 'probe', 'fw'];

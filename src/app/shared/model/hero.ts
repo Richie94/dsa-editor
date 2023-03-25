@@ -1,6 +1,8 @@
 export interface Hero {
   id: number;
   ap: number;
+
+  public: boolean;
   le: number;
   sk: number;
   zk: number;

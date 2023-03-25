@@ -4,6 +4,7 @@ import {Observable, of, Subject} from 'rxjs';
 import {AuthService} from "./auth.service";
 import {TalentService} from "./talent.service";
 import {FightTechniqueService} from "./fight-technique.service";
+import {AngularFirestore} from "@angular/fire/compat/firestore";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,12 @@ export class HeroService {
   private saveSubscription = new Subject<string>();
   shouldSave = this.saveSubscription.asObservable()
 
-  constructor(private authService: AuthService, private talentService: TalentService, private fightTechniqueService: FightTechniqueService) {
+  constructor(
+    private authService: AuthService,
+    private talentService: TalentService,
+    private fightTechniqueService: FightTechniqueService,
+    public afs: AngularFirestore
+  ) {
 
   }
 
@@ -64,6 +70,7 @@ export class HeroService {
       zk: 1,
       aw: 8,
       age: null,
+      public: false,
       size: null,
       weight: null,
       languages: [],
@@ -108,6 +115,7 @@ export class HeroService {
   HEROES: Hero[] = [
     {
       id: 1,
+      public: true,
       ap: 1520,
       name: "Hammer Harald",
       species: "Mensch",
@@ -130,7 +138,7 @@ export class HeroService {
       zk: 1,
       aw: 8,
       description: "Treuer Held",
-      creator_id: "1",
+      creator_id: "1pyqGYvGbDVzq21rTZ016RZiUgp2",
       hero_stats: {
         mu: 14,
         kl: 10,
@@ -259,6 +267,7 @@ export class HeroService {
     {
       id: 2,
       le: 20,
+      public: true,
       gs: 8,
       ini: 10,
       sk: 1,
@@ -321,6 +330,7 @@ export class HeroService {
     {
       id: 3,
       le: 20,
+      public: true,
       gs: 8,
       ini: 10,
       sk: 1,

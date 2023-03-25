@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {HeroService} from "../../shared/services/hero.service";
 import {AbstractHeroComponent} from "../abstract-hero-component";
+import {AuthService} from "../../shared/services/auth.service";
 
 @Component({
   selector: 'app-hero-inventory',
@@ -9,12 +10,15 @@ import {AbstractHeroComponent} from "../abstract-hero-component";
   styleUrls: ['./hero-inventory.component.scss']
 })
 export class HeroInventoryComponent extends AbstractHeroComponent {
-  constructor(heroService: HeroService, route: ActivatedRoute) {
-    super(route, heroService);
+  constructor(
+    heroService: HeroService,
+    authService: AuthService,
+    route: ActivatedRoute) {
+    super(route, authService, heroService);
   }
 
   addItem() {
-    if (this.hero) {
+    if (this.hero && !this.readOnly()) {
       this.hero.items.push({
         name: "",
         amount: 0,
@@ -25,7 +29,7 @@ export class HeroInventoryComponent extends AbstractHeroComponent {
   }
 
   deleteItem(i: number) {
-    if (this.hero) {
+    if (this.hero && !this.readOnly()) {
       this.hero.items.splice(i, 1)
     }
   }

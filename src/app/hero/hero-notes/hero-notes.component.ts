@@ -3,6 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {Evening} from '../../shared/model/hero';
 import {HeroService} from '../../shared/services/hero.service';
 import {AbstractHeroComponent} from "../abstract-hero-component";
+import {AuthService} from "../../shared/services/auth.service";
 
 @Component({
   selector: 'app-hero-notes',
@@ -13,13 +14,14 @@ export class HeroNotesComponent extends AbstractHeroComponent {
 
   constructor(
     route: ActivatedRoute,
+    authService: AuthService,
     heroService: HeroService,
   ) {
-    super(route, heroService);
+    super(route, authService, heroService);
   }
 
   addNewNote(): void {
-    if (this.hero) {
+    if (this.hero && !this.readOnly()) {
       let newestNote: Evening | undefined = undefined
       if (this.hero.notes.length > 0) {
         newestNote = this.hero.notes[0]
@@ -50,7 +52,7 @@ export class HeroNotesComponent extends AbstractHeroComponent {
   }
 
   deleteNote(i: number) {
-    if (this.hero) {
+    if (this.hero && !this.readOnly()) {
       this.hero.notes.splice(i, 1)
     }
   }

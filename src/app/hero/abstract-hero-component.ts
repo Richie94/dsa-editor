@@ -3,6 +3,7 @@ import {Hero} from "../shared/model/hero";
 import {Subscription} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
 import {HeroService} from "../shared/services/hero.service";
+import {AuthService} from "../shared/services/auth.service";
 
 @Component({
   template: ''
@@ -15,6 +16,7 @@ export abstract class AbstractHeroComponent implements OnInit, OnDestroy {
 
   protected constructor(
     private route: ActivatedRoute,
+    private authService: AuthService,
     private heroService: HeroService,
   ) {
     this.saveSubscription = heroService.shouldSave.subscribe(() => {
@@ -53,5 +55,9 @@ export abstract class AbstractHeroComponent implements OnInit, OnDestroy {
 
   trackByIndex(index: number, obj: any): any {
     return index;
+  }
+
+  readOnly() : boolean {
+    return this.hero?.creator_id !== this.authService.userData?.uid
   }
 }

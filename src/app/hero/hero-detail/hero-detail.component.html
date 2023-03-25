@@ -9,42 +9,42 @@
       <mat-card-content>
         <mat-form-field class="property-form-field">
           <mat-label for="hero-mu">MU</mat-label>
-          <input matInput id="hero-mu" [(ngModel)]="hero.hero_stats.mu" placeholder="mu" type="number">
+          <input readonly="{{readOnly()}}" matInput id="hero-mu" [(ngModel)]="hero.hero_stats.mu" placeholder="mu" type="number">
         </mat-form-field>
 
         <mat-form-field class="property-form-field">
           <mat-label for="hero-kl">KL</mat-label>
-          <input matInput id="hero-kl" [(ngModel)]="hero.hero_stats.kl" placeholder="kl" type="number">
+          <input readonly="{{readOnly()}}" matInput id="hero-kl" [(ngModel)]="hero.hero_stats.kl" placeholder="kl" type="number">
         </mat-form-field>
 
         <mat-form-field class="property-form-field">
           <mat-label for="hero-in">IN</mat-label>
-          <input matInput id="hero-in" [(ngModel)]="hero.hero_stats.in" placeholder="in" type="number">
+          <input readonly="{{readOnly()}}" matInput id="hero-in" [(ngModel)]="hero.hero_stats.in" placeholder="in" type="number">
         </mat-form-field>
 
         <mat-form-field class="property-form-field">
           <mat-label for="hero-ch">CH</mat-label>
-          <input matInput id="hero-ch" [(ngModel)]="hero.hero_stats.ch" placeholder="ch" type="number">
+          <input readonly="{{readOnly()}}" matInput id="hero-ch" [(ngModel)]="hero.hero_stats.ch" placeholder="ch" type="number">
         </mat-form-field>
 
         <mat-form-field class="property-form-field">
           <mat-label for="hero-ff">FF</mat-label>
-          <input matInput id="hero-ff" [(ngModel)]="hero.hero_stats.ff" placeholder="ff" type="number">
+          <input readonly="{{readOnly()}}" matInput id="hero-ff" [(ngModel)]="hero.hero_stats.ff" placeholder="ff" type="number">
         </mat-form-field>
 
         <mat-form-field class="property-form-field">
           <mat-label for="hero-ge">GE</mat-label>
-          <input matInput id="hero-ge" [(ngModel)]="hero.hero_stats.ge" placeholder="ge" type="number">
+          <input readonly="{{readOnly()}}" matInput id="hero-ge" [(ngModel)]="hero.hero_stats.ge" placeholder="ge" type="number">
         </mat-form-field>
 
         <mat-form-field class="property-form-field">
           <mat-label for="hero-ko">KO</mat-label>
-          <input matInput id="hero-ko" [(ngModel)]="hero.hero_stats.ko" placeholder="ko" type="number">
+          <input readonly="{{readOnly()}}" matInput id="hero-ko" [(ngModel)]="hero.hero_stats.ko" placeholder="ko" type="number">
         </mat-form-field>
 
         <mat-form-field class="property-form-field">
           <mat-label for="hero-kk">KK</mat-label>
-          <input matInput id="hero-kk" [(ngModel)]="hero.hero_stats.kk" placeholder="kk" type="number">
+          <input readonly="{{readOnly()}}" matInput id="hero-kk" [(ngModel)]="hero.hero_stats.kk" placeholder="kk" type="number">
         </mat-form-field>
       </mat-card-content>
     </mat-card>
@@ -77,7 +77,7 @@
             <mat-header-cell *matHeaderCellDef>FW</mat-header-cell>
             <mat-cell *matCellDef="let element">
               <mat-form-field class="table-form-field">
-                <input matInput id="hero-fw" [(ngModel)]="element.value" placeholder="fw" type="number">
+                <input readonly="{{readOnly()}}" matInput id="hero-fw" [(ngModel)]="element.value" placeholder="fw" type="number">
               </mat-form-field>
             </mat-cell>
           </ng-container>

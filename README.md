@@ -1,6 +1,13 @@
 # DsaEditor
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.1.
+It is a web application for editing and viewing our Heroes from ["Das schwarze Auge"](https://de.wikipedia.org/wiki/Das_Schwarze_Auge).
+Here is an example screen of the App.
+![Example](example-screen.png)
+
+Right now its open-source but closed community, if you want to join us, please contact me.
+
+Its hosted on Google Firebase and backed by Google Firestore Database.
 
 ## Development server
 

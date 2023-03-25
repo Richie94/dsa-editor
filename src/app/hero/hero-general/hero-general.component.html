@@ -8,47 +8,47 @@
     <mat-card-content>
       <mat-form-field class="descriptive-form-field" style="min-width: 200px">
         <mat-label for="hero-name">Name</mat-label>
-        <input matInput id="hero-name" [(ngModel)]="hero.name" placeholder="Name" type="text">
+        <input readonly="{{readOnly()}}" matInput id="hero-name" [(ngModel)]="hero.name" placeholder="Name" type="text">
       </mat-form-field>
       <mat-form-field class="descriptive-form-field" style="width: 100px">
         <mat-label for="hero-ap">AP</mat-label>
-        <input matInput id="hero-ap" [(ngModel)]="hero.ap" placeholder="Name" type="number">
+        <input readonly="{{readOnly()}}" matInput id="hero-ap" [(ngModel)]="hero.ap" placeholder="Name" type="number">
       </mat-form-field>
       <mat-form-field class="descriptive-form-field">
         <mat-label for="hero-sex">Geschlecht</mat-label>
-        <input matInput id="hero-sex" [(ngModel)]="hero.sex" placeholder="Sex" type="text">
+        <input readonly="{{readOnly()}}" matInput id="hero-sex" [(ngModel)]="hero.sex" placeholder="Sex" type="text">
       </mat-form-field>
       <mat-form-field class="descriptive-form-field" style="width: 100px">
         <mat-label for="hero-hair">Haarfarbe</mat-label>
-        <input matInput id="hero-hair" [(ngModel)]="hero.hairColor" placeholder="Haarfarbe" type="text">
+        <input readonly="{{readOnly()}}" matInput id="hero-hair" [(ngModel)]="hero.hairColor" placeholder="Haarfarbe" type="text">
       </mat-form-field>
       <mat-form-field class="descriptive-form-field" style="width: 100px">
         <mat-label for="hero-eye">Augenfarbe</mat-label>
-        <input matInput id="hero-eye" [(ngModel)]="hero.eyeColor" placeholder="Augenfarbe" type="text">
+        <input readonly="{{readOnly()}}" matInput id="hero-eye" [(ngModel)]="hero.eyeColor" placeholder="Augenfarbe" type="text">
       </mat-form-field>
       <mat-form-field class="descriptive-form-field" style="width: 100px">
         <mat-label for="hero-species">Spezies</mat-label>
-        <input matInput id="hero-species" [(ngModel)]="hero.species" placeholder="Spezies" type="text">
+        <input readonly="{{readOnly()}}" matInput id="hero-species" [(ngModel)]="hero.species" placeholder="Spezies" type="text">
       </mat-form-field>
       <mat-form-field class="descriptive-form-field">
         <mat-label for="hero-culture">Kultur</mat-label>
-        <input matInput id="hero-culture" [(ngModel)]="hero.culture" placeholder="Kultur" type="text">
+        <input readonly="{{readOnly()}}" matInput id="hero-culture" [(ngModel)]="hero.culture" placeholder="Kultur" type="text">
       </mat-form-field>
       <mat-form-field class="descriptive-form-field">
         <mat-label for="hero-profession">Beruf</mat-label>
-        <input matInput id="hero-profession" [(ngModel)]="hero.profession" placeholder="Beruf" type="text">
+        <input readonly="{{readOnly()}}" matInput id="hero-profession" [(ngModel)]="hero.profession" placeholder="Beruf" type="text">
       </mat-form-field>
       <mat-form-field class="descriptive-form-field" style="width: 100px">
         <mat-label for="hero-age">Alter</mat-label>
-        <input matInput id="hero-age" [(ngModel)]="hero.age" placeholder="Alter" type="number">
+        <input readonly="{{readOnly()}}" matInput id="hero-age" [(ngModel)]="hero.age" placeholder="Alter" type="number">
       </mat-form-field>
       <mat-form-field class="descriptive-form-field"style="width: 100px">
         <mat-label for="hero-weight">Gewicht</mat-label>
-        <input matInput id="hero-weight" [(ngModel)]="hero.weight" placeholder="Gewicht" type="number">
+        <input readonly="{{readOnly()}}" matInput id="hero-weight" [(ngModel)]="hero.weight" placeholder="Gewicht" type="number">
       </mat-form-field>
       <mat-form-field class="descriptive-form-field" style="width: 100px">
         <mat-label for="hero-height">Größe</mat-label>
-        <input matInput id="hero-height" [(ngModel)]="hero.size" placeholder="Größe" type="number">
+        <input readonly="{{readOnly()}}" matInput id="hero-height" [(ngModel)]="hero.size" placeholder="Größe" type="number">
       </mat-form-field>
 
     </mat-card-content>
@@ -69,7 +69,7 @@
             <mat-list-item *ngFor="let advantage of hero.advantages; let i = index;trackBy:trackByIndex;">
               <div>
                 <mat-form-field class="advantage-form-field">
-                  <input matInput [(ngModel)]="hero.advantages[i]" placeholder="Vorteil" type="text">
+                  <input readonly="{{readOnly()}}" matInput [(ngModel)]="hero.advantages[i]" placeholder="Vorteil" type="text">
                 </mat-form-field>
                 <button mat-raised-button color="primary" class="remove-action-button">
                   <a href="https://ulisses-regelwiki.de/vorteil.html?vorteil={{hero.advantages[i] | lowercase}}">
@@ -93,7 +93,7 @@
           <mat-list>
             <mat-list-item *ngFor="let disadvantage of hero.disadvantages; let i = index;trackBy:trackByIndex;">
               <mat-form-field class="advantage-form-field">
-                <input matInput [(ngModel)]="hero.disadvantages[i]" placeholder="Nachteil" type="text">
+                <input readonly="{{readOnly()}}" matInput [(ngModel)]="hero.disadvantages[i]" placeholder="Nachteil" type="text">
               </mat-form-field>
               <button mat-raised-button class="remove-action-button" color="primary">
                 <a href="https://ulisses-regelwiki.de/nachteil.html?nachteil={{hero.disadvantages[i] | lowercase}}">

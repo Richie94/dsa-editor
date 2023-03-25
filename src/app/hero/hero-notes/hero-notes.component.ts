@@ -1,50 +1,21 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {Evening, Hero} from '../../shared/model/hero';
+import {Evening} from '../../shared/model/hero';
 import {HeroService} from '../../shared/services/hero.service';
-import {Subscription} from "rxjs";
+import {AbstractHeroComponent} from "../abstract-hero-component";
 
 @Component({
   selector: 'app-hero-notes',
   templateUrl: './hero-notes.component.html',
   styleUrls: ['./hero-notes.component.css']
 })
-export class HeroNotesComponent implements OnInit, OnDestroy {
-
-  hero: Hero | undefined;
-  private origHero: Hero | undefined;
-
-  heroId: number | undefined;
-  saveSubscription: Subscription
+export class HeroNotesComponent extends AbstractHeroComponent {
 
   constructor(
-    private route: ActivatedRoute,
-    private heroService: HeroService,
+    route: ActivatedRoute,
+    heroService: HeroService,
   ) {
-    this.saveSubscription = heroService.shouldSave.subscribe(() => {
-      this.saveNotes()
-    })
-  }
-
-  ngOnInit(): void {
-    this.heroId = Number(this.route.snapshot.paramMap.get('id'));
-    this.getHero();
-  }
-
-  ngOnDestroy() {
-    // prevent memory leak when component destroyed
-    this.saveSubscription.unsubscribe();
-    this.saveNotes()
-  }
-
-  getHero(): void {
-    if (this.heroId) {
-      this.heroService.getHero(this.heroId)
-        .subscribe(hero => {
-          this.hero = hero
-          this.origHero = JSON.parse(JSON.stringify(hero))
-        });
-    }
+    super(route, heroService);
   }
 
   addNewNote(): void {
@@ -75,15 +46,6 @@ export class HeroNotesComponent implements OnInit, OnDestroy {
         }
       }
       this.hero.notes.unshift(note)
-    }
-  }
-
-  saveNotes(): void {
-    if (this.hero && JSON.stringify(this.hero) !== JSON.stringify(this.origHero)) {
-      console.log("Save notes")
-      this.heroService.updateHero(this.hero)
-    } else {
-      console.log("Skip save notes")
     }
   }
 

@@ -33,8 +33,9 @@ export class HeroComponent implements OnInit {
 
   private getIdFromUrl(): string | undefined {
     const split = this.router.url.split("/")
+    console.log(split)
     if (split.length > 2) {
-      return split[2]
+      return split[3]
     }
     return undefined
   }

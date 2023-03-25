@@ -11,7 +11,7 @@ import {HeroDetailComponent} from "./hero-detail/hero-detail.component";
 })
 export class HeroComponent implements OnInit {
 
-  compHeroId: number | undefined;
+  compHeroId: string | undefined;
 
   constructor(
     private route: ActivatedRoute,
@@ -20,9 +20,9 @@ export class HeroComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.compHeroId = Number(this.router.url.split("/").slice(-1));
+    this.compHeroId = this.getIdFromUrl();
     this.router.events.subscribe(() => {
-      this.compHeroId = Number(this.router.url.split("/").slice(-1));
+      this.compHeroId = this.getIdFromUrl();
     })
   }
 
@@ -30,5 +30,13 @@ export class HeroComponent implements OnInit {
     this.heroService.triggerSave()
   }
 
+
+  private getIdFromUrl(): string | undefined {
+    const split = this.router.url.split("/")
+    if (split.length > 2) {
+      return split[2]
+    }
+    return undefined
+  }
 
 }

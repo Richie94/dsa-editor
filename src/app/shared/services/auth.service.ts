@@ -74,6 +74,15 @@ export class AuthService {
     return user !== null;
   }
 
+  readUser() : any {
+    let item = localStorage.getItem('user');
+    if (item == null) {
+      return null;
+    }
+    const user = JSON.parse(item);
+    return user;
+  }
+
   // Sign out
   signOut() {
     return this.afAuth.signOut().then(() => {

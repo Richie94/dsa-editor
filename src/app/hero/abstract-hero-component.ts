@@ -10,6 +10,7 @@ import {AuthService} from "../shared/services/auth.service";
 })
 export abstract class AbstractHeroComponent implements OnInit, OnDestroy {
 
+  heroId: string | undefined;
   hero: Hero | undefined;
   private origHero: Hero | undefined;
   saveSubscription: Subscription
@@ -35,19 +36,25 @@ export abstract class AbstractHeroComponent implements OnInit, OnDestroy {
   }
 
   getHero(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+    const id = this.route.snapshot.paramMap.get('id');
+    if (!id) {
+      return;
+    }
     this.heroService.getHero(id)
-      .subscribe(hero => {
-        this.hero = hero
-        // clone the nested objects
-        this.origHero = JSON.parse(JSON.stringify(hero))
+      .subscribe(heroWrapper => {
+        if (heroWrapper) {
+          this.hero = heroWrapper.hero
+          this.heroId = heroWrapper.id
+          // clone the nested objects
+          this.origHero = JSON.parse(JSON.stringify(heroWrapper.hero))
+        }
       });
   }
 
   saveHero(): void {
-    if (this.hero && JSON.stringify(this.hero) !== JSON.stringify(this.origHero)) {
+    if (this.heroId && this.hero && JSON.stringify(this.hero) !== JSON.stringify(this.origHero)) {
       console.log("Save general")
-      this.heroService.updateHero(this.hero)
+      this.heroService.updateHero({id: this.heroId, hero: this.hero})
     } else {
       console.log("Skip save general")
     }
@@ -57,7 +64,7 @@ export abstract class AbstractHeroComponent implements OnInit, OnDestroy {
     return index;
   }
 
-  readOnly() : boolean {
+  readOnly(): boolean {
     return this.hero?.creator_id !== this.authService.userData?.uid
   }
 }

@@ -1,5 +1,8 @@
+export interface HeroWrapper {
+  hero: Hero;
+  id: string;
+}
 export interface Hero {
-  id: number;
   ap: number;
 
   public: boolean;

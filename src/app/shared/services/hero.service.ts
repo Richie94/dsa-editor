@@ -1,17 +1,15 @@
 import {Injectable} from '@angular/core';
-import {Evening, FightTechnique, Hero, Talent} from '../model/hero';
-import {Observable, of, Subject} from 'rxjs';
+import {Evening, FightTechnique, Hero, HeroWrapper, Talent} from '../model/hero';
+import {combineLatest, from, map, Observable, of, Subject} from 'rxjs';
 import {AuthService} from "./auth.service";
 import {TalentService} from "./talent.service";
 import {FightTechniqueService} from "./fight-technique.service";
-import {AngularFirestore} from "@angular/fire/compat/firestore";
+import {AngularFirestore, DocumentReference} from "@angular/fire/compat/firestore";
 
 @Injectable({
   providedIn: 'root'
 })
 export class HeroService {
-
-  hero: Hero | undefined;
 
   private saveSubscription = new Subject<string>();
   shouldSave = this.saveSubscription.asObservable()
@@ -29,31 +27,64 @@ export class HeroService {
     this.saveSubscription.next("");
   }
 
-  getHeroes(): Observable<Hero[]> {
-    const localHero = localStorage.getItem("hero")
-    if (localHero) {
-      return of(JSON.parse(localHero));
-    }
-    return of(this.HEROES);
+  getHeroes(): Observable<HeroWrapper[]> {
+    // query by creator_id and whether hero is public
+    let uid = this.authService.readUser().uid;
+    let myHeroesObservable = from(this.afs.collection<Hero>('heroes')
+      .ref
+      .where("creator_id", "==", uid)
+      .get());
+    let publicHeroesObservable = from(this.afs.collection<Hero>('heroes')
+      .ref
+      .where("public", "==", true)
+      .get());
+
+    return combineLatest([myHeroesObservable, publicHeroesObservable])
+      .pipe(
+        map(([myHeroes, publicHeroes]) => {
+          let heroes: HeroWrapper[] = []
+          let ids = new Set<string>()
+          myHeroes.forEach((doc) => {
+            let h = doc.data() as Hero
+            ids.add(doc.id)
+            heroes.push({
+              id: doc.id, hero: h
+            })
+          })
+          publicHeroes.forEach((doc) => {
+            let h = doc.data() as Hero
+            if (!ids.has(doc.id)) {
+              ids.add(doc.id)
+              heroes.push({
+                id: doc.id, hero: h
+              })
+            }
+          })
+          return heroes
+        })
+      )
   }
 
-  getHero(id: number): Observable<Hero> {
-    const localHero = localStorage.getItem("hero")
-    if (localHero) {
-      let heroes: Hero[] = JSON.parse(localHero)
-      let matchingHero = heroes.find(h => h.id === id)!;
-      this.hero = matchingHero;
-      return of(matchingHero);
-    }
-    const hero = this.HEROES.find(h => h.id === id)!;
-    this.hero = hero;
-    return of(hero);
+  getHero(id: string): Observable<HeroWrapper | null> {
+    // get hero by id
+    return this.afs.collection<Hero>('heroes').doc(id).get()
+      .pipe(map((d) => {
+        let h = d.data() as Hero
+        // filter it if either it is not public or the creator_id is not the same as the userId
+        if (h.public || h.creator_id == this.authService.userData!.uid) {
+          return {
+            id: d.id,
+            hero: h
+          }
+        } else {
+          return null
+        }
+      }))
   }
 
-  createHero(name: string): Observable<Hero> {
+  createHero(name: string): Observable<HeroWrapper> {
     console.log("Create hero " + name)
     let hero = {
-      id: this.HEROES.length + 1,
       ap: 1000,
       name: name,
       description: "",
@@ -96,25 +127,29 @@ export class HeroService {
         heller: 0,
         kreuzer: 0
       },
-
     };
-    this.HEROES.push(hero)
-    localStorage.setItem("hero", JSON.stringify(this.HEROES))
-    return of(hero)
+
+    return from(this.afs.collection<Hero>('heroes')
+      .add(hero)
+      .then((d) => {
+        console.log("Created hero", hero.name)
+        return {
+          id: d.id,
+          hero: hero
+        }
+      }))
   }
 
 
-  updateHero(hero: Hero) {
-    const index = this.HEROES.findIndex(h => h.id == hero.id)
-    if (index > -1) {
-      this.HEROES[index] = hero
-      localStorage.setItem("hero", JSON.stringify(this.HEROES))
-    }
+  updateHero(heroWrapper: HeroWrapper) {
+    this.afs.collection('heroes')
+      .doc(heroWrapper.id)
+      .update(heroWrapper.hero)
+      .then(() => console.log("Updated hero " + heroWrapper.id))
   }
 
   HEROES: Hero[] = [
     {
-      id: 1,
       public: true,
       ap: 1520,
       name: "Hammer Harald",
@@ -265,7 +300,6 @@ export class HeroService {
       ]
     },
     {
-      id: 2,
       le: 20,
       public: true,
       gs: 8,
@@ -328,7 +362,6 @@ export class HeroService {
       },
     },
     {
-      id: 3,
       le: 20,
       public: true,
       gs: 8,

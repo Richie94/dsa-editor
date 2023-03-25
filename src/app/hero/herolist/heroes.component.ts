@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {Hero} from '../../shared/model/hero';
+import {Hero, HeroWrapper} from '../../shared/model/hero';
 import {HeroService} from '../../shared/services/hero.service';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 
@@ -13,7 +13,7 @@ export class HeroesComponent implements OnInit {
   constructor(private heroService: HeroService, public dialog: MatDialog) {
   }
 
-  heroes: Hero[] = []
+  heroes: HeroWrapper[] = []
 
   openDialog(): void {
     const dialogRef = this.dialog.open(AddNewHeroDialog, {
@@ -31,7 +31,9 @@ export class HeroesComponent implements OnInit {
   }
 
   createHero(name: string): void {
-    this.heroService.createHero(name).subscribe((h) => this.heroes.push(h))
+    this.heroService.createHero(name).subscribe((h) =>
+      this.heroes.push(h)
+    )
   }
 
   ngOnInit(): void {

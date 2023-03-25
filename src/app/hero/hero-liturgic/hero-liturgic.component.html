@@ -1,1 +1,53 @@
-<p>hero-liturgic works!</p>
+<div *ngIf="hero">
+  <div>
+    <mat-card class="my-top-card">
+      <mat-card-header>
+        <mat-card-title class="my-card-title">
+          Liturgien
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div *ngFor="let item of hero.magic_spells; let i = index" class="my-table-card-replacement">
+          <mat-form-field class="property-form-field" style="min-width: 300px">
+            <mat-label for="item-name">Name</mat-label>
+            <input matInput id="item-name" [(ngModel)]="item.name" placeholder="name" type="string">
+          </mat-form-field>
+          <mat-form-field class="property-form-field" style="min-width: 120px">
+            <mat-label for="item-probe">Probe</mat-label>
+            <input matInput id="item-probe" [(ngModel)]="item.probe" placeholder="probe" type="string">
+          </mat-form-field>
+          <mat-form-field class="property-form-field" style="min-width: 120px">
+            <mat-label for="item-spell_duration">Wirkungsdauer</mat-label>
+            <input matInput id="item-spell_duration" [(ngModel)]="item.spell_duration" placeholder="Wirkungsdauer" type="string">
+          </mat-form-field>
+          <mat-form-field class="property-form-field" style="min-width: 120px">
+            <mat-label for="item-cast_duration">Zauberdauer</mat-label>
+            <input matInput id="item-cast_duration" [(ngModel)]="item.cast_duration" placeholder="Zauberdauer" type="string">
+          </mat-form-field>
+          <mat-form-field class="property-form-field" style="min-width: 120px">
+            <mat-label for="item-range">Reichweite</mat-label>
+            <input matInput id="item-range" [(ngModel)]="item.range" placeholder="Reichweite" type="string">
+          </mat-form-field>
+          <mat-form-field class="property-form-field" style="min-width: 120px">
+            <mat-label for="item-target">Ziel</mat-label>
+            <input matInput id="item-target" [(ngModel)]="item.target" placeholder="Ziel" type="string">
+          </mat-form-field>
+          <mat-form-field class="property-form-field" style="min-width: 120px">
+            <mat-label for="item-cost">Kosten</mat-label>
+            <input matInput id="item-cost" [(ngModel)]="item.cost" placeholder="Kosten" type="string">
+          </mat-form-field>
+          <mat-form-field class="property-form-field" style="min-width: 120px">
+            <mat-label for="item-requirements">Steigerungsfaktor</mat-label>
+            <input matInput id="item-requirements" [(ngModel)]="item.sf" placeholder="Steigerungsfaktor" type="string">
+          </mat-form-field>
+          <button mat-raised-button color="primary" (click)="deleteSpell(i)" class="remove-action-button">
+            -
+          </button>
+        </div>
+        <button mat-raised-button color="primary" (click)="addSpell()" class="add-action-button" style="margin-top: 5px">
+          +
+        </button>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -9,8 +9,6 @@ import {AbstractHeroComponent} from "../abstract-hero-component";
   styleUrls: ['./hero-inventory.component.scss']
 })
 export class HeroInventoryComponent extends AbstractHeroComponent {
-  itemAttributeColumns: string[] = ["name", "amount", "weight", "price"]
-
   constructor(heroService: HeroService, route: ActivatedRoute) {
     super(route, heroService);
   }

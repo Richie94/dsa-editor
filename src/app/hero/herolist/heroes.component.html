@@ -1,5 +1,5 @@
 <div>
-  <button class="dsa-button" mat-raised-button (click)="openDialog()" color="primary">
+  <button style="width:95%;margin: 15px" mat-raised-button (click)="openDialog()" color="primary">
     Neuer Held
   </button>
 </div>
@@ -7,7 +7,7 @@
   <mat-list class="heroes">
     <mat-card *ngFor="let hero of heroes" class="my-card">
       <mat-card-header>
-        <mat-card-title style="color: white">
+        <mat-card-title class="my-card-title">
           {{hero.name}}
         </mat-card-title>
       </mat-card-header>
@@ -15,8 +15,6 @@
         <div>
           <button mat-raised-button routerLink="/hero/general/{{hero.id}}" class="overview-buttons" color="primary">
             Allgemein
-          </button>
-          <button mat-raised-button routerLink="/hero/detail/{{hero.id}}" class="overview-buttons" color="primary">Details
           </button>
           <button mat-raised-button routerLink="/hero/notes/{{hero.id}}" class="overview-buttons" color="primary">Notizen
           </button>

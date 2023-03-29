@@ -23,6 +23,13 @@ def extract_weapon(filename, technique):
             d = parse_table(soup)
             name = soup.find('title').string.split(" - DSA")[0]
 
+            at_pa_mod = d.get("AT/PA-Mod")
+            if at_pa_mod and "/" in at_pa_mod:
+                at_mod = at_pa_mod.split("/")[0]
+                pa_mod = at_pa_mod.split("/")[1]
+            else:
+                at_mod = None
+                pa_mod = None
             return {
                 "name": name,
                 "technique": technique,
@@ -30,8 +37,10 @@ def extract_weapon(filename, technique):
                 "tp": d.get("TP"),
                 "l_s": d.get("L+S"),
                 "lz": d.get("LZ"),
-                "at_pa": d.get("AT/PA-Mod"),
+                "at_mod": at_mod,
+                "pa_mod": pa_mod,
                 "rw": d.get("RW"),
+                "ammo": d.get("Munition"),
                 "weight": d.get("Gewicht"),
                 "length": d.get("Länge"),
                 "price": d.get("Preis"),
@@ -92,7 +101,7 @@ def extract_armor(filename):
 
 def parse_table(soup):
     row = [x.text.strip() for x in soup.find_all("tr")[0].children if x.text != "\n"]
-    row2 = [x.text.strip() for x in soup.find_all("tr")[1].children if x.text != "\n"]
+    row2 = [x.text.strip() if x.text.strip() != "-" else "" for x in soup.find_all("tr")[1].children if x.text != "\n"]
     return {k: v for k, v in zip(row, row2)}
 
 

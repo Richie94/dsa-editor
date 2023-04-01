@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 from tqdm import tqdm
 import unicodedata
+import json
 
 
 def extract_weapon(filename, technique):
@@ -55,6 +56,7 @@ def extract_weapon(filename, technique):
         print("Error in " + filename)
         print(e)
         return None
+
 
 def extract_armor(filename):
     try:
@@ -119,7 +121,10 @@ def parse_weapons():
                                                       weapon_class.replace(".html", ""))
                     if extracted_weapon:
                         weapons.append(extracted_weapon)
+    with open("weapons.json", "w") as f:
+        json.dump(weapons, f, ensure_ascii=False)
     return weapons
+
 
 def parse_armor():
     armors = []
@@ -137,9 +142,62 @@ def parse_armor():
                 extracted_armor = extract_armor("ulisses-regelwiki.de/" + armor_class)
                 if extracted_armor:
                     armors.append(extracted_armor)
+    with open("armor.json", "w") as f:
+        json.dump(armors, f, ensure_ascii=False)
     return armors
 
 
+def parse_advantages():
+    advantages = []
+    with open("ulisses-regelwiki.de/vorteilauswahl.html") as f:
+        soup = BeautifulSoup(f.read(), features="html.parser")
+        advantage_files = [e["href"].split("?vorteil=")[0] for e in soup.find_all("a", href=True) if
+                             "?vorteil=" in e["href"]]
+        for advantage_file in tqdm(advantage_files):
+            with open("ulisses-regelwiki.de/" + advantage_file) as g:
+                soup_advantage = BeautifulSoup(g.read(), features="html.parser")
+                advantage_descr = soup_advantage.find_all("div", {"class": "spalte1"})
+                adv_dict = {}
+                for advantage in advantage_descr:
+                    adv_dict[advantage.text.strip().replace(":", "")] = advantage.next_sibling.next_element.text.strip()
+                advantages.append({
+                    "name": soup_advantage.find("div", {"class": "header"}).text.strip(),
+                    "link": "https://ulisses-regelwiki.de/" + advantage_file,
+                    "description": adv_dict.get("Regel"),
+                    "requirements": adv_dict.get("Voraussetzung"),
+                    "ap": adv_dict.get("AP-Wert"),
+                })
+    with open("advantages.json", "w") as f:
+        json.dump(advantages, f, ensure_ascii=False)
+    return advantages
+
+
+def parse_disadvantages():
+    disadvantages = []
+    with open("ulisses-regelwiki.de/nachteilauswahl.html") as f:
+        soup = BeautifulSoup(f.read(), features="html.parser")
+        disadvantage_files = [e["href"].split("?nachteil=")[0] for e in soup.find_all("a", href=True) if
+                             "?nachteil=" in e["href"]]
+        for disadvantage_file in tqdm(disadvantage_files):
+            with open("ulisses-regelwiki.de/" + disadvantage_file) as g:
+                soup_disadvantage = BeautifulSoup(g.read(), features="html.parser")
+                disadvantage_descr = soup_disadvantage.find_all("div", {"class": "spalte1"})
+                disadv_dict = {}
+                for disadvantage in disadvantage_descr:
+                    disadv_dict[disadvantage.text.strip().replace(":", "")] = disadvantage.next_sibling.next_element.text.strip()
+                disadvantages.append({
+                    "name": soup_disadvantage.find("div", {"class": "header"}).text.strip(),
+                    "link": "https://ulisses-regelwiki.de/" + disadvantage_file,
+                    "description": disadv_dict.get("Regel"),
+                    "requirements": disadv_dict.get("Voraussetzung"),
+                    "ap": disadv_dict.get("AP-Wert"),
+                })
+    with open("disadvantages.json", "w") as f:
+        json.dump(disadvantages, f, ensure_ascii=False)
+    return disadvantages
+
 if __name__ == "__main__":
-    parse_armor()
-    parse_weapons()
+    # parse_armor()
+    # parse_weapons()
+    parse_advantages()
+    parse_disadvantages()

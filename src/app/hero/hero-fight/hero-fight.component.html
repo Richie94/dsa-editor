@@ -1,219 +1,260 @@
 <div *ngIf="hero">
-  <div>
-    <mat-card class="my-top-card">
-      <mat-card-header>
-        <mat-card-title class="my-card-title">
-          Eigenschaften
-        </mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <mat-form-field class="property-form-field" style="min-width: 15%;">
-          <mat-label for="hero-le">LE</mat-label>
-          <input readonly="{{readOnly()}}" matInput id="hero-le" [(ngModel)]="hero.le" placeholder="le" type="number">
-        </mat-form-field>
+    <div>
+        <mat-card class="my-top-card">
+            <mat-card-header>
+                <mat-card-title class="my-card-title">
+                    Eigenschaften
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-form-field class="property-form-field" style="min-width: 15%;">
+                    <mat-label for="hero-le">LE</mat-label>
+                    <input readonly="{{readOnly()}}" matInput id="hero-le" [(ngModel)]="hero.le" placeholder="le"
+                           type="number">
+                </mat-form-field>
 
-        <mat-form-field class="property-form-field"  style="min-width: 15%;">
-          <mat-label for="hero-sk">SK</mat-label>
-          <input readonly="{{readOnly()}}" matInput id="hero-sk" [(ngModel)]="hero.sk" placeholder="sk" type="number">
-        </mat-form-field>
+                <mat-form-field class="property-form-field" style="min-width: 15%;">
+                    <mat-label for="hero-sk">SK</mat-label>
+                    <input readonly="{{readOnly()}}" matInput id="hero-sk" [(ngModel)]="hero.sk" placeholder="sk"
+                           type="number">
+                </mat-form-field>
 
-        <mat-form-field class="property-form-field"  style="min-width: 15%;">
-          <mat-label for="hero-zk">ZK</mat-label>
-          <input readonly="{{readOnly()}}" matInput id="hero-zk" [(ngModel)]="hero.zk" placeholder="zk" type="number">
-        </mat-form-field>
+                <mat-form-field class="property-form-field" style="min-width: 15%;">
+                    <mat-label for="hero-zk">ZK</mat-label>
+                    <input readonly="{{readOnly()}}" matInput id="hero-zk" [(ngModel)]="hero.zk" placeholder="zk"
+                           type="number">
+                </mat-form-field>
 
-        <mat-form-field class="property-form-field" style="min-width: 15%;">
-          <mat-label for="hero-aw">AW</mat-label>
-          <input readonly="{{readOnly()}}" matInput id="hero-aw" [(ngModel)]="hero.aw" placeholder="aw" type="number">
-        </mat-form-field>
+                <mat-form-field class="property-form-field" style="min-width: 15%;">
+                    <mat-label for="hero-aw">AW</mat-label>
+                    <input readonly="{{readOnly()}}" matInput id="hero-aw" [(ngModel)]="hero.aw" placeholder="aw"
+                           type="number">
+                </mat-form-field>
 
-        <mat-form-field class="property-form-field" style="min-width: 15%;">
-          <mat-label for="hero-ini">INI</mat-label>
-          <input readonly="{{readOnly()}}" matInput id="hero-ini" [(ngModel)]="hero.ini" placeholder="ini" type="number">
-        </mat-form-field>
+                <mat-form-field class="property-form-field" style="min-width: 15%;">
+                    <mat-label for="hero-ini">INI</mat-label>
+                    <input readonly="{{readOnly()}}" matInput id="hero-ini" [(ngModel)]="hero.ini" placeholder="ini"
+                           type="number">
+                </mat-form-field>
 
-        <mat-form-field class="property-form-field" style="min-width: 15%;">
-          <mat-label for="hero-gs">GS</mat-label>
-          <input readonly="{{readOnly()}}" matInput id="hero-gs" [(ngModel)]="hero.gs" placeholder="gs" type="number">
-        </mat-form-field>
-      </mat-card-content>
-    </mat-card>
-  </div>
-  <mat-card class="my-card">
-    <mat-card-header>
-      <mat-card-title style="color: white">Kampf-Sonderfertigkeiten</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <div style="width: 100%">
-        <mat-list>
-          <mat-list-item *ngFor="let ability of hero.special_fight_abilities; let i = index;trackBy:trackByIndex;">
-            <div>
-              <mat-form-field class="mat-fight-ability">
-                <input readonly="{{readOnly()}}" matInput [(ngModel)]="hero.special_fight_abilities[i]" placeholder="Fähigkeit" type="text">
-              </mat-form-field>
-              <button mat-raised-button color="primary" class="remove-action-button">
-                <a href="https://ulisses-regelwiki.de/suche.html?keywords={{hero.special_fight_abilities[i]}}">
-                  <mat-icon style="color: white">help</mat-icon>
-                </a>
-              </button>
-              <button mat-raised-button color="primary" (click)="removeSpecialFightAbility(i)" class="remove-action-button">
-                <mat-icon style="color: white">delete</mat-icon>
-              </button>
+                <mat-form-field class="property-form-field" style="min-width: 15%;">
+                    <mat-label for="hero-gs">GS</mat-label>
+                    <input readonly="{{readOnly()}}" matInput id="hero-gs" [(ngModel)]="hero.gs" placeholder="gs"
+                           type="number">
+                </mat-form-field>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <mat-card class="my-card">
+        <mat-card-header>
+            <mat-card-title style="color: white">Kampf-Sonderfertigkeiten</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div style="width: 100%">
+                <mat-list fxFlex fxLayout="column" fxLayoutGap="16px">
+                    <mat-list-item
+                        *ngFor="let ability of hero.special_fight_abilities; let i = index;trackBy:trackByIndex;">
+                        <div fxFlex fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+                            <mat-form-field class="mat-fight-ability">
+                                <input readonly="{{readOnly()}}" matInput [(ngModel)]="hero.special_fight_abilities[i]"
+                                       placeholder="Fähigkeit" type="text">
+                            </mat-form-field>
+                            <button mat-raised-button color="primary" class="remove-action-button">
+                                <a href="https://ulisses-regelwiki.de/suche.html?keywords={{hero.special_fight_abilities[i]}}">
+                                    <mat-icon style="color: white">help</mat-icon>
+                                </a>
+                            </button>
+                            <button mat-raised-button color="primary" (click)="removeSpecialFightAbility(i)"
+                                    class="remove-action-button">
+                                <mat-icon style="color: white">delete</mat-icon>
+                            </button>
+                        </div>
+
+                    </mat-list-item>
+                    <mat-list-item>
+                        <button mat-raised-button color="primary" class="add-action-button"
+                                (click)="newSpecialFightAbility()">+
+                        </button>
+                    </mat-list-item>
+                </mat-list>
             </div>
+        </mat-card-content>
+    </mat-card>
+    <mat-card class="my-card">
+        <mat-card-header>
+            <mat-card-title class="my-card-title">
+                Waffen
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div>
+                <div fxFlex="100%" fxLayout="column">
+                    <div *ngFor="let weapon of hero.weapons; let i = index;trackBy:trackByIndex;"
+                         class="my-table-card-replacement" fxFlex="100%" fxLayout="row wrap" fxLayoutGap="16px">
+                        <mat-form-field class="weapon-form-field">
+                            <mat-label for="weapon-name">Waffe</mat-label>
+                            <input readonly="{{readOnly()}}" matInput id="weapon-name"
+                                   [(ngModel)]="hero.weapons[i].name" placeholder="Waffe" type="text">
+                        </mat-form-field>
+                        <mat-form-field class="weapon-form-field">
+                            <mat-label for="weapon-tech">Kampftechnik</mat-label>
+                            <input readonly="{{readOnly()}}" matInput id="weapon-tech"
+                                   [(ngModel)]="hero.weapons[i].technique" placeholder="Technik" type="text">
+                        </mat-form-field>
+                        <mat-form-field class="weapon-tp-form-field">
+                            <mat-label for="weapon-tp">TP</mat-label>
+                            <input readonly="{{readOnly()}}" matInput id="weapon-tp" [(ngModel)]="hero.weapons[i].tp"
+                                   placeholder="TP" type="text">
+                        </mat-form-field>
+                        <mat-form-field class="weapon-number-form-field">
+                            <mat-label for="weapon-at">AT</mat-label>
+                            <input readonly="{{readOnly()}}" matInput id="weapon-at" [(ngModel)]="hero.weapons[i].at"
+                                   placeholder="AT" type="number">
+                        </mat-form-field>
+                        <mat-form-field class="weapon-number-form-field">
+                            <mat-label for="weapon-pa">PA</mat-label>
+                            <input readonly="{{readOnly()}}" matInput id="weapon-pa" [(ngModel)]="hero.weapons[i].pa"
+                                   placeholder="PA" type="number">
+                        </mat-form-field>
+                        <button mat-raised-button color="primary" (click)="removeWeapon(i)"
+                                class="remove-action-button">
+                            <mat-icon style="color: white">delete</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <button mat-raised-button class="add-action-button" (click)="newWeapon()" color="primary">+</button>
+        </mat-card-content>
+    </mat-card>
+    <mat-card class="my-card">
+        <mat-card-header>
+            <mat-card-title class="my-card-title">
+                Rüstungen
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div>
+                <div fxFlex="100%" fxLayout="column">
+                    <div *ngFor="let weapon of hero.armor; let i = index;trackBy:trackByIndex;"
+                         class="my-table-card-replacement" fxFlex="100%" fxLayout="row wrap" fxLayoutGap="16px">
+                        <mat-form-field class="weapon-form-field">
+                            <mat-label for="armor-name">Rüstung</mat-label>
+                            <input readonly="{{readOnly()}}" matInput id="armor-name" [(ngModel)]="hero.armor[i].name"
+                                   placeholder="Rüstung" type="text">
+                        </mat-form-field>
+                        <mat-form-field class="weapon-form-field">
+                            <mat-label for="armor-rs">RS</mat-label>
+                            <input readonly="{{readOnly()}}" matInput id="armor-rs" [(ngModel)]="hero.armor[i].rs"
+                                   placeholder="RS" type="number">
+                        </mat-form-field>
+                        <mat-form-field class="weapon-number-form-field">
+                            <mat-label for="armor-be">BE</mat-label>
+                            <input readonly="{{readOnly()}}" matInput id="armor-be" [(ngModel)]="hero.armor[i].be"
+                                   placeholder="BE" type="number">
+                        </mat-form-field>
+                        <mat-form-field class="weapon-number-form-field">
+                            <mat-label for="armor-mod">Mod</mat-label>
+                            <input readonly="{{readOnly()}}" matInput id="armor-mod" [(ngModel)]="hero.armor[i].mod"
+                                   placeholder="Mod" type="text">
+                        </mat-form-field>
+                        <button mat-raised-button color="primary" (click)="removeArmor(i)" class="remove-action-button">
+                            <mat-icon style="color: white">delete</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <button mat-raised-button class="add-action-button" (click)="newArmor()" color="primary">+</button>
+        </mat-card-content>
+    </mat-card>
+    <mat-card class="my-card">
+        <mat-card-header>
+            <mat-card-title class="my-card-title">
+                Schilde
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div>
+                <div fxFlex="100%" fxLayout="column">
+                    <div *ngFor="let weapon of hero.shield; let i = index;trackBy:trackByIndex;"
+                         class="my-table-card-replacement" fxFlex="100%" fxLayout="row wrap" fxLayoutGap="16px">
+                        <mat-form-field class="weapon-form-field">
+                            <mat-label for="shield-name">Rüstung</mat-label>
+                            <input readonly="{{readOnly()}}" matInput id="shield-name" [(ngModel)]="hero.shield[i].name"
+                                   placeholder="Rüstung" type="text">
+                        </mat-form-field>
+                        <mat-form-field class="weapon-form-field">
+                            <mat-label for="shield-sp">SP</mat-label>
+                            <input readonly="{{readOnly()}}" matInput id="shield-sp" [(ngModel)]="hero.shield[i].sp"
+                                   placeholder="RS" type="number">
+                        </mat-form-field>
+                        <mat-form-field class="weapon-number-form-field">
+                            <mat-label for="shield-at">AT</mat-label>
+                            <input readonly="{{readOnly()}}" matInput id="shield-at" [(ngModel)]="hero.shield[i].at"
+                                   placeholder="BE" type="number">
+                        </mat-form-field>
+                        <mat-form-field class="weapon-number-form-field">
+                            <mat-label for="shield-pa">PA</mat-label>
+                            <input readonly="{{readOnly()}}" matInput id="shield-pa" [(ngModel)]="hero.shield[i].pa"
+                                   placeholder="Mod" type="number">
+                        </mat-form-field>
+                        <button mat-raised-button color="primary" (click)="removeShield(i)"
+                                class="remove-action-button">
+                            <mat-icon style="color: white">delete</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <button mat-raised-button class="add-action-button" (click)="newShield()" color="primary">+</button>
+        </mat-card-content>
+    </mat-card>
+    <mat-card class="my-card">
+        <mat-card-header>
+            <mat-card-title class="my-card-title">
+                Kampftechniken
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-table [dataSource]="hero.fight_techniques" class="mat-elevation-z8">
 
-          </mat-list-item>
-          <mat-list-item>
-            <button mat-raised-button color="primary" class="add-action-button" (click)="newSpecialFightAbility()">+</button>
-          </mat-list-item>
-        </mat-list>
-      </div>
-    </mat-card-content>
-  </mat-card>
-  <mat-card class="my-card">
-    <mat-card-header>
-      <mat-card-title class="my-card-title">
-        Waffen
-      </mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <div *ngFor="let weapon of hero.weapons; let i = index;trackBy:trackByIndex;"
-           class="my-table-card-replacement">
-        <mat-form-field class="weapon-form-field">
-          <mat-label for="weapon-name">Waffe</mat-label>
-          <input readonly="{{readOnly()}}" matInput id="weapon-name" [(ngModel)]="hero.weapons[i].name" placeholder="Waffe" type="text">
-        </mat-form-field>
-        <mat-form-field class="weapon-form-field">
-          <mat-label for="weapon-tech">Kampftechnik</mat-label>
-          <input readonly="{{readOnly()}}" matInput id="weapon-tech" [(ngModel)]="hero.weapons[i].technique" placeholder="Technik" type="text">
-        </mat-form-field>
-        <mat-form-field class="weapon-tp-form-field">
-          <mat-label for="weapon-tp">TP</mat-label>
-          <input readonly="{{readOnly()}}" matInput id="weapon-tp" [(ngModel)]="hero.weapons[i].tp" placeholder="TP" type="text">
-        </mat-form-field>
-        <mat-form-field class="weapon-number-form-field">
-          <mat-label for="weapon-at">AT</mat-label>
-          <input readonly="{{readOnly()}}" matInput id="weapon-at" [(ngModel)]="hero.weapons[i].at" placeholder="AT" type="number">
-        </mat-form-field>
-        <mat-form-field class="weapon-number-form-field">
-          <mat-label for="weapon-pa">PA</mat-label>
-          <input readonly="{{readOnly()}}" matInput id="weapon-pa" [(ngModel)]="hero.weapons[i].pa" placeholder="PA" type="number">
-        </mat-form-field>
-        <button mat-raised-button color="primary" (click)="removeWeapon(i)" class="remove-action-button">
-          <mat-icon style="color: white">delete</mat-icon>
-        </button>
-      </div>
-      <button mat-raised-button class="add-action-button" (click)="newWeapon()" color="primary">+</button>
-    </mat-card-content>
-  </mat-card>
-  <mat-card class="my-card">
-    <mat-card-header>
-      <mat-card-title class="my-card-title">
-        Rüstungen
-      </mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <div *ngFor="let weapon of hero.armor; let i = index;trackBy:trackByIndex;"
-           class="my-table-card-replacement">
-        <mat-form-field class="weapon-form-field">
-          <mat-label for="armor-name">Rüstung</mat-label>
-          <input readonly="{{readOnly()}}" matInput id="armor-name" [(ngModel)]="hero.armor[i].name" placeholder="Rüstung" type="text">
-        </mat-form-field>
-        <mat-form-field class="weapon-form-field">
-          <mat-label for="armor-rs">RS</mat-label>
-          <input readonly="{{readOnly()}}" matInput id="armor-rs" [(ngModel)]="hero.armor[i].rs" placeholder="RS" type="number">
-        </mat-form-field>
-        <mat-form-field class="weapon-number-form-field">
-          <mat-label for="armor-be">BE</mat-label>
-          <input readonly="{{readOnly()}}" matInput id="armor-be" [(ngModel)]="hero.armor[i].be" placeholder="BE" type="number">
-        </mat-form-field>
-        <mat-form-field class="weapon-number-form-field">
-          <mat-label for="armor-mod">Mod</mat-label>
-          <input readonly="{{readOnly()}}" matInput id="armor-mod" [(ngModel)]="hero.armor[i].mod" placeholder="Mod" type="text">
-        </mat-form-field>
-        <button mat-raised-button color="primary" (click)="removeArmor(i)" class="remove-action-button">
-          <mat-icon style="color: white">delete</mat-icon>
-        </button>
-      </div>
-      <button mat-raised-button class="add-action-button" (click)="newArmor()" color="primary">+</button>
-    </mat-card-content>
-  </mat-card>
-  <mat-card class="my-card">
-    <mat-card-header>
-      <mat-card-title class="my-card-title">
-        Schilde
-      </mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <div *ngFor="let weapon of hero.shield; let i = index;trackBy:trackByIndex;"
-           class="my-table-card-replacement">
-        <mat-form-field class="weapon-form-field">
-          <mat-label for="shield-name">Rüstung</mat-label>
-          <input readonly="{{readOnly()}}" matInput id="shield-name" [(ngModel)]="hero.shield[i].name" placeholder="Rüstung" type="text">
-        </mat-form-field>
-        <mat-form-field class="weapon-form-field">
-          <mat-label for="shield-sp">SP</mat-label>
-          <input readonly="{{readOnly()}}" matInput id="shield-sp" [(ngModel)]="hero.shield[i].sp" placeholder="RS" type="number">
-        </mat-form-field>
-        <mat-form-field class="weapon-number-form-field">
-          <mat-label for="shield-at">AT</mat-label>
-          <input readonly="{{readOnly()}}" matInput id="shield-at" [(ngModel)]="hero.shield[i].at" placeholder="BE" type="number">
-        </mat-form-field>
-        <mat-form-field class="weapon-number-form-field">
-          <mat-label for="shield-pa">PA</mat-label>
-          <input readonly="{{readOnly()}}" matInput id="shield-pa" [(ngModel)]="hero.shield[i].pa" placeholder="Mod" type="number">
-        </mat-form-field>
-        <button mat-raised-button color="primary" (click)="removeShield(i)" class="remove-action-button">
-          <mat-icon style="color: white">delete</mat-icon>
-        </button>
-      </div>
-      <button mat-raised-button class="add-action-button" (click)="newShield()" color="primary">+</button>
-    </mat-card-content>
-  </mat-card>
-  <mat-card class="my-card">
-    <mat-card-header>
-      <mat-card-title class="my-card-title">
-        Kampftechniken
-      </mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <mat-table [dataSource]="hero.fight_techniques" class="mat-elevation-z8">
+                <ng-container matColumnDef="name">
+                    <mat-header-cell *matHeaderCellDef>Kampftechnik</mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+                </ng-container>
 
-        <ng-container matColumnDef="name">
-          <mat-header-cell *matHeaderCellDef>Kampftechnik</mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
-        </ng-container>
+                <ng-container matColumnDef="ktw">
+                    <mat-header-cell *matHeaderCellDef>KTW</mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <mat-form-field class="table-form-field">
+                            <input readonly="{{readOnly()}}" matInput id="hero-ktw" [(ngModel)]="element.ktw"
+                                   placeholder="ktw" type="number">
+                        </mat-form-field>
+                    </mat-cell>
+                </ng-container>
 
-        <ng-container matColumnDef="ktw">
-          <mat-header-cell *matHeaderCellDef>KTW</mat-header-cell>
-          <mat-cell *matCellDef="let element">
-            <mat-form-field class="table-form-field">
-              <input readonly="{{readOnly()}}" matInput id="hero-ktw" [(ngModel)]="element.ktw" placeholder="ktw" type="number">
-            </mat-form-field>
-          </mat-cell>
-        </ng-container>
+                <ng-container matColumnDef="at">
+                    <mat-header-cell *matHeaderCellDef>AT</mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <mat-form-field class="table-form-field">
+                            <input readonly="{{readOnly()}}" matInput id="hero-at" [(ngModel)]="element.at"
+                                   placeholder="at" type="number">
+                        </mat-form-field>
+                    </mat-cell>
+                </ng-container>
 
-        <ng-container matColumnDef="at">
-          <mat-header-cell *matHeaderCellDef>AT</mat-header-cell>
-          <mat-cell *matCellDef="let element">
-            <mat-form-field class="table-form-field">
-              <input readonly="{{readOnly()}}" matInput id="hero-at" [(ngModel)]="element.at" placeholder="at" type="number">
-            </mat-form-field>
-          </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="pa">
-          <mat-header-cell *matHeaderCellDef>PA</mat-header-cell>
-          <mat-cell *matCellDef="let element">
-            <mat-form-field class="table-form-field">
-              <input readonly="{{readOnly()}}" matInput id="hero-pa" [(ngModel)]="element.pa" placeholder="pa" type="number">
-            </mat-form-field>
-          </mat-cell>
-        </ng-container>
+                <ng-container matColumnDef="pa">
+                    <mat-header-cell *matHeaderCellDef>PA</mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <mat-form-field class="table-form-field">
+                            <input readonly="{{readOnly()}}" matInput id="hero-pa" [(ngModel)]="element.pa"
+                                   placeholder="pa" type="number">
+                        </mat-form-field>
+                    </mat-cell>
+                </ng-container>
 
 
-        <mat-header-row *matHeaderRowDef="fightTechniqueAttributeColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: fightTechniqueAttributeColumns;" class="table-row"></mat-row>
-      </mat-table>
-    </mat-card-content>
-  </mat-card>
+                <mat-header-row *matHeaderRowDef="fightTechniqueAttributeColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: fightTechniqueAttributeColumns;" class="table-row"></mat-row>
+            </mat-table>
+        </mat-card-content>
+    </mat-card>
 </div>

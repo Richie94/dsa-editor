@@ -53,10 +53,10 @@ export abstract class AbstractHeroComponent implements OnInit, OnDestroy {
 
   saveHero(): void {
     if (this.heroId && this.hero && JSON.stringify(this.hero) !== JSON.stringify(this.origHero)) {
-      console.log("Save general")
+      console.log("Save")
       this.heroService.updateHero({id: this.heroId, hero: this.hero})
     } else {
-      console.log("Skip save general")
+      console.log("Skip save")
     }
   }
 

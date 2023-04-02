@@ -18,16 +18,3 @@
     width: 70%;
   }
 }
-
-@media only screen and (min-width: 600px) {
-
-  .advantage-div {
-    min-width: 45%;
-    float: left
-  }
-
-  .disadvantage-div {
-    min-width: 45%;
-    float: right
-  }
-}

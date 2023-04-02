@@ -35,50 +35,52 @@ import {AngularFireStorageModule} from '@angular/fire/compat/storage';
 import {AngularFirestoreModule} from '@angular/fire/compat/firestore';
 import {AngularFireDatabaseModule} from '@angular/fire/compat/database';
 import {environment} from './environments/environment';
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeroesComponent,
-    AddNewHeroDialog,
-    HeroComponent,
-    HeroGeneralComponent,
-    HeroDetailComponent,
-    HeroNotesComponent,
-    SignInComponent,
-    HeroFightComponent,
-    HeroMagicComponent,
-    HeroLiturgicComponent,
-    HeroInventoryComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    MatCardModule,
-    MatInputModule,
-    MatToolbarModule,
-    MatListModule,
-    MatButtonModule,
-    BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatDividerModule,
-    MatTableModule,
-    MatDialogModule,
-    MatIconModule,
-    MatTooltipModule,
-    IconModule,
-    MatGridListModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule,
-    AngularFirestoreModule,
-    AngularFireStorageModule,
-    AngularFireDatabaseModule,
-  ],
-  providers: [
-    AuthService
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        HeroesComponent,
+        AddNewHeroDialog,
+        HeroComponent,
+        HeroGeneralComponent,
+        HeroDetailComponent,
+        HeroNotesComponent,
+        SignInComponent,
+        HeroFightComponent,
+        HeroMagicComponent,
+        HeroLiturgicComponent,
+        HeroInventoryComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        MatCardModule,
+        MatInputModule,
+        MatToolbarModule,
+        MatListModule,
+        MatButtonModule,
+        BrowserAnimationsModule,
+        MatFormFieldModule,
+        MatDividerModule,
+        MatTableModule,
+        MatDialogModule,
+        MatIconModule,
+        MatTooltipModule,
+        IconModule,
+        MatGridListModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFireAuthModule,
+        AngularFirestoreModule,
+        AngularFireStorageModule,
+        AngularFireDatabaseModule,
+        FlexLayoutModule
+    ],
+    providers: [
+        AuthService
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }

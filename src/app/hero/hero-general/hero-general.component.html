@@ -1,127 +1,143 @@
 <div *ngIf="hero">
-  <mat-card class="my-top-card">
-    <mat-card-header>
-      <mat-card-title class="my-card-title">
-        Allgemein
-      </mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <mat-form-field class="descriptive-form-field" style="min-width: 200px">
-        <mat-label for="hero-name">Name</mat-label>
-        <input readonly="{{readOnly()}}" matInput id="hero-name" [(ngModel)]="hero.name" placeholder="Name" type="text">
-      </mat-form-field>
-      <mat-form-field class="descriptive-form-field" style="width: 100px">
-        <mat-label for="hero-ap">AP</mat-label>
-        <input readonly="{{readOnly()}}" matInput id="hero-ap" [(ngModel)]="hero.ap" placeholder="Name" type="number">
-      </mat-form-field>
-      <mat-form-field class="descriptive-form-field">
-        <mat-label for="hero-sex">Geschlecht</mat-label>
-        <input readonly="{{readOnly()}}" matInput id="hero-sex" [(ngModel)]="hero.sex" placeholder="Sex" type="text">
-      </mat-form-field>
-      <mat-form-field class="descriptive-form-field" style="width: 100px">
-        <mat-label for="hero-hair">Haarfarbe</mat-label>
-        <input readonly="{{readOnly()}}" matInput id="hero-hair" [(ngModel)]="hero.hairColor" placeholder="Haarfarbe" type="text">
-      </mat-form-field>
-      <mat-form-field class="descriptive-form-field" style="width: 100px">
-        <mat-label for="hero-eye">Augenfarbe</mat-label>
-        <input readonly="{{readOnly()}}" matInput id="hero-eye" [(ngModel)]="hero.eyeColor" placeholder="Augenfarbe" type="text">
-      </mat-form-field>
-      <mat-form-field class="descriptive-form-field" style="width: 100px">
-        <mat-label for="hero-species">Spezies</mat-label>
-        <input readonly="{{readOnly()}}" matInput id="hero-species" [(ngModel)]="hero.species" placeholder="Spezies" type="text">
-      </mat-form-field>
-      <mat-form-field class="descriptive-form-field">
-        <mat-label for="hero-culture">Kultur</mat-label>
-        <input readonly="{{readOnly()}}" matInput id="hero-culture" [(ngModel)]="hero.culture" placeholder="Kultur" type="text">
-      </mat-form-field>
-      <mat-form-field class="descriptive-form-field">
-        <mat-label for="hero-profession">Beruf</mat-label>
-        <input readonly="{{readOnly()}}" matInput id="hero-profession" [(ngModel)]="hero.profession" placeholder="Beruf" type="text">
-      </mat-form-field>
-      <mat-form-field class="descriptive-form-field" style="width: 100px">
-        <mat-label for="hero-age">Alter</mat-label>
-        <input readonly="{{readOnly()}}" matInput id="hero-age" [(ngModel)]="hero.age" placeholder="Alter" type="number">
-      </mat-form-field>
-      <mat-form-field class="descriptive-form-field"style="width: 100px">
-        <mat-label for="hero-weight">Gewicht</mat-label>
-        <input readonly="{{readOnly()}}" matInput id="hero-weight" [(ngModel)]="hero.weight" placeholder="Gewicht" type="number">
-      </mat-form-field>
-      <mat-form-field class="descriptive-form-field" style="width: 100px">
-        <mat-label for="hero-height">Größe</mat-label>
-        <input readonly="{{readOnly()}}" matInput id="hero-height" [(ngModel)]="hero.size" placeholder="Größe" type="number">
-      </mat-form-field>
+    <mat-card class="my-top-card">
+        <mat-card-header>
+            <mat-card-title class="my-card-title">
+                Allgemein
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-form-field class="descriptive-form-field" style="min-width: 200px">
+                <mat-label for="hero-name">Name</mat-label>
+                <input readonly="{{readOnly()}}" matInput id="hero-name" [(ngModel)]="hero.name" placeholder="Name"
+                       type="text">
+            </mat-form-field>
+            <mat-form-field class="descriptive-form-field" style="width: 100px">
+                <mat-label for="hero-ap">AP</mat-label>
+                <input readonly="{{readOnly()}}" matInput id="hero-ap" [(ngModel)]="hero.ap" placeholder="Name"
+                       type="number">
+            </mat-form-field>
+            <mat-form-field class="descriptive-form-field">
+                <mat-label for="hero-sex">Geschlecht</mat-label>
+                <input readonly="{{readOnly()}}" matInput id="hero-sex" [(ngModel)]="hero.sex" placeholder="Sex"
+                       type="text">
+            </mat-form-field>
+            <mat-form-field class="descriptive-form-field" style="width: 100px">
+                <mat-label for="hero-hair">Haarfarbe</mat-label>
+                <input readonly="{{readOnly()}}" matInput id="hero-hair" [(ngModel)]="hero.hairColor"
+                       placeholder="Haarfarbe" type="text">
+            </mat-form-field>
+            <mat-form-field class="descriptive-form-field" style="width: 100px">
+                <mat-label for="hero-eye">Augenfarbe</mat-label>
+                <input readonly="{{readOnly()}}" matInput id="hero-eye" [(ngModel)]="hero.eyeColor"
+                       placeholder="Augenfarbe" type="text">
+            </mat-form-field>
+            <mat-form-field class="descriptive-form-field" style="width: 100px">
+                <mat-label for="hero-species">Spezies</mat-label>
+                <input readonly="{{readOnly()}}" matInput id="hero-species" [(ngModel)]="hero.species"
+                       placeholder="Spezies" type="text">
+            </mat-form-field>
+            <mat-form-field class="descriptive-form-field">
+                <mat-label for="hero-culture">Kultur</mat-label>
+                <input readonly="{{readOnly()}}" matInput id="hero-culture" [(ngModel)]="hero.culture"
+                       placeholder="Kultur" type="text">
+            </mat-form-field>
+            <mat-form-field class="descriptive-form-field">
+                <mat-label for="hero-profession">Beruf</mat-label>
+                <input readonly="{{readOnly()}}" matInput id="hero-profession" [(ngModel)]="hero.profession"
+                       placeholder="Beruf" type="text">
+            </mat-form-field>
+            <mat-form-field class="descriptive-form-field" style="width: 100px">
+                <mat-label for="hero-age">Alter</mat-label>
+                <input readonly="{{readOnly()}}" matInput id="hero-age" [(ngModel)]="hero.age" placeholder="Alter"
+                       type="number">
+            </mat-form-field>
+            <mat-form-field class="descriptive-form-field" style="width: 100px">
+                <mat-label for="hero-weight">Gewicht</mat-label>
+                <input readonly="{{readOnly()}}" matInput id="hero-weight" [(ngModel)]="hero.weight"
+                       placeholder="Gewicht" type="number">
+            </mat-form-field>
+            <mat-form-field class="descriptive-form-field" style="width: 100px">
+                <mat-label for="hero-height">Größe</mat-label>
+                <input readonly="{{readOnly()}}" matInput id="hero-height" [(ngModel)]="hero.size" placeholder="Größe"
+                       type="number">
+            </mat-form-field>
 
-    </mat-card-content>
-  </mat-card>
+        </mat-card-content>
+    </mat-card>
 
-  <!-- create a card for the advantages string list -->
-  <mat-card class="my-card">
-    <mat-card-header>
-      <mat-card-title style="color: white">Vorteile & Nachteile</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <div style="width: 100%">
-        <div class="advantage-div">
-            <span style="color: white">
-              Vorteile
-            </span>
-          <mat-list>
-            <mat-list-item *ngFor="let advantage of hero.advantages; let i = index;trackBy:trackByIndex;">
-              <div>
-                <mat-form-field class="advantage-form-field">
-                  <input readonly="{{readOnly()}}" matInput [(ngModel)]="hero.advantages[i]" placeholder="Vorteil" type="text">
-                </mat-form-field>
-                <button mat-raised-button color="primary" class="remove-action-button">
-                  <a href="https://ulisses-regelwiki.de/vorteil.html?vorteil={{hero.advantages[i] | lowercase}}">
-                    <mat-icon style="color: white">help</mat-icon>
-                  </a>
-                </button>
-                <button mat-raised-button (click)="deleteAdvantage(i)" color="primary" class="remove-action-button">
-                  <mat-icon style="color: white">delete</mat-icon>
-                </button>
-              </div>
-            </mat-list-item>
-            <mat-list-item>
-              <button mat-raised-button (click)="newAdvantage()" color="primary" class="add-action-button">+</button>
-            </mat-list-item>
-          </mat-list>
-        </div>
-        <div class="disadvantage-div">
-            <span style="color: white">
-              Nachteile
-            </span>
-          <mat-list>
-            <mat-list-item *ngFor="let disadvantage of hero.disadvantages; let i = index;trackBy:trackByIndex;">
-              <mat-form-field class="advantage-form-field">
-                <input readonly="{{readOnly()}}" matInput [(ngModel)]="hero.disadvantages[i]" placeholder="Nachteil" type="text">
-              </mat-form-field>
-              <button mat-raised-button class="remove-action-button" color="primary">
-                <a href="https://ulisses-regelwiki.de/nachteil.html?nachteil={{hero.disadvantages[i] | lowercase}}">
-                  <mat-icon style="color: white">help</mat-icon>
-                </a>
-              </button>
-              <button mat-raised-button class="remove-action-button" color="primary"  (click)="deleteDisadvantage(i)">
-                <mat-icon style="color: white">delete</mat-icon>
-              </button>
-            </mat-list-item>
+    <!-- create a card for the advantages string list -->
+    <mat-card class="my-card">
+        <mat-card-header>
+            <mat-card-title style="color: white">Vorteile & Nachteile</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div style="width: 100%" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="0.5%">
+                <span style="color: white">Vorteile</span>
+                <div fxFlex.lt-md="100%" fxFlex="0 1 calc(50% - 0.5%)">
+                    <mat-list fxFlex fxLayout="column" fxLayoutGap="16px">
+                        <mat-list-item *ngFor="let advantage of hero.advantages; let i = index;trackBy:trackByIndex;">
+                            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+                                <mat-form-field class="advantage-form-field">
+                                    <input readonly="{{readOnly()}}" matInput [(ngModel)]="hero.advantages[i]"
+                                           placeholder="Vorteil" type="text">
+                                </mat-form-field>
+                                <a mat-raised-button color="primary" class="remove-action-button"
+                                   href="https://ulisses-regelwiki.de/vorteil.html?vorteil={{hero.advantages[i] | lowercase}}">
+                                    <mat-icon style="color: white">help</mat-icon>
+                                </a>
+                                <button mat-raised-button (click)="deleteAdvantage(i)" color="primary"
+                                        class="remove-action-button">
+                                    <mat-icon style="color: white">delete</mat-icon>
+                                </button>
+                            </div>
+                        </mat-list-item>
+                        <mat-list-item>
+                            <button mat-raised-button (click)="newAdvantage()" color="primary"
+                                    class="add-action-button">+
+                            </button>
+                        </mat-list-item>
+                    </mat-list>
+                </div>
+                <span style="color: white">Nachteile</span>
+                <div fxFlex.lt-md="100%" fxFlex="0 1 calc(50% - 0.5%)">
+                    <mat-list fxFlex fxLayout="column" fxLayoutGap="16px">
+                        <mat-list-item
+                            *ngFor="let disadvantage of hero.disadvantages; let i = index;trackBy:trackByIndex;">
+                            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+                                <mat-form-field class="advantage-form-field">
+                                    <input readonly="{{readOnly()}}" matInput [(ngModel)]="hero.disadvantages[i]"
+                                           placeholder="Nachteil" type="text">
+                                </mat-form-field>
+                                <a mat-raised-button class="remove-action-button" color="primary"
+                                   href="https://ulisses-regelwiki.de/nachteil.html?nachteil={{hero.disadvantages[i] | lowercase}}">
+                                    <mat-icon style="color: white">help</mat-icon>
+                                </a>
+                                <button mat-raised-button class="remove-action-button" color="primary"
+                                        (click)="deleteDisadvantage(i)">
+                                    <mat-icon style="color: white">delete</mat-icon>
+                                </button>
+                            </div>
+                        </mat-list-item>
 
-            <mat-list-item>
-              <button mat-raised-button class="add-action-button" color="primary" (click)="newDisadvantage()">+</button>
-            </mat-list-item>
-          </mat-list>
-        </div>
-      </div>
-    </mat-card-content>
-  </mat-card>
+                        <mat-list-item>
+                            <button mat-raised-button class="add-action-button" color="primary"
+                                    (click)="newDisadvantage()">+
+                            </button>
+                        </mat-list-item>
+                    </mat-list>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
 
-  <mat-card class="my-card">
-    <mat-card-header>
-      <mat-card-title style="color: white">Beschreibung</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <mat-form-field class="hero-description">
-        <textarea matInput [(ngModel)]='hero.description' placeholder="Beschreibung"></textarea>
-      </mat-form-field>
-    </mat-card-content>
-  </mat-card>
+    <mat-card class="my-card">
+        <mat-card-header>
+            <mat-card-title style="color: white">Beschreibung</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-form-field class="hero-description">
+                <textarea matInput [(ngModel)]='hero.description' placeholder="Beschreibung"></textarea>
+            </mat-form-field>
+        </mat-card-content>
+    </mat-card>
 </div>

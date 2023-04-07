@@ -234,20 +234,14 @@
                 <ng-container matColumnDef="at">
                     <mat-header-cell *matHeaderCellDef>AT</mat-header-cell>
                     <mat-cell *matCellDef="let element">
-                        <mat-form-field class="table-form-field">
-                            <input readonly="{{readOnly()}}" matInput id="hero-at" [(ngModel)]="element.at"
-                                   placeholder="at" type="number">
-                        </mat-form-field>
+                        {{this.getAt(element)}}
                     </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="pa">
                     <mat-header-cell *matHeaderCellDef>PA</mat-header-cell>
                     <mat-cell *matCellDef="let element">
-                        <mat-form-field class="table-form-field">
-                            <input readonly="{{readOnly()}}" matInput id="hero-pa" [(ngModel)]="element.pa"
-                                   placeholder="pa" type="number">
-                        </mat-form-field>
+                        {{this.getPa(element)}}
                     </mat-cell>
                 </ng-container>
 

@@ -82,8 +82,6 @@ export interface Shield {
 export interface FightTechnique {
   name: string;
   ktw: number;
-  at: number;
-  pa: number;
 }
 
 export interface Wallet {

@@ -3,6 +3,8 @@ import {ActivatedRoute} from "@angular/router";
 import {HeroService} from "../../shared/services/hero.service";
 import {AbstractHeroComponent} from "../abstract-hero-component";
 import {AuthService} from "../../shared/services/auth.service";
+import {FightTechniqueService} from "../../shared/services/fight-technique.service";
+import {FightTechnique} from "../../shared/model/hero";
 
 @Component({
   selector: 'app-hero-fight',
@@ -15,12 +17,29 @@ export class HeroFightComponent extends AbstractHeroComponent {
     route: ActivatedRoute,
     authService: AuthService,
     heroService: HeroService,
+    private fightTechniqueService: FightTechniqueService,
   ) {
     super(route, authService, heroService);
   }
 
   fightTechniqueAttributeColumns: string[] = ["name", "ktw", "at", "pa"]
   weaponAttributeColumns: string[] = ["name", "technique", "tp", "at", "pa", "reach", "barrier"]
+
+    getAt(fightTechnique: FightTechnique): number {
+      if (this.hero) {
+          return this.fightTechniqueService.getAt(fightTechnique, this.hero)
+      } else {
+        return 0
+      }
+    }
+
+    getPa(fightTechnique: FightTechnique): number {
+        if (this.hero) {
+            return this.fightTechniqueService.getPa(fightTechnique, this.hero)
+        } else {
+            return 0
+        }
+    }
 
   newSpecialFightAbility() {
     if (this.hero && !this.readOnly()) {

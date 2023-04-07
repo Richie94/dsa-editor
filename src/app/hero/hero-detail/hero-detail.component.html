@@ -56,35 +56,165 @@
         </mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <mat-table [dataSource]="hero.talents" class="mat-elevation-z8">
+          <mat-tab-group animationDuration="0ms">
+              <mat-tab label="Körper">
+                  <mat-table [dataSource]="getBodyTalents()" class="mat-elevation-z8">
 
-          <!-- Talent Column -->
-          <ng-container matColumnDef="name">
-            <mat-header-cell *matHeaderCellDef>Talent</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
-          </ng-container>
+                      <!-- Talent Column -->
+                      <ng-container matColumnDef="name">
+                          <mat-header-cell *matHeaderCellDef>Talent</mat-header-cell>
+                          <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+                      </ng-container>
 
-          <!-- Probe Column -->
-          <ng-container matColumnDef="probe">
-            <mat-header-cell *matHeaderCellDef>Probe</mat-header-cell>
-            <mat-cell *matCellDef="let element">
-              <div  class="probe-form-field"  matTooltip="{{resolveProbe(element.probe)}}">{{element.probe}}</div>
-            </mat-cell>
-          </ng-container>
+                      <!-- Probe Column -->
+                      <ng-container matColumnDef="probe">
+                          <mat-header-cell *matHeaderCellDef>Probe</mat-header-cell>
+                          <mat-cell *matCellDef="let element">
+                              <div  class="probe-form-field"  matTooltip="{{resolveProbe(element.probe)}}">{{element.probe}}</div>
+                          </mat-cell>
+                      </ng-container>
 
-          <!-- Skill Column -->
-          <ng-container matColumnDef="fw">
-            <mat-header-cell *matHeaderCellDef>FW</mat-header-cell>
-            <mat-cell *matCellDef="let element">
-              <mat-form-field class="table-form-field">
-                <input readonly="{{readOnly()}}" matInput id="hero-fw" [(ngModel)]="element.value" placeholder="fw" type="number">
-              </mat-form-field>
-            </mat-cell>
-          </ng-container>
+                      <!-- Skill Column -->
+                      <ng-container matColumnDef="fw">
+                          <mat-header-cell *matHeaderCellDef>FW</mat-header-cell>
+                          <mat-cell *matCellDef="let element">
+                              <mat-form-field class="table-form-field">
+                                  <input readonly="{{readOnly()}}" matInput [(ngModel)]="element.value" placeholder="fw" type="number">
+                              </mat-form-field>
+                          </mat-cell>
+                      </ng-container>
 
-          <mat-header-row *matHeaderRowDef="attributeColumns"></mat-header-row>
-          <mat-row *matRowDef="let row; columns: attributeColumns;" class="table-row"></mat-row>
-        </mat-table>
+                      <mat-header-row *matHeaderRowDef="attributeColumns"></mat-header-row>
+                      <mat-row *matRowDef="let row; columns: attributeColumns;" class="table-row"></mat-row>
+                  </mat-table>
+              </mat-tab>
+              <mat-tab label="Gesellschaft">
+                  <mat-table [dataSource]="getSocialTalents()" class="mat-elevation-z8">
+
+                      <!-- Talent Column -->
+                      <ng-container matColumnDef="name">
+                          <mat-header-cell *matHeaderCellDef>Talent</mat-header-cell>
+                          <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+                      </ng-container>
+
+                      <!-- Probe Column -->
+                      <ng-container matColumnDef="probe">
+                          <mat-header-cell *matHeaderCellDef>Probe</mat-header-cell>
+                          <mat-cell *matCellDef="let element">
+                              <div  class="probe-form-field"  matTooltip="{{resolveProbe(element.probe)}}">{{element.probe}}</div>
+                          </mat-cell>
+                      </ng-container>
+
+                      <!-- Skill Column -->
+                      <ng-container matColumnDef="fw">
+                          <mat-header-cell *matHeaderCellDef>FW</mat-header-cell>
+                          <mat-cell *matCellDef="let element">
+                              <mat-form-field class="table-form-field">
+                                  <input readonly="{{readOnly()}}" matInput [(ngModel)]="element.value" placeholder="fw" type="number">
+                              </mat-form-field>
+                          </mat-cell>
+                      </ng-container>
+
+                      <mat-header-row *matHeaderRowDef="attributeColumns"></mat-header-row>
+                      <mat-row *matRowDef="let row; columns: attributeColumns;" class="table-row"></mat-row>
+                  </mat-table>
+              </mat-tab>
+              <mat-tab label="Natur">
+                  <mat-table [dataSource]="getNatureTalents()" class="mat-elevation-z8">
+
+                      <!-- Talent Column -->
+                      <ng-container matColumnDef="name">
+                          <mat-header-cell *matHeaderCellDef>Talent</mat-header-cell>
+                          <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+                      </ng-container>
+
+                      <!-- Probe Column -->
+                      <ng-container matColumnDef="probe">
+                          <mat-header-cell *matHeaderCellDef>Probe</mat-header-cell>
+                          <mat-cell *matCellDef="let element">
+                              <div  class="probe-form-field"  matTooltip="{{resolveProbe(element.probe)}}">{{element.probe}}</div>
+                          </mat-cell>
+                      </ng-container>
+
+                      <!-- Skill Column -->
+                      <ng-container matColumnDef="fw">
+                          <mat-header-cell *matHeaderCellDef>FW</mat-header-cell>
+                          <mat-cell *matCellDef="let element">
+                              <mat-form-field class="table-form-field">
+                                  <input readonly="{{readOnly()}}" matInput [(ngModel)]="element.value" placeholder="fw" type="number">
+                              </mat-form-field>
+                          </mat-cell>
+                      </ng-container>
+
+                      <mat-header-row *matHeaderRowDef="attributeColumns"></mat-header-row>
+                      <mat-row *matRowDef="let row; columns: attributeColumns;" class="table-row"></mat-row>
+                  </mat-table>
+              </mat-tab>
+              <mat-tab label="Wissen">
+                  <mat-table [dataSource]="getKnowledgeTalents()" class="mat-elevation-z8">
+
+                      <!-- Talent Column -->
+                      <ng-container matColumnDef="name">
+                          <mat-header-cell *matHeaderCellDef>Talent</mat-header-cell>
+                          <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+                      </ng-container>
+
+                      <!-- Probe Column -->
+                      <ng-container matColumnDef="probe">
+                          <mat-header-cell *matHeaderCellDef>Probe</mat-header-cell>
+                          <mat-cell *matCellDef="let element">
+                              <div  class="probe-form-field"  matTooltip="{{resolveProbe(element.probe)}}">{{element.probe}}</div>
+                          </mat-cell>
+                      </ng-container>
+
+                      <!-- Skill Column -->
+                      <ng-container matColumnDef="fw">
+                          <mat-header-cell *matHeaderCellDef>FW</mat-header-cell>
+                          <mat-cell *matCellDef="let element">
+                              <mat-form-field class="table-form-field">
+                                  <input readonly="{{readOnly()}}" matInput [(ngModel)]="element.value" placeholder="fw" type="number">
+                              </mat-form-field>
+                          </mat-cell>
+                      </ng-container>
+
+                      <mat-header-row *matHeaderRowDef="attributeColumns"></mat-header-row>
+                      <mat-row *matRowDef="let row; columns: attributeColumns;" class="table-row"></mat-row>
+                  </mat-table>
+              </mat-tab>
+              <mat-tab label="Handwerk">
+                  <mat-table [dataSource]="getCraftTalents()" class="mat-elevation-z8">
+
+                      <!-- Talent Column -->
+                      <ng-container matColumnDef="name">
+                          <mat-header-cell *matHeaderCellDef>Talent</mat-header-cell>
+                          <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+                      </ng-container>
+
+                      <!-- Probe Column -->
+                      <ng-container matColumnDef="probe">
+                          <mat-header-cell *matHeaderCellDef>Probe</mat-header-cell>
+                          <mat-cell *matCellDef="let element">
+                              <div  class="probe-form-field"  matTooltip="{{resolveProbe(element.probe)}}">{{element.probe}}</div>
+                          </mat-cell>
+                      </ng-container>
+
+                      <!-- Skill Column -->
+                      <ng-container matColumnDef="fw">
+                          <mat-header-cell *matHeaderCellDef>FW</mat-header-cell>
+                          <mat-cell *matCellDef="let element">
+                              <mat-form-field class="table-form-field">
+                                  <input readonly="{{readOnly()}}" matInput [(ngModel)]="element.value" placeholder="fw" type="number">
+                              </mat-form-field>
+                          </mat-cell>
+                      </ng-container>
+
+                      <mat-header-row *matHeaderRowDef="attributeColumns"></mat-header-row>
+                      <mat-row *matRowDef="let row; columns: attributeColumns;" class="table-row"></mat-row>
+                  </mat-table>
+              </mat-tab>
+
+          </mat-tab-group>
+
       </mat-card-content>
     </mat-card>
   </div>

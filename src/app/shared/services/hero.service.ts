@@ -1,6 +1,6 @@
 import {Injectable, OnDestroy} from '@angular/core';
 import {Evening, FightTechnique, Hero, HeroWrapper, Talent} from '../model/hero';
-import {combineLatest, from, map, Observable, of, Subject, Subscription} from 'rxjs';
+import {BehaviorSubject, combineLatest, from, map, Observable, of, Subject, Subscription} from 'rxjs';
 import {AuthService} from "./auth.service";
 import {TalentService} from "./talent.service";
 import {FightTechniqueService} from "./fight-technique.service";
@@ -12,6 +12,7 @@ import {AngularFirestore, DocumentReference} from "@angular/fire/compat/firestor
 export class HeroService implements OnDestroy {
 
     private saveSubscription = new Subject<string>();
+    private heroSubscriptions = new Array<Subscription>();
     shouldSave = this.saveSubscription.asObservable()
 
     constructor(
@@ -24,6 +25,7 @@ export class HeroService implements OnDestroy {
     }
 
     ngOnDestroy(): void {
+        this.heroSubscriptions.forEach((s) => s.unsubscribe())
     }
 
     triggerSave() {
@@ -75,11 +77,24 @@ export class HeroService implements OnDestroy {
         if (this.heroesMap.has(id)) {
             return this.heroesMap.get(id)!
         } else {
-            console.log("Create new subscription for " + id)
             // create a new subscription
-            let obs = this.getHeroById(id)
-            this.heroesMap.set(id, obs)
-            return obs
+            console.log("Create new subscription for " + id)
+            let subject = new BehaviorSubject<HeroWrapper | null>(null)
+
+            let obs = this.getHeroById(id).subscribe((hero) => {
+                // if the hero is null, we need to remove the subscription
+                if (hero == null) {
+                    this.heroesMap.delete(id)
+                    subject.next(null)
+                } else {
+                    // update the subject
+                    subject.next(hero)
+                }
+            })
+            this.heroSubscriptions.push(obs)
+            let observable = subject.asObservable();
+            this.heroesMap.set(id, observable)
+            return observable
         }
     }
 

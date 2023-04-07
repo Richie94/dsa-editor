@@ -36,6 +36,7 @@ import {AngularFirestoreModule} from '@angular/fire/compat/firestore';
 import {AngularFireDatabaseModule} from '@angular/fire/compat/database';
 import {environment} from './environments/environment';
 import {FlexLayoutModule} from "@angular/flex-layout";
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
     declarations: [
@@ -75,7 +76,8 @@ import {FlexLayoutModule} from "@angular/flex-layout";
         AngularFirestoreModule,
         AngularFireStorageModule,
         AngularFireDatabaseModule,
-        FlexLayoutModule
+        FlexLayoutModule,
+        MatTabsModule
     ],
     providers: [
         AuthService

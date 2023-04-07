@@ -37,6 +37,7 @@ import {AngularFireDatabaseModule} from '@angular/fire/compat/database';
 import {environment} from './environments/environment';
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {MatTabsModule} from '@angular/material/tabs';
+import {TextFieldModule} from '@angular/cdk/text-field';
 
 @NgModule({
     declarations: [
@@ -77,7 +78,8 @@ import {MatTabsModule} from '@angular/material/tabs';
         AngularFireStorageModule,
         AngularFireDatabaseModule,
         FlexLayoutModule,
-        MatTabsModule
+        MatTabsModule,
+        TextFieldModule
     ],
     providers: [
         AuthService

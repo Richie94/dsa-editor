@@ -29,9 +29,8 @@
     <mat-card-content>
       <mat-form-field class="note-text">
         <textarea readonly="{{readOnly()}}" matInput cdkTextareaAutosize
-                  #autosize="cdkTextareaAutosize"
                   cdkAutosizeMinRows="1"
-                  cdkAutosizeMaxRows="25" [(ngModel)]='note.text'></textarea>
+                  cdkAutosizeMaxRows="33" [(ngModel)]='note.text'></textarea>
       </mat-form-field>
     </mat-card-content>
   </mat-card>

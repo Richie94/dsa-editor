@@ -31,7 +31,7 @@
                 <input readonly="{{readOnly()}}" matInput id="hero-eye" [(ngModel)]="hero.eyeColor"
                        placeholder="Augenfarbe" type="text">
             </mat-form-field>
-            <mat-form-field class="descriptive-form-field" style="width: 100px">
+            <mat-form-field class="descriptive-form-field">
                 <mat-label for="hero-species">Spezies</mat-label>
                 <input readonly="{{readOnly()}}" matInput id="hero-species" [(ngModel)]="hero.species"
                        placeholder="Spezies" type="text">
@@ -76,7 +76,7 @@
                 <div fxFlex.lt-md="100%" fxFlex="0 1 calc(50% - 0.5%)">
                     <mat-list fxFlex fxLayout="column" fxLayoutGap="16px">
                         <mat-list-item *ngFor="let advantage of hero.advantages; let i = index;trackBy:trackByIndex;">
-                            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+                            <div fxFlex fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
                                 <mat-form-field class="advantage-form-field">
                                     <input readonly="{{readOnly()}}" matInput [(ngModel)]="hero.advantages[i]"
                                            placeholder="Vorteil" type="text">

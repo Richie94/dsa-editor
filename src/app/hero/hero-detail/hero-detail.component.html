@@ -102,11 +102,11 @@
                           <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
                       </ng-container>
 
-                      <!-- Probe Column -->
+                      <!-- Probe Column (Tooltip shows QS probabilities) -->
                       <ng-container matColumnDef="probe">
                           <mat-header-cell *matHeaderCellDef>Probe</mat-header-cell>
                           <mat-cell *matCellDef="let element">
-                              <div  class="probe-form-field"  matTooltip="{{resolveProbe(element.probe)}}">{{element.probe}}</div>
+                              <div  class="probe-form-field"  [matTooltip]="resolveProbe(element.probe) + ' — ' + qsSummary(element)">{{element.probe}}</div>
                           </mat-cell>
                       </ng-container>
 
@@ -119,6 +119,7 @@
                               </mat-form-field>
                           </mat-cell>
                       </ng-container>
+
 
                       <mat-header-row *matHeaderRowDef="attributeColumns"></mat-header-row>
                       <mat-row *matRowDef="let row; columns: attributeColumns;" class="table-row"></mat-row>
@@ -133,11 +134,11 @@
                           <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
                       </ng-container>
 
-                      <!-- Probe Column -->
+                      <!-- Probe Column (Tooltip shows QS probabilities) -->
                       <ng-container matColumnDef="probe">
                           <mat-header-cell *matHeaderCellDef>Probe</mat-header-cell>
                           <mat-cell *matCellDef="let element">
-                              <div  class="probe-form-field"  matTooltip="{{resolveProbe(element.probe)}}">{{element.probe}}</div>
+                              <div  class="probe-form-field"  [matTooltip]="resolveProbe(element.probe) + ' — ' + qsSummary(element)">{{element.probe}}</div>
                           </mat-cell>
                       </ng-container>
 
@@ -150,6 +151,7 @@
                               </mat-form-field>
                           </mat-cell>
                       </ng-container>
+
 
                       <mat-header-row *matHeaderRowDef="attributeColumns"></mat-header-row>
                       <mat-row *matRowDef="let row; columns: attributeColumns;" class="table-row"></mat-row>
@@ -164,11 +166,11 @@
                           <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
                       </ng-container>
 
-                      <!-- Probe Column -->
+                      <!-- Probe Column (Tooltip shows QS probabilities) -->
                       <ng-container matColumnDef="probe">
                           <mat-header-cell *matHeaderCellDef>Probe</mat-header-cell>
                           <mat-cell *matCellDef="let element">
-                              <div  class="probe-form-field"  matTooltip="{{resolveProbe(element.probe)}}">{{element.probe}}</div>
+                              <div  class="probe-form-field"  [matTooltip]="resolveProbe(element.probe) + ' — ' + qsSummary(element)">{{element.probe}}</div>
                           </mat-cell>
                       </ng-container>
 
@@ -181,6 +183,7 @@
                               </mat-form-field>
                           </mat-cell>
                       </ng-container>
+
 
                       <mat-header-row *matHeaderRowDef="attributeColumns"></mat-header-row>
                       <mat-row *matRowDef="let row; columns: attributeColumns;" class="table-row"></mat-row>
@@ -195,11 +198,11 @@
                           <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
                       </ng-container>
 
-                      <!-- Probe Column -->
+                      <!-- Probe Column (Tooltip shows QS probabilities) -->
                       <ng-container matColumnDef="probe">
                           <mat-header-cell *matHeaderCellDef>Probe</mat-header-cell>
                           <mat-cell *matCellDef="let element">
-                              <div  class="probe-form-field"  matTooltip="{{resolveProbe(element.probe)}}">{{element.probe}}</div>
+                              <div  class="probe-form-field"  [matTooltip]="resolveProbe(element.probe) + ' — ' + qsSummary(element)">{{element.probe}}</div>
                           </mat-cell>
                       </ng-container>
 
@@ -212,6 +215,7 @@
                               </mat-form-field>
                           </mat-cell>
                       </ng-container>
+
 
                       <mat-header-row *matHeaderRowDef="attributeColumns"></mat-header-row>
                       <mat-row *matRowDef="let row; columns: attributeColumns;" class="table-row"></mat-row>
@@ -226,11 +230,11 @@
                           <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
                       </ng-container>
 
-                      <!-- Probe Column -->
+                      <!-- Probe Column (Tooltip shows QS probabilities) -->
                       <ng-container matColumnDef="probe">
                           <mat-header-cell *matHeaderCellDef>Probe</mat-header-cell>
                           <mat-cell *matCellDef="let element">
-                              <div  class="probe-form-field"  matTooltip="{{resolveProbe(element.probe)}}">{{element.probe}}</div>
+                              <div  class="probe-form-field"  [matTooltip]="resolveProbe(element.probe) + ' — ' + qsSummary(element)">{{element.probe}}</div>
                           </mat-cell>
                       </ng-container>
 
@@ -243,6 +247,7 @@
                               </mat-form-field>
                           </mat-cell>
                       </ng-container>
+
 
                       <mat-header-row *matHeaderRowDef="attributeColumns"></mat-header-row>
                       <mat-row *matRowDef="let row; columns: attributeColumns;" class="table-row"></mat-row>

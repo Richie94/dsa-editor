@@ -1,10 +1,21 @@
-import {Injectable, OnDestroy} from '@angular/core';
-import {Evening, FightTechnique, Hero, HeroWrapper, Talent} from '../model/hero';
-import {BehaviorSubject, combineLatest, from, map, Observable, of, Subject, Subscription} from 'rxjs';
+import {EnvironmentInjector, Injectable, OnDestroy, runInInjectionContext} from '@angular/core';
+import {Hero, HeroWrapper} from '../model/hero';
+import {BehaviorSubject, combineLatest, from, map, Observable, Subject, Subscription} from 'rxjs';
 import {AuthService} from "./auth.service";
 import {TalentService} from "./talent.service";
 import {FightTechniqueService} from "./fight-technique.service";
-import {AngularFirestore, DocumentReference} from "@angular/fire/compat/firestore";
+import {
+    addDoc,
+    collection,
+    CollectionReference,
+    doc,
+    docData,
+    Firestore,
+    getDocs,
+    query,
+    updateDoc,
+    where,
+} from '@angular/fire/firestore';
 
 @Injectable({
     providedIn: 'root'
@@ -19,7 +30,8 @@ export class HeroService implements OnDestroy {
         private authService: AuthService,
         private talentService: TalentService,
         private fightTechniqueService: FightTechniqueService,
-        public afs: AngularFirestore
+        public afs: Firestore,
+        public injector: EnvironmentInjector
     ) {
 
     }
@@ -34,15 +46,10 @@ export class HeroService implements OnDestroy {
 
     getHeroes(): Observable<HeroWrapper[]> {
         // query by creator_id and whether hero is public
-        let uid = this.authService.readUser().uid;
-        let myHeroesObservable = from(this.afs.collection<Hero>('heroes')
-            .ref
-            .where("creator_id", "==", uid)
-            .get());
-        let publicHeroesObservable = from(this.afs.collection<Hero>('heroes')
-            .ref
-            .where("public", "==", true)
-            .get());
+        const uid = this.authService.readUser().uid;
+        const heroesCol = collection(this.afs, 'heroes') as CollectionReference<Hero>;
+        const myHeroesObservable = from(getDocs(query(heroesCol, where('creator_id', '==', uid))));
+        const publicHeroesObservable = from(getDocs(query(heroesCol, where('public', '==', true))));
 
         return combineLatest([myHeroesObservable, publicHeroesObservable])
             .pipe(
@@ -99,22 +106,21 @@ export class HeroService implements OnDestroy {
     }
 
     private getHeroById(id: string): Observable<HeroWrapper | null> {
-        return this.afs.collection<Hero>('heroes').doc(id)
-            .snapshotChanges()
-            .pipe(map((d) => {
-                console.log("Request Hero: " + d.payload.id)
-                console.log(d.type)
-                let h = d.payload.data() as Hero
-                // filter it if either it is not public or the creator_id is not the same as the userId
-                if (h.public || h.creator_id == this.authService.userData!.uid) {
-                    return {
-                        id: d.payload.id,
-                        hero: h
+        // Wrap the document reference creation and modular call
+        return runInInjectionContext(this.injector, () => {
+            const heroDocRef = doc(this.afs, 'heroes', id);
+
+            return docData(heroDocRef).pipe(
+                map((data) => {
+                    if (!data) return null;
+                    const h = data as Hero;
+                    if (h.public || h.creator_id === this.authService.userData!.uid) {
+                        return {id, hero: h} as HeroWrapper;
                     }
-                } else {
-                    return null
-                }
-            }))
+                    return null;
+                })
+            );
+        });
     }
 
     createHero(name: string): Observable<HeroWrapper> {
@@ -164,22 +170,17 @@ export class HeroService implements OnDestroy {
             },
         };
 
-        return from(this.afs.collection<Hero>('heroes')
-            .add(hero)
-            .then((d) => {
-                console.log("Created hero", hero.name)
-                return {
-                    id: d.id,
-                    hero: hero
-                }
-            }))
+        const heroesCol = collection(this.afs, 'heroes') as CollectionReference<Hero>;
+        return from(addDoc(heroesCol, hero).then((d) => {
+            console.log("Created hero", hero.name)
+            return {id: d.id, hero} as HeroWrapper;
+        }))
     }
 
 
     updateHero(heroWrapper: HeroWrapper) {
-        this.afs.collection('heroes')
-            .doc(heroWrapper.id)
-            .update(heroWrapper.hero)
+        const heroDoc = doc(this.afs, 'heroes', heroWrapper.id);
+        updateDoc(heroDoc, heroWrapper.hero as any)
             .then(() => console.log("Updated hero " + heroWrapper.id))
     }
 

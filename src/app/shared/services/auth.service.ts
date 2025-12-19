@@ -1,11 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Router} from "@angular/router";
-import {AngularFireAuth} from '@angular/fire/compat/auth';
+import { Auth, authState, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
 import {User} from "../model/user";
-import {
-  AngularFirestore,
-  AngularFirestoreDocument,
-} from '@angular/fire/compat/firestore';
+import { Firestore, doc, setDoc } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -15,10 +12,10 @@ export class AuthService {
 
   constructor(
     private router: Router,
-    public afs: AngularFirestore, // Inject Firestore service
-    public afAuth: AngularFireAuth, // Inject Firebase auth service
+    public afs: Firestore, // Inject Firestore service
+    public afAuth: Auth, // Inject Firebase auth service
   ) {
-    this.afAuth.authState.subscribe((user) => {
+    authState(this.afAuth).subscribe((user) => {
       if (user) {
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
@@ -31,11 +28,10 @@ export class AuthService {
   }
 
   signIn(email: string, password: string) {
-    return this.afAuth
-      .signInWithEmailAndPassword(email, password)
+    return signInWithEmailAndPassword(this.afAuth, email, password)
       .then((result) => {
         this.setUserData(result.user);
-        this.afAuth.authState.subscribe((user) => {
+        authState(this.afAuth).subscribe((user) => {
           if (user) {
             this.router.navigate(['hero']);
           }
@@ -50,19 +46,15 @@ export class AuthService {
   sign up with username/password and sign in with social auth
   provider in Firestore database using AngularFirestore + AngularFirestoreDocument service */
   setUserData(user: any) {
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc(
-      `users/${user.uid}`
-    );
+    const userRef = doc(this.afs, `users/${user.uid}`);
     const userData: User = {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
       photoURL: user.photoURL,
       emailVerified: user.emailVerified,
-    };
-    return userRef.set(userData, {
-      merge: true,
-    });
+    } as any; // keep shape; app reads it from localStorage
+    return setDoc(userRef, userData, { merge: true });
   }
 
   get isLoggedIn(): boolean {
@@ -85,7 +77,7 @@ export class AuthService {
 
   // Sign out
   signOut() {
-    return this.afAuth.signOut().then(() => {
+    return signOut(this.afAuth).then(() => {
       localStorage.removeItem('user');
       this.router.navigate(['sign-in']);
     });

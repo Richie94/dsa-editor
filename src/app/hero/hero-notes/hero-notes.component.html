@@ -1,37 +1,40 @@
 <button style="width:95%; margin: 0 auto; display: block" mat-raised-button type="button" (click)="addNewNote()" color="primary">Neuer Eintrag</button>
-<div *ngIf="hero">
-  <mat-card *ngFor="let note of hero.notes; let i = index" class="notes">
-    <mat-card-header>
-      <mat-card-title class="note-header">
-        {{note.date.toLocaleString()}}
-      </mat-card-title>
-      <mat-card-subtitle>
-        <mat-form-field class="prim-stats">
-          <mat-label for="hero-lep">LeP</mat-label>
-          <input readonly="{{readOnly()}}" matInput id="hero-lep" placeholder="LeP" type="number" [(ngModel)]='note.lep'>
-        </mat-form-field>
-        <mat-form-field class="prim-stats">
-          <mat-label for="hero-kap">KaP</mat-label>
-          <input readonly="{{readOnly()}}" matInput id="hero-kap" placeholder="KaP" type="number" [(ngModel)]='note.kap'>
-        </mat-form-field>
-        <mat-form-field class="prim-stats">
-          <mat-label for="hero-asp">AsP</mat-label>
-          <input readonly="{{readOnly()}}" matInput id="hero-asp" placeholder="AsP" type="number" [(ngModel)]='note.asp'>
-        </mat-form-field>
-        <mat-form-field class="prim-stats">
-          <mat-label for="hero-sch">Sch</mat-label>
-          <input readonly="{{readOnly()}}" matInput id="hero-sch" placeholder="Sch" type="number" [(ngModel)]='note.sch'>
-        </mat-form-field>
-      </mat-card-subtitle>
-      <button mat-icon-button (click)="deleteNote(i)"><mat-icon style="color: white">delete</mat-icon></button>
-
-    </mat-card-header>
-    <mat-card-content>
-      <mat-form-field class="note-text">
-        <textarea readonly="{{readOnly()}}" matInput cdkTextareaAutosize
-                  cdkAutosizeMinRows="1"
-                  cdkAutosizeMaxRows="33" [(ngModel)]='note.text'></textarea>
-      </mat-form-field>
-    </mat-card-content>
-  </mat-card>
-</div>
+@if (hero) {
+  <div>
+    @for (note of hero.notes; track note; let i = $index) {
+      <mat-card class="notes">
+        <mat-card-header>
+          <mat-card-title class="note-header">
+            {{note.date.toLocaleString()}}
+          </mat-card-title>
+          <mat-card-subtitle>
+            <mat-form-field class="prim-stats">
+              <mat-label>LeP</mat-label>
+              <input readonly="{{readOnly()}}" matInput id="hero-lep" placeholder="LeP" type="number" [(ngModel)]='note.lep'>
+            </mat-form-field>
+            <mat-form-field class="prim-stats">
+              <mat-label>KaP</mat-label>
+              <input readonly="{{readOnly()}}" matInput id="hero-kap" placeholder="KaP" type="number" [(ngModel)]='note.kap'>
+            </mat-form-field>
+            <mat-form-field class="prim-stats">
+              <mat-label>AsP</mat-label>
+              <input readonly="{{readOnly()}}" matInput id="hero-asp" placeholder="AsP" type="number" [(ngModel)]='note.asp'>
+            </mat-form-field>
+            <mat-form-field class="prim-stats">
+              <mat-label>Sch</mat-label>
+              <input readonly="{{readOnly()}}" matInput id="hero-sch" placeholder="Sch" type="number" [(ngModel)]='note.sch'>
+            </mat-form-field>
+          </mat-card-subtitle>
+          <button mat-icon-button (click)="deleteNote(i)"><mat-icon style="color: white">delete</mat-icon></button>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-form-field class="note-text">
+            <textarea readonly="{{readOnly()}}" matInput cdkTextareaAutosize
+              cdkAutosizeMinRows="1"
+            cdkAutosizeMaxRows="33" [(ngModel)]='note.text'></textarea>
+          </mat-form-field>
+        </mat-card-content>
+      </mat-card>
+    }
+  </div>
+}

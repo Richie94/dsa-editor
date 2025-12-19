@@ -114,9 +114,7 @@
                       <ng-container matColumnDef="fw">
                           <mat-header-cell *matHeaderCellDef>FW</mat-header-cell>
                           <mat-cell *matCellDef="let element">
-                              <mat-form-field class="table-form-field">
-                                  <input readonly="{{readOnly()}}" matInput [(ngModel)]="element.value" placeholder="fw" type="number">
-                              </mat-form-field>
+                              <input class="fw-input" [readOnly]="readOnly()" [(ngModel)]="element.value" type="number" inputmode="numeric" />
                           </mat-cell>
                       </ng-container>
 
@@ -146,9 +144,7 @@
                       <ng-container matColumnDef="fw">
                           <mat-header-cell *matHeaderCellDef>FW</mat-header-cell>
                           <mat-cell *matCellDef="let element">
-                              <mat-form-field class="table-form-field">
-                                  <input readonly="{{readOnly()}}" matInput [(ngModel)]="element.value" placeholder="fw" type="number">
-                              </mat-form-field>
+                              <input class="fw-input" [readOnly]="readOnly()" [(ngModel)]="element.value" type="number" inputmode="numeric" />
                           </mat-cell>
                       </ng-container>
 
@@ -178,9 +174,7 @@
                       <ng-container matColumnDef="fw">
                           <mat-header-cell *matHeaderCellDef>FW</mat-header-cell>
                           <mat-cell *matCellDef="let element">
-                              <mat-form-field class="table-form-field">
-                                  <input readonly="{{readOnly()}}" matInput [(ngModel)]="element.value" placeholder="fw" type="number">
-                              </mat-form-field>
+                              <input class="fw-input" [readOnly]="readOnly()" [(ngModel)]="element.value" type="number" inputmode="numeric" />
                           </mat-cell>
                       </ng-container>
 
@@ -210,9 +204,7 @@
                       <ng-container matColumnDef="fw">
                           <mat-header-cell *matHeaderCellDef>FW</mat-header-cell>
                           <mat-cell *matCellDef="let element">
-                              <mat-form-field class="table-form-field">
-                                  <input readonly="{{readOnly()}}" matInput [(ngModel)]="element.value" placeholder="fw" type="number">
-                              </mat-form-field>
+                              <input class="fw-input" [readOnly]="readOnly()" [(ngModel)]="element.value" type="number" inputmode="numeric" />
                           </mat-cell>
                       </ng-container>
 

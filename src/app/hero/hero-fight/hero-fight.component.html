@@ -90,7 +90,8 @@
             <div>
                 <div fxFlex="100%" fxLayout="column">
                     <div *ngFor="let weapon of hero.weapons; let i = index;trackBy:trackByIndex;"
-                         class="my-table-card-replacement" fxFlex="100%" fxLayout="row wrap" fxLayoutGap="16px" fxLayoutGap.lt-md="8px">
+                         class="my-table-card-replacement" fxFlex="100%" fxLayout="row wrap" fxLayoutGap="16px"
+                         fxLayoutGap.lt-md="8px">
                         <mat-form-field class="weapon-form-field">
                             <mat-label for="weapon-name">Waffe</mat-label>
                             <input readonly="{{readOnly()}}" matInput id="weapon-name"
@@ -136,7 +137,8 @@
             <div>
                 <div fxFlex="100%" fxLayout="column">
                     <div *ngFor="let weapon of hero.armor; let i = index;trackBy:trackByIndex;"
-                         class="my-table-card-replacement" fxFlex="100%" fxLayout="row wrap" fxLayoutGap="16px" fxLayoutGap.lt-md="8px">
+                         class="my-table-card-replacement" fxFlex="100%" fxLayout="row wrap" fxLayoutGap="16px"
+                         fxLayoutGap.lt-md="8px">
                         <mat-form-field class="weapon-form-field">
                             <mat-label for="armor-name">Rüstung</mat-label>
                             <input readonly="{{readOnly()}}" matInput id="armor-name" [(ngModel)]="hero.armor[i].name"
@@ -218,30 +220,28 @@
 
                 <ng-container matColumnDef="name">
                     <mat-header-cell *matHeaderCellDef>Kampftechnik</mat-header-cell>
-                    <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+                    <mat-cell *matCellDef="let element"> {{ element.name }}</mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="ktw">
                     <mat-header-cell *matHeaderCellDef>KTW</mat-header-cell>
                     <mat-cell *matCellDef="let element">
-                        <mat-form-field class="table-form-field">
-                            <input readonly="{{readOnly()}}" matInput id="hero-ktw" [(ngModel)]="element.ktw"
-                                   placeholder="ktw" type="number">
-                        </mat-form-field>
+                        <input readonly="{{readOnly()}}" matInput id="hero-ktw" [(ngModel)]="element.ktw"
+                               placeholder="ktw" type="number">
                     </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="at">
                     <mat-header-cell *matHeaderCellDef>AT</mat-header-cell>
                     <mat-cell *matCellDef="let element">
-                        {{this.getAt(element)}}
+                        {{ this.getAt(element) }}
                     </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="pa">
                     <mat-header-cell *matHeaderCellDef>PA</mat-header-cell>
                     <mat-cell *matCellDef="let element">
-                        {{this.getPa(element)}}
+                        {{ this.getPa(element) }}
                     </mat-cell>
                 </ng-container>
 

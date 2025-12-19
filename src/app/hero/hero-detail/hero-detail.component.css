@@ -4,6 +4,17 @@
     min-width: 5em;
 }
 
+/* Compact numeric input for FW column (replaces heavy mat-form-field) */
+.fw-input {
+    box-sizing: content-box;
+    padding: 2px 4px;
+    margin: 5px;
+    width: 4ch; /* enough for 1–2 digits comfortably */
+    min-width: 3ch;
+    text-align: right;
+    font-size: 0.95rem;
+}
+
 .table-row {
     height: 20px;
 }
@@ -51,20 +62,11 @@
     hyphens: auto;
 }
 
+/* Ensure good fit on phones and small tablets */
 @media screen and (max-width: 600px) {
-    /* Let inputs shrink and narrow the FW column on mobile */
-    .table-form-field {
-        width: 3.5em;
-        min-width: 0;
-    }
-
-    :host ::ng-deep .mat-mdc-form-field {
-        min-width: 0;
-    }
-
     .mat-column-name {
-        flex: 1 1 55% !important;
-        width: 55% !important;
+        flex: 1 1 auto !important;
+        width: auto !important;
     }
 
     .mat-column-probe {
@@ -73,12 +75,50 @@
     }
 
     .mat-column-fw {
-        flex: 0 0 64px !important;
-        width: 64px !important;
+        flex: 0 0 92px !important; /* fixed safe width for the input */
+        width: 92px !important;
+    }
+
+    .fw-input {
+        width: 5ch; /* a tad wider on small screens */
+        font-size: 1rem;
     }
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (max-width: 400px) {
+    /* Let inputs shrink and narrow the FW column on mobile */
+    .table-form-field {
+        width: 4.5em; /* widen a bit so 2–3 digits are visible */
+        min-width: 0;
+    }
+
+    :host ::ng-deep .mat-mdc-form-field {
+        min-width: 0;
+    }
+
+    /* Ensure the infix/input can actually shrink inside the form-field */
+    :host ::ng-deep .mat-mdc-form-field-infix {
+        min-width: 0;
+        width: auto;
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+    :host ::ng-deep .mat-mdc-input-element[type="number"] {
+        text-align: right; /* keep numbers readable in narrow field */
+    }
+
+    .mat-column-name { flex: 1 1 50% !important; width: 50% !important; }
+    .mat-column-probe { flex: 0 0 20% !important; width: 20% !important; }
+    .mat-column-fw { flex: 0 0 84px !important; width: 84px !important; }
+
+    .fw-input { width: 5ch; font-size: 0.95rem; }
+
+    .mat-ability {
+        width:50%
+    }
+}
+
+@media screen and (min-width: 400px) {
     .mat-ability {
         width:75%
     }

@@ -90,7 +90,7 @@
             <div>
                 <div fxFlex="100%" fxLayout="column">
                     <div *ngFor="let weapon of hero.weapons; let i = index;trackBy:trackByIndex;"
-                         class="my-table-card-replacement" fxFlex="100%" fxLayout="row wrap" fxLayoutGap="16px">
+                         class="my-table-card-replacement" fxFlex="100%" fxLayout="row wrap" fxLayoutGap="16px" fxLayoutGap.lt-md="8px">
                         <mat-form-field class="weapon-form-field">
                             <mat-label for="weapon-name">Waffe</mat-label>
                             <input readonly="{{readOnly()}}" matInput id="weapon-name"
@@ -136,7 +136,7 @@
             <div>
                 <div fxFlex="100%" fxLayout="column">
                     <div *ngFor="let weapon of hero.armor; let i = index;trackBy:trackByIndex;"
-                         class="my-table-card-replacement" fxFlex="100%" fxLayout="row wrap" fxLayoutGap="16px">
+                         class="my-table-card-replacement" fxFlex="100%" fxLayout="row wrap" fxLayoutGap="16px" fxLayoutGap.lt-md="8px">
                         <mat-form-field class="weapon-form-field">
                             <mat-label for="armor-name">Rüstung</mat-label>
                             <input readonly="{{readOnly()}}" matInput id="armor-name" [(ngModel)]="hero.armor[i].name"

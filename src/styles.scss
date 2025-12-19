@@ -56,6 +56,25 @@ body {
         margin: 5px;
         width: 2em;
     }
+
+    /* Allow Material form fields to actually shrink on small screens */
+    .mat-mdc-form-field {
+        min-width: 0;
+    }
+
+    /* Tighter buttons inside card/list rows to avoid pushing layout wide */
+    .my-table-card-replacement .mat-mdc-button-base,
+    .my-table-card-replacement .mat-mdc-raised-button,
+    .my-table-card-replacement .mat-mdc-unelevated-button {
+        min-width: 48px;
+        padding: 0 8px;
+    }
+
+    /* Slightly tighter container spacing on mobile */
+    .my-table-card-replacement {
+        margin: 4px;
+        padding: 8px;
+    }
 }
 
 .remove-action-button {

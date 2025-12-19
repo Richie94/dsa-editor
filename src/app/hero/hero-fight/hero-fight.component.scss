@@ -2,6 +2,29 @@
   .mat-fight-ability {
     width:55%
   }
+
+  /* Allow shrinking inside list/card rows */
+  .my-table-card-replacement .mat-mdc-form-field {
+    min-width: 0;
+  }
+
+  /* Mobile-friendly flex bases for weapon/armor fields */
+  .weapon-form-field {
+    flex: 1 1 120px;
+    min-width: 0;
+  }
+  .weapon-tp-form-field {
+    flex: 0 0 90px;
+  }
+  .weapon-number-form-field {
+    flex: 0 0 72px;
+  }
+
+  /* Tighter action buttons */
+  .remove-action-button {
+    min-width: 40px;
+    padding: 0 8px;
+  }
 }
 
 @media screen and (min-width: 600px) {

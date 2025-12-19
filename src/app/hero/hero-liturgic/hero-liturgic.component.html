@@ -7,7 +7,7 @@
         </mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <div *ngFor="let item of hero.magic_spells; let i = index" class="my-table-card-replacement">
+        <div *ngFor="let item of hero.liturgic_spells; let i = index" class="my-table-card-replacement">
           <mat-form-field class="property-form-field" style="min-width: 300px">
             <mat-label for="item-name">Name</mat-label>
             <input readonly="{{readOnly()}}" matInput id="item-name" [(ngModel)]="item.name" placeholder="name"

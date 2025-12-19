@@ -6,11 +6,6 @@ import {AuthService} from "../../shared/services/auth.service";
 import {Talent} from "../../shared/model/hero";
 
 
-export interface TalentGroup {
-    name: string,
-    talents: Talent[]
-}
-
 @Component({
     selector: 'app-hero-detail',
     templateUrl: './hero-detail.component.html',
@@ -122,23 +117,15 @@ export class HeroDetailComponent extends AbstractHeroComponent {
         return this.hero?.talents?.filter(t => this.craftTalents.includes(t.name)) || []
     }
 
-
-    getTalentGroups(): string[] {
-        console.log("Get talent groups")
-        return ["Körper", "Gesellschaft", "Natur", "Wissen", "Handwerk"]
+    newSpecialAbility() {
+        if (this.hero && !this.readOnly()) {
+            this.hero.special_abilities.push("")
+        }
     }
 
-    getTalentGroups2(): TalentGroup[] {
-        console.log("Get talent groups")
-        let talentGroups = [
-            {name: "Körper", talents: this.getBodyTalents()},
-            {name: "Gesellschaft", talents: this.getSocialTalents()},
-            {name: "Natur", talents: this.getNatureTalents()},
-            {name: "Wissen", talents: this.getKnowledgeTalents()},
-            {name: "Handwerk", talents: this.getCraftTalents()},
-        ];
-        console.log(talentGroups)
-        return talentGroups
+    removeSpecialAbility(index: number) {
+        if (this.hero && !this.readOnly()) {
+            this.hero.special_abilities.splice(index, 1)
+        }
     }
-
 }

@@ -49,6 +49,42 @@
       </mat-card-content>
     </mat-card>
 
+      <mat-card class="my-card">
+          <mat-card-header>
+              <mat-card-title style="color: white">Sonderfertigkeiten</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+              <div style="width: 100%">
+                  <mat-list fxFlex fxLayout="column" fxLayoutGap="16px">
+                      <mat-list-item
+                          *ngFor="let ability of hero.special_abilities; let i = index;trackBy:trackByIndex;">
+                          <div fxFlex fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+                              <mat-form-field class="mat-fight-ability">
+                                  <input readonly="{{readOnly()}}" matInput [(ngModel)]="hero.special_abilities[i]"
+                                         placeholder="Fähigkeit" type="text">
+                              </mat-form-field>
+                              <button mat-raised-button color="primary" class="remove-action-button">
+                                  <a href="https://ulisses-regelwiki.de/suche.html?keywords={{hero.special_abilities[i]}}">
+                                      <mat-icon style="color: white">help</mat-icon>
+                                  </a>
+                              </button>
+                              <button mat-raised-button color="primary" (click)="removeSpecialAbility(i)"
+                                      class="remove-action-button">
+                                  <mat-icon style="color: white">delete</mat-icon>
+                              </button>
+                          </div>
+
+                      </mat-list-item>
+                      <mat-list-item>
+                          <button mat-raised-button color="primary" class="add-action-button"
+                                  (click)="newSpecialAbility()">+
+                          </button>
+                      </mat-list-item>
+                  </mat-list>
+              </div>
+          </mat-card-content>
+      </mat-card>
+
     <mat-card class="my-card">
       <mat-card-header>
         <mat-card-title class="my-card-title">

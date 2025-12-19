@@ -59,7 +59,7 @@
                       <mat-list-item
                           *ngFor="let ability of hero.special_abilities; let i = index;trackBy:trackByIndex;">
                           <div fxFlex fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
-                              <mat-form-field class="mat-fight-ability">
+                              <mat-form-field class="mat-ability">
                                   <input readonly="{{readOnly()}}" matInput [(ngModel)]="hero.special_abilities[i]"
                                          placeholder="Fähigkeit" type="text">
                               </mat-form-field>

@@ -19,6 +19,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatIconModule} from "@angular/material/icon";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import {MAT_TOOLTIP_DEFAULT_OPTIONS, MatTooltipDefaultOptions} from '@angular/material/tooltip';
 import {HeroGeneralComponent} from './hero/hero-general/hero-general.component';
 import {HeroComponent} from './hero/hero.component';
 import {AuthService} from "./shared/services/auth.service";
@@ -82,7 +83,8 @@ import {TextFieldModule} from '@angular/cdk/text-field';
         TextFieldModule
     ],
     providers: [
-        AuthService
+        AuthService,
+        { provide: MAT_TOOLTIP_DEFAULT_OPTIONS, useValue: { touchendHideDelay: 5000 } as MatTooltipDefaultOptions }
     ],
     bootstrap: [AppComponent]
 })

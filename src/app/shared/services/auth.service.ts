@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Router} from "@angular/router";
-import { Auth, authState, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
+import {Auth, authState, signInWithEmailAndPassword, signOut} from '@angular/fire/auth';
 import {User} from "../model/user";
-import { Firestore, doc, setDoc } from '@angular/fire/firestore';
+import {doc, Firestore, setDoc} from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +30,13 @@ export class AuthService {
   signIn(email: string, password: string) {
     return signInWithEmailAndPassword(this.afAuth, email, password)
       .then((result) => {
+        // Persist user immediately to avoid race with authState/localStorage updates
+        this.userData = result.user;
+        try {
+          localStorage.setItem('user', JSON.stringify(this.userData));
+        } catch (e) {
+          // noop: if localStorage fails, authState subscription will still update when possible
+        }
         this.setUserData(result.user);
         authState(this.afAuth).subscribe((user) => {
           if (user) {
@@ -71,8 +78,7 @@ export class AuthService {
     if (item == null) {
       return null;
     }
-    const user = JSON.parse(item);
-    return user;
+    return JSON.parse(item);
   }
 
   // Sign out

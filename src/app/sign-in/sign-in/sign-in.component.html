@@ -21,8 +21,9 @@
 
       <br>
 
-      <button mat-raised-button color="primary"
-              (click)="authService.signIn(userName.value, userPassword.value)" (keydown.enter)="authService.signIn(userName.value, userPassword.value)">Log In</button>
+      <button mat-raised-button color="primary" type="button"
+              (click)="$event.preventDefault(); authService.signIn(userName.value, userPassword.value)"
+              (keydown.enter)="$event.preventDefault(); authService.signIn(userName.value, userPassword.value)">Log In</button>
     </form>
   </mat-card-content>
 </mat-card>

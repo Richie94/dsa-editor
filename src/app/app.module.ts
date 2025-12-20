@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
+import {RouterModule} from '@angular/router';
 import {AppComponent} from './app.component';
 import {FormsModule} from '@angular/forms';
 import {AddNewHeroDialog, HeroesComponent} from './hero/herolist/heroes.component';
@@ -30,33 +31,18 @@ import {HeroLiturgicComponent} from './hero/hero-liturgic/hero-liturgic.componen
 import {HeroInventoryComponent} from './hero/hero-inventory/hero-inventory.component';
 import {IconModule} from "@visurel/iconify-angular";
 import {MatGridListModule} from "@angular/material/grid-list";
-import {AngularFireModule} from '@angular/fire/compat';
-import {AngularFireAuthModule} from '@angular/fire/compat/auth';
-import {AngularFireStorageModule} from '@angular/fire/compat/storage';
-import {AngularFirestoreModule} from '@angular/fire/compat/firestore';
-import {AngularFireDatabaseModule} from '@angular/fire/compat/database';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { provideStorage, getStorage } from '@angular/fire/storage';
 import {environment} from './environments/environment';
-import {FlexLayoutModule} from "@angular/flex-layout";
 import {MatTabsModule} from '@angular/material/tabs';
 import {TextFieldModule} from '@angular/cdk/text-field';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        HeroesComponent,
-        AddNewHeroDialog,
-        HeroComponent,
-        HeroGeneralComponent,
-        HeroDetailComponent,
-        HeroNotesComponent,
-        SignInComponent,
-        HeroFightComponent,
-        HeroMagicComponent,
-        HeroLiturgicComponent,
-        HeroInventoryComponent
-    ],
     imports: [
         BrowserModule,
+        RouterModule,
         AppRoutingModule,
         FormsModule,
         MatCardModule,
@@ -73,14 +59,24 @@ import {TextFieldModule} from '@angular/cdk/text-field';
         MatTooltipModule,
         IconModule,
         MatGridListModule,
-        AngularFireModule.initializeApp(environment.firebase),
-        AngularFireAuthModule,
-        AngularFirestoreModule,
-        AngularFireStorageModule,
-        AngularFireDatabaseModule,
-        FlexLayoutModule,
+        (() => initializeApp(environment.firebase)),
+        (() => getAuth()),
+        (() => getFirestore()),
+        (() => getStorage()),
         MatTabsModule,
-        TextFieldModule
+        TextFieldModule,
+        AppComponent,
+        HeroesComponent,
+        AddNewHeroDialog,
+        HeroComponent,
+        HeroGeneralComponent,
+        HeroDetailComponent,
+        HeroNotesComponent,
+        SignInComponent,
+        HeroFightComponent,
+        HeroMagicComponent,
+        HeroLiturgicComponent,
+        HeroInventoryComponent
     ],
     providers: [
         AuthService,

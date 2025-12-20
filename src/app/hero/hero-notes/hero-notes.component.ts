@@ -4,11 +4,32 @@ import {Evening} from '../../shared/model/hero';
 import {HeroService} from '../../shared/services/hero.service';
 import {AbstractHeroComponent} from "../abstract-hero-component";
 import {AuthService} from "../../shared/services/auth.service";
+import {MatCard, MatCardContent, MatCardHeader, MatCardSubtitle, MatCardTitle} from "@angular/material/card";
+import {MatButton, MatIconButton} from "@angular/material/button";
+import {MatFormField, MatInput, MatLabel} from "@angular/material/input";
+import {FormsModule} from "@angular/forms";
+import {MatIcon} from "@angular/material/icon";
+import {CdkTextareaAutosize} from "@angular/cdk/text-field";
 
 @Component({
-  selector: 'app-hero-notes',
-  templateUrl: './hero-notes.component.html',
-  styleUrls: ['./hero-notes.component.css']
+    selector: 'app-hero-notes',
+    templateUrl: './hero-notes.component.html',
+    imports: [
+        MatCard,
+        MatButton,
+        MatCardHeader,
+        MatCardTitle,
+        MatCardSubtitle,
+        MatFormField,
+        MatInput,
+        FormsModule,
+        MatIcon,
+        MatIconButton,
+        CdkTextareaAutosize,
+        MatCardContent,
+        MatLabel
+    ],
+    styleUrls: ['./hero-notes.component.css']
 })
 export class HeroNotesComponent extends AbstractHeroComponent {
 

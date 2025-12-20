@@ -4,12 +4,35 @@ import {HeroService} from '../../shared/services/hero.service';
 import {AbstractHeroComponent} from "../abstract-hero-component";
 import {AuthService} from "../../shared/services/auth.service";
 import {Talent} from "../../shared/model/hero";
-
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatCardModule} from '@angular/material/card';
+import {FormsModule} from "@angular/forms";
+import {MatList, MatListItem} from "@angular/material/list";
+import {MatIcon} from "@angular/material/icon";
+import {MatTab, MatTabGroup} from "@angular/material/tabs";
+import {
+    MatCell,
+    MatCellDef,
+    MatColumnDef,
+    MatHeaderCell,
+    MatHeaderCellDef,
+    MatHeaderRow,
+    MatHeaderRowDef,
+    MatRow,
+    MatRowDef,
+    MatTable
+} from "@angular/material/table";
+import {MatTooltip} from "@angular/material/tooltip";
+import {MatInput} from "@angular/material/input";
+import {FlexDirective, LayoutAlignDirective, LayoutDirective, LayoutGapDirective} from "@ngbracket/ngx-layout";
+import {MatButton} from "@angular/material/button";
 
 @Component({
     selector: 'app-hero-detail',
     templateUrl: './hero-detail.component.html',
-    styleUrls: ['./hero-detail.component.css']
+    styleUrls: ['./hero-detail.component.css'],
+    imports: [MatFormFieldModule, MatCardModule, FormsModule, MatList, MatListItem, MatIcon, MatTabGroup, MatTab, MatTable, MatTooltip, MatRow, MatHeaderRow, MatRowDef, MatHeaderRowDef, MatInput, MatCell, MatHeaderCell, MatColumnDef, MatHeaderCellDef, MatCellDef, FlexDirective, LayoutDirective, LayoutGapDirective, LayoutAlignDirective, MatButton],
+    standalone: true
 })
 export class HeroDetailComponent extends AbstractHeroComponent {
 
@@ -50,7 +73,7 @@ export class HeroDetailComponent extends AbstractHeroComponent {
         "Überreden",
         "Verkleiden",
         "Willenskraft",
-        ]
+    ]
 
     private natureTalents: string[] = [
         "Fährtensuchen",
@@ -60,7 +83,7 @@ export class HeroDetailComponent extends AbstractHeroComponent {
         "Pflanzenkunde",
         "Tierkunde",
         "Wildnisleben",
-        ]
+    ]
 
     private knowledgeTalents: string[] = [
         "Brett- & Glückspiel",
@@ -75,7 +98,7 @@ export class HeroDetailComponent extends AbstractHeroComponent {
         "Sagen & Legenden",
         "Sphärenkunde",
         "Sternkunde",
-        ]
+    ]
 
     private craftTalents: string[] = [
         "Alchimie",
@@ -95,7 +118,7 @@ export class HeroDetailComponent extends AbstractHeroComponent {
         "Schlösserknacken",
         "Steinbearbeitung",
         "Stoffbearbeitung",
-        ]
+    ]
 
     getBodyTalents(): Talent[] {
         return this.hero?.talents?.filter(t => this.bodyTalents.includes(t.name)) || []

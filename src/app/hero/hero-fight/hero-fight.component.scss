@@ -1,6 +1,6 @@
 @media screen and (max-width: 600px) {
   .mat-fight-ability {
-    width:55%
+    width:75%
   }
 
   /* Allow shrinking inside list/card rows */
@@ -22,7 +22,7 @@
 
   /* Tighter action buttons */
   .remove-action-button {
-    min-width: 40px;
+    min-width: 30px;
     padding: 0 8px;
   }
 }
@@ -50,8 +50,9 @@
 .mat-column-name {
   word-wrap: break-word !important;
   white-space: unset !important;
-  flex: 0 0 33% !important;
-  width: 33% !important;
+  /* Make the name column significantly wider */
+  flex: 1 1 60% !important;
+  width: 60% !important;
   overflow-wrap: break-word;
 
   word-break: break-word;
@@ -60,6 +61,17 @@
   -moz-hyphens: auto;
   -webkit-hyphens: auto;
   hyphens: auto;
+}
+
+/* Constrain KTW column to a small fixed size */
+.mat-column-ktw {
+  flex: 0 0 96px !important;
+  width: 96px !important;
+}
+
+/* Prevent the numeric input from expanding the KTW column */
+.mat-column-ktw input {
+  max-width: 90px;
 }
 
 

@@ -8,66 +8,82 @@
     <mat-toolbar-row>
 
       <button mat-button routerLink="/hero" routerLinkActive="active" class="my-link" color="primary">
-        <ic-icon icon="dashboard"></ic-icon>
+        <iconify-icon icon="mdi:view-dashboard"></iconify-icon>
         <span class="my-link-text">
-    Helden
-    </span>
+          Helden
+        </span>
       </button>
-      <button mat-button *ngIf="compHeroId" routerLink="/hero/general/{{compHeroId}}" routerLinkActive="active"
-              class="my-link" color="primary">
-        <ic-icon icon="text"></ic-icon>
-        <span class="my-link-text">
-      Allgemein
-    </span>
-      </button>
-      <button mat-button *ngIf="compHeroId" routerLink="/hero/detail/{{compHeroId}}" routerLinkActive="active"
-              class="my-link" color="primary">
-        <ic-icon icon="pickaxe"></ic-icon>
-        <span class="my-link-text">
-    Talente
-    </span>
-      </button>
-      <button mat-button *ngIf="compHeroId" routerLink="/hero/notes/{{compHeroId}}" routerLinkActive="active"
-              class="my-link" color="primary">
-        <ic-icon icon="calendar-text"></ic-icon>
-        <span class="my-link-text">
-    Notizen
-    </span>
-      </button>
-      <button mat-button *ngIf="compHeroId" routerLink="/hero/fight/{{compHeroId}}" routerLinkActive="active"
-              class="my-link" color="primary">
-        <ic-icon icon="sword-cross"></ic-icon>
-        <span class="my-link-text">
-    Kampf
-    </span>
-      </button>
-      <button mat-button *ngIf="compHeroId" routerLink="/hero/magic/{{compHeroId}}" routerLinkActive="active"
-              class="my-link" color="primary">
-        <ic-icon icon="magic"></ic-icon>
-        <span class="my-link-text">
-    Magie
-    </span>
-      </button>
-      <button mat-button *ngIf="compHeroId" routerLink="/hero/liturgic/{{compHeroId}}" routerLinkActive="active"
-              class="my-link" color="primary">
-        <ic-icon icon="liturgic"></ic-icon>
-        <span class="my-link-text">
-    Liturgie
-    </span>
-      </button>
-      <button mat-button *ngIf="compHeroId" routerLink="/hero/inventory/{{compHeroId}}" routerLinkActive="active"
-              class="my-link" color="primary">
-        <ic-icon icon="inventory"></ic-icon>
-        <span class="my-link-text">
-    Inventar
-    </span>
-      </button>
-      <button mat-button *ngIf="compHeroId" (click)="save()" class="my-link" color="primary">
-        <ic-icon icon="save"></ic-icon>
-        <span class="my-link-text">
-    Speichern
-    </span>
-      </button>
+      @if (compHeroId) {
+        <button mat-button routerLink="/hero/general/{{compHeroId}}" routerLinkActive="active"
+          class="my-link" color="primary">
+          <iconify-icon icon="mdi:card-text"></iconify-icon>
+          <span class="my-link-text">
+            Allgemein
+          </span>
+        </button>
+      }
+      @if (compHeroId) {
+        <button mat-button routerLink="/hero/detail/{{compHeroId}}" routerLinkActive="active"
+          class="my-link" color="primary">
+          <iconify-icon icon="mdi:pickaxe"></iconify-icon>
+          <span class="my-link-text">
+            Talente
+          </span>
+        </button>
+      }
+      @if (compHeroId) {
+        <button mat-button routerLink="/hero/notes/{{compHeroId}}" routerLinkActive="active"
+          class="my-link" color="primary">
+          <iconify-icon icon="mdi:calendar-text"></iconify-icon>
+          <span class="my-link-text">
+            Notizen
+          </span>
+        </button>
+      }
+      @if (compHeroId) {
+        <button mat-button routerLink="/hero/fight/{{compHeroId}}" routerLinkActive="active"
+          class="my-link" color="primary">
+          <iconify-icon icon="mdi:sword-cross"></iconify-icon>
+          <span class="my-link-text">
+            Kampf
+          </span>
+        </button>
+      }
+      @if (compHeroId) {
+        <button mat-button routerLink="/hero/magic/{{compHeroId}}" routerLinkActive="active"
+          class="my-link" color="primary">
+          <iconify-icon icon="mdi:auto-fix"></iconify-icon>
+          <span class="my-link-text">
+            Magie
+          </span>
+        </button>
+      }
+      @if (compHeroId) {
+        <button mat-button routerLink="/hero/liturgic/{{compHeroId}}" routerLinkActive="active"
+          class="my-link" color="primary">
+          <iconify-icon icon="mdi:hands-pray"></iconify-icon>
+          <span class="my-link-text">
+            Liturgie
+          </span>
+        </button>
+      }
+      @if (compHeroId) {
+        <button mat-button routerLink="/hero/inventory/{{compHeroId}}" routerLinkActive="active"
+          class="my-link" color="primary">
+          <iconify-icon icon="mdi:bag-suitcase"></iconify-icon>
+          <span class="my-link-text">
+            Inventar
+          </span>
+        </button>
+      }
+      @if (compHeroId) {
+        <button mat-button (click)="save()" class="my-link" color="primary">
+          <iconify-icon icon="mdi:content-save"></iconify-icon>
+          <span class="my-link-text">
+            Speichern
+          </span>
+        </button>
+      }
     </mat-toolbar-row>
   </mat-toolbar>
 

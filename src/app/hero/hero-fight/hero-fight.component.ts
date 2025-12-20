@@ -5,11 +5,57 @@ import {AbstractHeroComponent} from "../abstract-hero-component";
 import {AuthService} from "../../shared/services/auth.service";
 import {FightTechniqueService} from "../../shared/services/fight-technique.service";
 import {FightTechnique} from "../../shared/model/hero";
+import {MatIcon} from "@angular/material/icon";
+import {MatCard, MatCardContent, MatCardHeader, MatCardTitle} from "@angular/material/card";
+import {
+    MatCell, MatCellDef,
+    MatColumnDef,
+    MatHeaderCell, MatHeaderCellDef,
+    MatHeaderRow,
+    MatHeaderRowDef,
+    MatRow,
+    MatRowDef,
+    MatTable
+} from "@angular/material/table";
+import {MatFormField, MatInput, MatLabel} from "@angular/material/input";
+import {FormsModule} from "@angular/forms";
+import {FlexDirective, LayoutAlignDirective, LayoutDirective, LayoutGapDirective} from "@ngbracket/ngx-layout";
+import {MatList, MatListItem} from "@angular/material/list";
+import {MatButton} from "@angular/material/button";
 
 @Component({
-  selector: 'app-hero-fight',
-  templateUrl: './hero-fight.component.html',
-  styleUrls: ['./hero-fight.component.scss']
+    selector: 'app-hero-fight',
+    templateUrl: './hero-fight.component.html',
+    imports: [
+        MatIcon,
+        MatCard,
+        MatCardTitle,
+        MatCardHeader,
+        MatCardContent,
+        MatTable,
+        MatColumnDef,
+        MatHeaderCell,
+        MatCell,
+        MatInput,
+        FormsModule,
+        MatHeaderRow,
+        MatRow,
+        MatFormField,
+        FlexDirective,
+        LayoutDirective,
+        LayoutGapDirective,
+        LayoutAlignDirective,
+        MatList,
+        MatListItem,
+        MatButton,
+        MatRowDef,
+        MatHeaderRowDef,
+        MatCellDef,
+        MatHeaderCellDef,
+        MatLabel
+    ],
+    styleUrls: ['./hero-fight.component.scss'],
+    standalone: true
 })
 export class HeroFightComponent extends AbstractHeroComponent {
 

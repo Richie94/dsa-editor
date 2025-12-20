@@ -11,18 +11,19 @@
   <mat-card-content>
     <form>
     <mat-form-field style="margin: 5px">
-        <mat-label for="user-name">Name</mat-label>
+        <mat-label>Name</mat-label>
         <input matInput id="user-name" placeholder="Name" type="text"  #userName required>
       </mat-form-field>
       <mat-form-field>
-        <mat-label for="user-password">Password</mat-label>
+        <mat-label>Password</mat-label>
         <input matInput id="user-password" type="password" class="formControl" placeholder="Password" #userPassword required>
       </mat-form-field>
 
       <br>
 
-      <button mat-raised-button color="primary"
-              (click)="authService.signIn(userName.value, userPassword.value)" (keydown.enter)="authService.signIn(userName.value, userPassword.value)">Log In</button>
+      <button mat-raised-button color="primary" type="button"
+              (click)="$event.preventDefault(); authService.signIn(userName.value, userPassword.value)"
+              (keydown.enter)="$event.preventDefault(); authService.signIn(userName.value, userPassword.value)">Log In</button>
     </form>
   </mat-card-content>
 </mat-card>

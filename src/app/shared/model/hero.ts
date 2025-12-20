@@ -3,6 +3,9 @@ export interface HeroWrapper {
   id: string;
 }
 export interface Hero {
+  // Firestore document id (added to support collectionData({ idField: 'id' }))
+  // Optional to keep compatibility where Hero previously mirrored only doc data
+  id?: string;
   ap: number;
 
   public: boolean;

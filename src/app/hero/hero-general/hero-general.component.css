@@ -1,20 +1,33 @@
 .hero-description {
-  width: 100%
+    width: 100%
 }
 
 .descriptive-form-field {
-  margin: 5px;
-  width: 12em;
+    margin: 5px;
+    width: 12em;
 }
 
 .advantage-form-field {
-  margin: 5px;
-  width: 55%;
+    margin: 5px;
+    width: 55%;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .advantage-form-field {
+        width: 75%;
+    }
+
+    .remove-action-button {
+        /* Tighter action buttons */
+        min-width: 30px;
+        padding: 0 8px;
+    }
 }
 
 @media only screen and (min-width: 1200px) {
-  .advantage-form-field {
-    margin: 5px;
-    width: 70%;
-  }
+    .advantage-form-field {
+        margin: 5px;
+        width: 70%;
+    }
 }

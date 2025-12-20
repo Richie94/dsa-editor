@@ -12,7 +12,7 @@ import {HeroLiturgicComponent} from "./hero/hero-liturgic/hero-liturgic.componen
 import {HeroInventoryComponent} from "./hero/hero-inventory/hero-inventory.component";
 import {HeroFightComponent} from "./hero/hero-fight/hero-fight.component";
 
-const routes: Routes = [
+export const routes: Routes = [
   {path: '', redirectTo: '/hero', pathMatch: 'full'},
   {path: 'sign-in', component: SignInComponent},
   {
@@ -34,5 +34,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}

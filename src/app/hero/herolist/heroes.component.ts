@@ -1,12 +1,34 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {Hero, HeroWrapper} from '../../shared/model/hero';
 import {HeroService} from '../../shared/services/hero.service';
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {
+    MAT_DIALOG_DATA,
+    MatDialog,
+    MatDialogActions,
+    MatDialogClose,
+    MatDialogContent,
+    MatDialogRef
+} from "@angular/material/dialog";
+import {MatFormField, MatInput, MatLabel} from "@angular/material/input";
+import {FormsModule} from "@angular/forms";
+import {MatButton} from "@angular/material/button";
+import {RouterLink} from "@angular/router";
+import {MatCard, MatCardContent, MatCardHeader, MatCardTitle} from "@angular/material/card";
+import {MatList} from "@angular/material/list";
 
 @Component({
-  selector: 'app-heroes',
-  templateUrl: './heroes.component.html',
-  styleUrls: ['./heroes.component.css']
+    selector: 'app-heroes',
+    templateUrl: './heroes.component.html',
+    imports: [
+        RouterLink,
+        MatCardContent,
+        MatCardTitle,
+        MatCardHeader,
+        MatCard,
+        MatList,
+        MatButton
+    ],
+    styleUrls: ['./heroes.component.css']
 })
 export class HeroesComponent implements OnInit {
 
@@ -47,8 +69,18 @@ export interface DialogData {
 }
 
 @Component({
-  selector: 'add-new-hero-dialog',
-  templateUrl: 'add-new-hero-dialog.html',
+    selector: 'add-new-hero-dialog',
+    imports: [
+        MatDialogContent,
+        MatFormField,
+        MatInput,
+        FormsModule,
+        MatDialogClose,
+        MatButton,
+        MatDialogActions,
+        MatLabel
+    ],
+    templateUrl: 'add-new-hero-dialog.html'
 })
 export class AddNewHeroDialog {
   constructor(

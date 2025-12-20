@@ -5,22 +5,24 @@
 </div>
 <div>
   <mat-list class="heroes">
-    <mat-card *ngFor="let hero of heroes" class="my-card">
-      <mat-card-header>
-        <mat-card-title class="my-card-title">
-          {{hero.hero.name}}
-        </mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <div>
-          <button mat-raised-button routerLink="/hero/general/{{hero.id}}" class="overview-buttons" color="primary">
-            Allgemein
-          </button>
-          <button mat-raised-button routerLink="/hero/notes/{{hero.id}}" class="overview-buttons" color="primary">Notizen
-          </button>
-        </div>
-      </mat-card-content>
-    </mat-card>
+    @for (hero of heroes; track hero) {
+      <mat-card class="my-card">
+        <mat-card-header>
+          <mat-card-title class="my-card-title">
+            {{hero.hero.name}}
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div>
+            <button mat-raised-button routerLink="/hero/general/{{hero.id}}" class="overview-buttons" color="primary">
+              Allgemein
+            </button>
+            <button mat-raised-button routerLink="/hero/notes/{{hero.id}}" class="overview-buttons" color="primary">Notizen
+            </button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    }
   </mat-list>
 </div>
 

@@ -1,10 +1,22 @@
-import {Injectable, OnDestroy} from '@angular/core';
-import {Evening, FightTechnique, Hero, HeroWrapper, Talent} from '../model/hero';
-import {BehaviorSubject, combineLatest, from, map, Observable, of, Subject, Subscription} from 'rxjs';
+import {EnvironmentInjector, Injectable, OnDestroy, runInInjectionContext} from '@angular/core';
+import {Hero, HeroWrapper} from '../model/hero';
+import {combineLatest, from, map, Observable, Subject, shareReplay, catchError, throwError, tap} from 'rxjs';
 import {AuthService} from "./auth.service";
 import {TalentService} from "./talent.service";
 import {FightTechniqueService} from "./fight-technique.service";
-import {AngularFirestore, DocumentReference} from "@angular/fire/compat/firestore";
+import {
+    addDoc,
+    collection,
+    CollectionReference,
+    doc,
+    docData,
+    Firestore,
+    getDocs,
+    collectionData,
+    query,
+    updateDoc,
+    where,
+} from '@angular/fire/firestore';
 
 @Injectable({
     providedIn: 'root'
@@ -12,109 +24,81 @@ import {AngularFirestore, DocumentReference} from "@angular/fire/compat/firestor
 export class HeroService implements OnDestroy {
 
     private saveSubscription = new Subject<string>();
-    private heroSubscriptions = new Array<Subscription>();
     shouldSave = this.saveSubscription.asObservable()
 
     constructor(
         private authService: AuthService,
         private talentService: TalentService,
         private fightTechniqueService: FightTechniqueService,
-        public afs: AngularFirestore
+        public afs: Firestore,
+        public injector: EnvironmentInjector
     ) {
 
     }
 
-    ngOnDestroy(): void {
-        this.heroSubscriptions.forEach((s) => s.unsubscribe())
-    }
+    ngOnDestroy(): void {}
 
     triggerSave() {
         this.saveSubscription.next("");
     }
 
     getHeroes(): Observable<HeroWrapper[]> {
-        // query by creator_id and whether hero is public
-        let uid = this.authService.readUser().uid;
-        let myHeroesObservable = from(this.afs.collection<Hero>('heroes')
-            .ref
-            .where("creator_id", "==", uid)
-            .get());
-        let publicHeroesObservable = from(this.afs.collection<Hero>('heroes')
-            .ref
-            .where("public", "==", true)
-            .get());
+        // Modern, easy-to-understand realtime version using collectionData and dedupe
+        const uid = this.authService.readUser().uid;
+        const heroesCol = collection(this.afs, 'heroes') as CollectionReference<Hero>;
 
-        return combineLatest([myHeroesObservable, publicHeroesObservable])
-            .pipe(
-                map(([myHeroes, publicHeroes]) => {
-                    let heroes: HeroWrapper[] = []
-                    let ids = new Set<string>()
-                    myHeroes.forEach((doc) => {
-                        let h = doc.data() as Hero
-                        ids.add(doc.id)
-                        heroes.push({
-                            id: doc.id, hero: h
-                        })
-                    })
-                    publicHeroes.forEach((doc) => {
-                        let h = doc.data() as Hero
-                        if (!ids.has(doc.id)) {
-                            ids.add(doc.id)
-                            heroes.push({
-                                id: doc.id, hero: h
-                            })
-                        }
-                    })
-                    return heroes
-                })
-            )
+        const myQ = query(heroesCol, where('creator_id', '==', uid));
+        const pubQ = query(heroesCol, where('public', '==', true));
+
+        const my$ = collectionData(myQ, { idField: 'id' }) as Observable<(Hero & { id: string })[]>;
+        const pub$ = collectionData(pubQ, { idField: 'id' }) as Observable<(Hero & { id: string })[]>;
+
+        return combineLatest([my$, pub$]).pipe(
+            map(([a, b]) => {
+                const out: HeroWrapper[] = [];
+                const seen = new Set<string>();
+                for (const d of [...a, ...b]) {
+                    const { id, ...hero } = d as any;
+                    if (!seen.has(id)) {
+                        seen.add(id);
+                        out.push({ id, hero: hero as Hero });
+                    }
+                }
+                return out;
+            })
+        );
     }
 
     private heroesMap = new Map<string, Observable<HeroWrapper | null>>()
 
     getHero(id: string): Observable<HeroWrapper | null> {
-        // check if we already have a subscription for this id
-        if (this.heroesMap.has(id)) {
-            return this.heroesMap.get(id)!
-        } else {
-            // create a new subscription
-            console.log("Create new subscription for " + id)
-            let subject = new BehaviorSubject<HeroWrapper | null>(null)
+        // Modern caching with shareReplay to avoid manual subscriptions
+        const cached = this.heroesMap.get(id);
+        if (cached) return cached;
 
-            let obs = this.getHeroById(id).subscribe((hero) => {
-                // if the hero is null, we need to remove the subscription
-                if (hero == null) {
-                    this.heroesMap.delete(id)
-                    subject.next(null)
-                } else {
-                    // update the subject
-                    subject.next(hero)
-                }
-            })
-            this.heroSubscriptions.push(obs)
-            let observable = subject.asObservable();
-            this.heroesMap.set(id, observable)
-            return observable
-        }
+        const stream$ = this.getHeroById(id).pipe(
+            shareReplay({ bufferSize: 1, refCount: true })
+        );
+        this.heroesMap.set(id, stream$);
+        return stream$;
     }
 
     private getHeroById(id: string): Observable<HeroWrapper | null> {
-        return this.afs.collection<Hero>('heroes').doc(id)
-            .snapshotChanges()
-            .pipe(map((d) => {
-                console.log("Request Hero: " + d.payload.id)
-                console.log(d.type)
-                let h = d.payload.data() as Hero
-                // filter it if either it is not public or the creator_id is not the same as the userId
-                if (h.public || h.creator_id == this.authService.userData!.uid) {
-                    return {
-                        id: d.payload.id,
-                        hero: h
+        // Wrap the document reference creation and modular call
+        return runInInjectionContext(this.injector, () => {
+            const heroDocRef = doc(this.afs, 'heroes', id);
+
+            return docData(heroDocRef).pipe(
+                map((data) => {
+                    if (!data) return null;
+                    const h = data as Hero;
+                    if (h.public || h.creator_id === this.authService.userData!.uid) {
+                        return {id, hero: h} as HeroWrapper;
                     }
-                } else {
-                    return null
-                }
-            }))
+                    return null;
+                })
+            );
+        });
     }
 
     createHero(name: string): Observable<HeroWrapper> {
@@ -164,23 +148,23 @@ export class HeroService implements OnDestroy {
             },
         };
 
-        return from(this.afs.collection<Hero>('heroes')
-            .add(hero)
-            .then((d) => {
-                console.log("Created hero", hero.name)
-                return {
-                    id: d.id,
-                    hero: hero
-                }
-            }))
+        const heroesCol = collection(this.afs, 'heroes') as CollectionReference<Hero>;
+        return from(addDoc(heroesCol, hero).then((d) => {
+            console.log("Created hero", hero.name)
+            return {id: d.id, hero} as HeroWrapper;
+        }))
     }
 
 
-    updateHero(heroWrapper: HeroWrapper) {
-        this.afs.collection('heroes')
-            .doc(heroWrapper.id)
-            .update(heroWrapper.hero)
-            .then(() => console.log("Updated hero " + heroWrapper.id))
+    updateHero(heroWrapper: HeroWrapper): Observable<void> {
+        const heroDocRef = doc(this.afs, 'heroes', heroWrapper.id);
+        return from(updateDoc(heroDocRef, heroWrapper.hero as any)).pipe(
+            tap(() => console.log('Updated hero', heroWrapper.id)),
+            catchError(err => {
+                console.error('Failed to update hero', heroWrapper.id, err);
+                return throwError(() => err);
+            })
+        );
     }
 
     HEROES: Hero[] = [

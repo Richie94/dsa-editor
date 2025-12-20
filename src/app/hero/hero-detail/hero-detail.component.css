@@ -83,6 +83,16 @@
         width: 5ch; /* a tad wider on small screens */
         font-size: 1rem;
     }
+
+    /* Tighter action buttons */
+    .remove-action-button {
+        min-width: 30px;
+        padding: 0 8px;
+    }
+
+    .mat-ability {
+        width: 75%;
+    }
 }
 
 @media screen and (max-width: 400px) {
@@ -114,7 +124,7 @@
     .fw-input { width: 5ch; font-size: 0.95rem; }
 
     .mat-ability {
-        width:50%
+        width:75%
     }
 }
 

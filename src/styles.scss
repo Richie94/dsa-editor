@@ -74,6 +74,14 @@ body {
     .my-table-card-replacement {
         margin: 4px;
         padding: 8px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    /* Make item name field take a full row on small screens */
+    .my-table-card-replacement .item-name-field {
+        width: 95% !important;
+        min-width: 95% !important;
     }
 }
 

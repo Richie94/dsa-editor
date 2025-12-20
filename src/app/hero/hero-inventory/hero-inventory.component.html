@@ -37,20 +37,20 @@
         <mat-card-content>
           @for (item of hero.items; track item; let i = $index) {
             <div class="my-table-card-replacement">
-              <mat-form-field class="property-form-field" style="min-width: 35%">
-                <mat-label for="item-name">Name</mat-label>
+              <mat-form-field class="property-form-field item-name-field" style="min-width: 35%">
+                <mat-label>Name</mat-label>
                 <input readonly="{{readOnly()}}" matInput id="item-name" [(ngModel)]="item.name" placeholder="name" type="string">
               </mat-form-field>
               <mat-form-field class="property-form-field" style="min-width: 15%">
-                <mat-label for="item-amount">Menge</mat-label>
+                <mat-label>Menge</mat-label>
                 <input readonly="{{readOnly()}}" matInput id="item-amount" [(ngModel)]="item.amount" placeholder="amount" type="number">
               </mat-form-field>
               <mat-form-field class="property-form-field" style="min-width: 20%">
-                <mat-label for="item-price">Preis</mat-label>
+                <mat-label>Preis</mat-label>
                 <input readonly="{{readOnly()}}" matInput id="item-price" [(ngModel)]="item.price" placeholder="price" type="number">
               </mat-form-field>
               <mat-form-field class="property-form-field" style="min-width: 20%">
-                <mat-label for="item-weight">Gewicht</mat-label>
+                <mat-label>Gewicht</mat-label>
                 <input readonly="{{readOnly()}}" matInput id="item-weight" [(ngModel)]="item.weight" placeholder="weight" type="number">
               </mat-form-field>
               <button mat-raised-button color="primary" (click)="deleteItem(i)" class="remove-action-button">

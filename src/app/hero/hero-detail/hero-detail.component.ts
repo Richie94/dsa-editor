@@ -36,6 +36,13 @@ import {MatButton} from "@angular/material/button";
 })
 export class HeroDetailComponent extends AbstractHeroComponent {
 
+    // Flag to detect touch-capable devices (treat as mobile)
+    readonly isTouch: boolean = typeof window !== 'undefined' && (
+        (navigator && (navigator as any).maxTouchPoints > 0) ||
+        // Some older browsers
+        ('ontouchstart' in window)
+    );
+
     constructor(
         route: ActivatedRoute,
         heroService: HeroService,

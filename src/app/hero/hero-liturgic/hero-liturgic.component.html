@@ -1,65 +1,78 @@
 @if (hero) {
-  <div>
     <div>
-      <mat-card class="my-top-card">
-        <mat-card-header>
-          <mat-card-title class="my-card-title">
-            Liturgien
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          @for (item of hero.liturgic_spells; track item; let i = $index) {
-            <div class="my-table-card-replacement">
-              <mat-form-field class="property-form-field" style="min-width: 240px">
-                <mat-label>Name</mat-label>
-                <input readonly="{{readOnly()}}" matInput id="item-name" [(ngModel)]="item.name" placeholder="name"
-                  type="string">
-              </mat-form-field>
-              <mat-form-field class="property-form-field" style="min-width: 120px">
-                <mat-label>Probe</mat-label>
-                <input readonly="{{readOnly()}}" matInput id="item-probe" [(ngModel)]="item.probe" placeholder="probe"
-                  type="string" matTooltip="{{resolveProbe(item.probe)}}">
-              </mat-form-field>
-              <mat-form-field class="property-form-field" style="min-width: 120px">
-                <mat-label>Wirkungsdauer</mat-label>
-                <input readonly="{{readOnly()}}" matInput id="item-spell_duration" [(ngModel)]="item.spell_duration"
-                  placeholder="Wirkungsdauer" type="string">
-              </mat-form-field>
-              <mat-form-field class="property-form-field" style="min-width: 120px">
-                <mat-label>Zauberdauer</mat-label>
-                <input readonly="{{readOnly()}}" matInput id="item-cast_duration" [(ngModel)]="item.cast_duration"
-                  placeholder="Zauberdauer" type="string">
-              </mat-form-field>
-              <mat-form-field class="property-form-field" style="min-width: 120px">
-                <mat-label>Reichweite</mat-label>
-                <input readonly="{{readOnly()}}" matInput id="item-range" [(ngModel)]="item.range" placeholder="Reichweite"
-                  type="string">
-              </mat-form-field>
-              <mat-form-field class="property-form-field" style="min-width: 120px">
-                <mat-label>Ziel</mat-label>
-                <input readonly="{{readOnly()}}" matInput id="item-target" [(ngModel)]="item.target" placeholder="Ziel"
-                  type="string">
-              </mat-form-field>
-              <mat-form-field class="property-form-field" style="min-width: 120px">
-                <mat-label>Kosten</mat-label>
-                <input readonly="{{readOnly()}}" matInput id="item-cost" [(ngModel)]="item.cost" placeholder="Kosten"
-                  type="string">
-              </mat-form-field>
-              <mat-form-field class="property-form-field" style="min-width: 120px">
-                <mat-label>Steigerungsfaktor</mat-label>
-                <input readonly="{{readOnly()}}" matInput id="item-requirements" [(ngModel)]="item.sf"
-                  placeholder="Steigerungsfaktor" type="string">
-              </mat-form-field>
-              <button mat-raised-button color="primary" (click)="deleteSpell(i)" class="remove-action-button">
-                -
-              </button>
-            </div>
-          }
-          <button mat-raised-button color="primary" (click)="addSpell()" class="add-action-button"
-            style="margin-top: 5px">+
-          </button>
-        </mat-card-content>
-      </mat-card>
+        <div>
+            <mat-card class="my-top-card">
+                <mat-card-header>
+                    <mat-card-title class="my-card-title">
+                        Liturgien
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    @for (item of hero.liturgic_spells; track item; let i = $index) {
+                        <div class="my-table-card-replacement">
+                            <mat-form-field class="property-form-field" style="min-width: 240px">
+                                <mat-label>Name</mat-label>
+                                <input readonly="{{readOnly()}}" matInput id="item-name" [(ngModel)]="item.name"
+                                       placeholder="name"
+                                       type="string">
+                            </mat-form-field>
+                            <mat-form-field class="property-form-field" style="min-width: 120px">
+                                <mat-label>Probe</mat-label>
+                                <input readonly="{{readOnly()}}" matInput id="item-probe" [(ngModel)]="item.probe"
+                                       placeholder="probe"
+                                       type="string" matTooltip="{{resolveProbe(item.probe)}}">
+                            </mat-form-field>
+                            <mat-form-field class="property-form-field" style="min-width: 120px">
+                                <mat-label>Wirkungsdauer</mat-label>
+                                <input readonly="{{readOnly()}}" matInput id="item-spell_duration"
+                                       [(ngModel)]="item.spell_duration"
+                                       placeholder="Wirkungsdauer" type="string">
+                            </mat-form-field>
+                            <mat-form-field class="property-form-field" style="min-width: 120px">
+                                <mat-label>Zauberdauer</mat-label>
+                                <input readonly="{{readOnly()}}" matInput id="item-cast_duration"
+                                       [(ngModel)]="item.cast_duration"
+                                       placeholder="Zauberdauer" type="string">
+                            </mat-form-field>
+                            <mat-form-field class="property-form-field" style="min-width: 120px">
+                                <mat-label>Reichweite</mat-label>
+                                <input readonly="{{readOnly()}}" matInput id="item-range" [(ngModel)]="item.range"
+                                       placeholder="Reichweite"
+                                       type="string">
+                            </mat-form-field>
+                            <mat-form-field class="property-form-field" style="min-width: 120px">
+                                <mat-label>Ziel</mat-label>
+                                <input readonly="{{readOnly()}}" matInput id="item-target" [(ngModel)]="item.target"
+                                       placeholder="Ziel"
+                                       type="string">
+                            </mat-form-field>
+                            <mat-form-field class="property-form-field" style="min-width: 120px">
+                                <mat-label>Kosten</mat-label>
+                                <input readonly="{{readOnly()}}" matInput id="item-cost" [(ngModel)]="item.cost"
+                                       placeholder="Kosten"
+                                       type="string">
+                            </mat-form-field>
+                            <mat-form-field class="property-form-field" style="min-width: 120px">
+                                <mat-label>Steigerungsfaktor</mat-label>
+                                <input readonly="{{readOnly()}}" matInput id="item-requirements" [(ngModel)]="item.sf"
+                                       placeholder="Steigerungsfaktor" type="string">
+                            </mat-form-field>
+                            <button mat-raised-button color="primary" (click)="deleteSpell(i)"
+                                    class="remove-action-button">
+                                -
+                            </button>
+                            <button mat-raised-button color="primary" class="remove-action-button">
+                                <a href="https://ulisses-regelwiki.de/suche.html?keywords={{item.name}}">
+                                    <mat-icon style="color: white">help</mat-icon>
+                                </a>
+                            </button>
+                        </div>
+                    }
+                    <button mat-raised-button color="primary" (click)="addSpell()" class="add-action-button"
+                            style="margin-top: 5px">+
+                    </button>
+                </mat-card-content>
+            </mat-card>
+        </div>
     </div>
-  </div>
 }

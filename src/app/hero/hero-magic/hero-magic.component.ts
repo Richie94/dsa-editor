@@ -8,6 +8,7 @@ import {MatFormField, MatInput, MatLabel} from "@angular/material/input";
 import {MatTooltip} from "@angular/material/tooltip";
 import {FormsModule} from "@angular/forms";
 import {MatButton} from "@angular/material/button";
+import {MatIcon} from "@angular/material/icon";
 
 @Component({
     selector: 'app-hero-magic',
@@ -22,7 +23,8 @@ import {MatButton} from "@angular/material/button";
         MatTooltip,
         FormsModule,
         MatButton,
-        MatLabel
+        MatLabel,
+        MatIcon
     ],
     styleUrls: ['./hero-magic.component.scss']
 })

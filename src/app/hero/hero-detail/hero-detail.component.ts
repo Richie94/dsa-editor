@@ -26,12 +26,13 @@ import {MatTooltip} from "@angular/material/tooltip";
 import {MatInput} from "@angular/material/input";
 import {FlexDirective, LayoutAlignDirective, LayoutDirective, LayoutGapDirective} from "@ngbracket/ngx-layout";
 import {MatButton} from "@angular/material/button";
+import {NgClass} from "@angular/common";
 
 @Component({
     selector: 'app-hero-detail',
     templateUrl: './hero-detail.component.html',
     styleUrls: ['./hero-detail.component.css'],
-    imports: [MatFormFieldModule, MatCardModule, FormsModule, MatList, MatListItem, MatIcon, MatTabGroup, MatTab, MatTable, MatTooltip, MatRow, MatHeaderRow, MatRowDef, MatHeaderRowDef, MatInput, MatCell, MatHeaderCell, MatColumnDef, MatHeaderCellDef, MatCellDef, FlexDirective, LayoutDirective, LayoutGapDirective, LayoutAlignDirective, MatButton],
+    imports: [MatFormFieldModule, MatCardModule, FormsModule, MatList, MatListItem, MatIcon, MatTabGroup, MatTab, MatTable, MatTooltip, MatRow, MatHeaderRow, MatRowDef, MatHeaderRowDef, MatInput, MatCell, MatHeaderCell, MatColumnDef, MatHeaderCellDef, MatCellDef, FlexDirective, LayoutDirective, LayoutGapDirective, LayoutAlignDirective, MatButton, NgClass],
     standalone: true
 })
 export class HeroDetailComponent extends AbstractHeroComponent {
@@ -52,6 +53,43 @@ export class HeroDetailComponent extends AbstractHeroComponent {
     }
 
     attributeColumns: string[] = ['name', 'probe', 'fw'];
+
+    // Track expanded rows per table category by index (multi-expand allowed)
+    expandedBody: Set<number> = new Set<number>();
+    expandedSocial: Set<number> = new Set<number>();
+    expandedNature: Set<number> = new Set<number>();
+    expandedKnowledge: Set<number> = new Set<number>();
+    expandedCraft: Set<number> = new Set<number>();
+
+    toggleExpanded(category: 'body'|'social'|'nature'|'knowledge'|'craft', index: number): void {
+        const map = {
+            body: this.expandedBody,
+            social: this.expandedSocial,
+            nature: this.expandedNature,
+            knowledge: this.expandedKnowledge,
+            craft: this.expandedCraft,
+        } as const;
+        const set = map[category];
+        if (set.has(index)) set.delete(index); else set.add(index);
+    }
+
+    isExpanded(category: 'body'|'social'|'nature'|'knowledge'|'craft', index: number): boolean {
+        const map = {
+            body: this.expandedBody,
+            social: this.expandedSocial,
+            nature: this.expandedNature,
+            knowledge: this.expandedKnowledge,
+            craft: this.expandedCraft,
+        } as const;
+        return map[category].has(index);
+    }
+
+    // Row predicate functions for MatTable (multi-template data rows)
+    isBodyDetailRow = (i: number, row: any) => this.isExpanded('body', this.getBodyTalents().indexOf(row));
+    isSocialDetailRow = (i: number, row: any) => this.isExpanded('social', this.getSocialTalents().indexOf(row));
+    isNatureDetailRow = (i: number, row: any) => this.isExpanded('nature', this.getNatureTalents().indexOf(row));
+    isKnowledgeDetailRow = (i: number, row: any) => this.isExpanded('knowledge', this.getKnowledgeTalents().indexOf(row));
+    isCraftDetailRow = (i: number, row: any) => this.isExpanded('craft', this.getCraftTalents().indexOf(row));
 
     private bodyTalents: string[] = [
         "Fliegen",

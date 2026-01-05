@@ -70,8 +70,8 @@
     }
 
     .mat-column-probe {
-        flex: 0 0 20% !important;
-        width: 20% !important;
+        flex: 0 0 25% !important;
+        width: 25% !important;
     }
 
     .mat-column-fw {
@@ -117,15 +117,19 @@
         text-align: right; /* keep numbers readable in narrow field */
     }
 
-    .mat-column-name { flex: 1 1 50% !important; width: 50% !important; }
+    .mat-column-name { flex: 1 1 55% !important; width: 55% !important; }
     .mat-column-probe { flex: 0 0 20% !important; width: 20% !important; }
     .mat-column-fw { flex: 0 0 84px !important; width: 84px !important; }
 
-    .fw-input { width: 5ch; font-size: 0.95rem; }
+    .fw-input { width: 3ch; font-size: 0.95rem; }
 
     .mat-ability {
         width:75%
     }
+
+    /* Hide chevron icon and tighten spacing to free room for Probe text */
+    .probe-form-field { gap: 0; }
+    .probe-form-field .chevron { display: none; }
 }
 
 @media screen and (min-width: 400px) {
@@ -133,3 +137,4 @@
         width:75%
     }
 }
+
